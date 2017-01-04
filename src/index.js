@@ -1,9 +1,15 @@
+import 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+
+import { Provider } from 'react-redux';
+import LandingContainer from './containers/LandingContainer/LandingContainer';
+
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <LandingContainer />,
   document.getElementById('root')
 );
