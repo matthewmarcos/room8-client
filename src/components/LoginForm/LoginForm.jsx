@@ -1,12 +1,84 @@
 import React from 'react';
+import { 
+    Grid, Row, Col, Input, Form, 
+    ControlLabel, FormControl, FormGroup,
+    Checkbox, Button
+} from 'react-bootstrap';
 
 const LoginForm = (props) => {
 
+    const centerStyle = {
+        margin: '0 auto',
+        float: 'none'
+    };
+
+    const loginBannerStyle = {
+        fontWeight: 'bold',
+        fontSize: '250%'
+    }
+
+    const marginTopStyle = {
+        marginTop: '30px'
+    }
+
     return (
-        <div className="login-form container">
-            <h1>LoginForm</h1>
-        </div>
-    );
+        <div className="login-form container-fluid">
+            <Grid style={marginTopStyle}>
+
+                <Row>
+                    <Col sm={4} md={4} lg={4} style={{ ...centerStyle, ...loginBannerStyle }}>
+                        <h1 className="center" style={{ ...centerStyle, ...loginBannerStyle }}>LOG IN</h1>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col sm={4} md={4} lg={4} style={{ ...centerStyle }}>
+                        <span>Don't have an account yet? Register for free!</span>
+                    </Col>
+                </Row>
+
+                <Row style={marginTopStyle}>
+                    <Form horizontal>
+                        <FormGroup controlId="formHorizontalEmail">
+                            <Col componentClass={ControlLabel} sm={3}>
+                               Username
+                            </Col>
+                            <Col sm={6}>
+                                <FormControl type="text" placeholder="Username" />
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup controlId="formHorizontalPassword">
+                            <Col componentClass={ControlLabel} sm={3}>
+                                Password
+                            </Col>
+                            <Col sm={4}>
+                                <FormControl type="password" placeholder="Password" />
+                            </Col>
+                            <Col componentClass={ControlLabel} sm={2}>
+                                Forgot Password?
+                            </Col>
+ 
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Col smOffset={3} sm={2}>
+                                <Checkbox>Remember me</Checkbox>
+                            </Col>
+                        </FormGroup>
+                        <FormGroup>
+                            <Col smOffset={3} sm={2}>
+                                <Button type="submit">
+                                    Sign in
+                                </Button>
+                            </Col>
+                        </FormGroup>
+                    </Form>
+                </Row>
+
+        </Grid>
+    </div>
+);
 
 };
 
