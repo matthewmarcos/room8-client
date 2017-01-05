@@ -4,29 +4,40 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 const MyNavbar = (props) => {
 
+    // Documentation for react-bootstrap navbars:
+    // https://react-bootstrap.github.io/components.html#navbars
+
+    const myNavbarStyle = {
+        paddingLeft: '30px',
+        paddingRight: '30px',
+        listStyle: 'none'
+    };
+
     return (
-        <Navbar>
-            <Navbar.Header>
-                <Navbar.Brand>
-                    <LinkContainer to="/">
-                        <NavItem eventKey={1}>Link</NavItem>
+        <Navbar staticTop={true} inverse={true} fluid={true}>
+            <div style={myNavbarStyle}>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <LinkContainer to="/">
+                            <NavItem eventKey={1}>Room8!</NavItem>
+                        </LinkContainer>
+                    </Navbar.Brand>
+                    </Navbar.Header>
+                <Nav pullRight={true}>
+                    <LinkContainer onlyActiveOnIndex={true} to="/">
+                        <NavItem eventKey={2}>Home</NavItem>
                     </LinkContainer>
-                </Navbar.Brand>
-            </Navbar.Header>
-            <Nav>
-                <NavItem eventKey={1} href="#">Link</NavItem>
-                <NavItem eventKey={2} href="#">Link</NavItem>
-                <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1}>Action</MenuItem>
-                    <MenuItem eventKey={3.2}>Another action</MenuItem>
-                    <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                </NavDropdown>
-            </Nav>
+                    <LinkContainer onlyActiveOnIndex={true} to="/login">
+                        <NavItem eventKey={3}>Login</NavItem>
+                    </LinkContainer>
+                    <LinkContainer onlyActiveOnIndex={true} to="/register">
+                        <NavItem eventKey={4}>Register</NavItem>
+                    </LinkContainer>
+                </Nav>
+            </div>
         </Navbar>
     );
 
-}
+};
 
 export default MyNavbar;

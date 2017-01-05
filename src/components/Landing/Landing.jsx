@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Landing extends Component {
-    render() {
-        return (
-            <div className="landing">
-                Landing page here! 
-            </div>
-        );
-    }
-}
+const Landing = (props) => {
+
+    return (
+        <div className="landing container-fluid">
+            Landing page here 
+        </div>
+    );
+
+};
 
 export default Landing;

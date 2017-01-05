@@ -10,7 +10,6 @@ class AppContainer extends Component {
         return (
             <div className="app-container">
                 <NavbarContainer />
-                AppContainer
                 {this.props.children || 'App Container goes here!'}
             </div>
         );

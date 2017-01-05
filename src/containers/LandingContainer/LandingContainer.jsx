@@ -6,8 +6,7 @@ class LandingContainer extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    LandingContainer!
+                <div>
                     <Landing/>
                 </div>
             </div>
