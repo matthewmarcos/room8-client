@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
 const MyNavbar = (props) => {
 
@@ -13,6 +13,18 @@ const MyNavbar = (props) => {
         listStyle: 'none'
     };
 
+
+    const { links } = props;
+
+    const navLinks = links.map((links, index) => {
+        return (
+            <LinkContainer onlyActiveOnIndex={true} to={links.to} key={index}>
+                <NavItem eventKey={index + 2}>{links.name}</NavItem>
+            </LinkContainer>
+
+        );
+    });
+
     return (
         <Navbar staticTop={true} inverse={true} fluid={true}>
             <div style={myNavbarStyle}>
@@ -24,20 +36,16 @@ const MyNavbar = (props) => {
                     </Navbar.Brand>
                     </Navbar.Header>
                 <Nav pullRight={true}>
-                    <LinkContainer onlyActiveOnIndex={true} to="/">
-                        <NavItem eventKey={2}>Home</NavItem>
-                    </LinkContainer>
-                    <LinkContainer onlyActiveOnIndex={true} to="/login">
-                        <NavItem eventKey={3}>Login</NavItem>
-                    </LinkContainer>
-                    <LinkContainer onlyActiveOnIndex={true} to="/register">
-                        <NavItem eventKey={4}>Register</NavItem>
-                    </LinkContainer>
+                    { navLinks }
                 </Nav>
             </div>
         </Navbar>
     );
 
+};
+
+MyNavbar.propTypes = {
+    links: React.PropTypes.array
 };
 
 export default MyNavbar;
