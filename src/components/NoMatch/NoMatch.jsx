@@ -2,6 +2,11 @@ import React from 'react';
 
 const NoMatch = (props) => {
 
+    const centerStyle = {
+        float: 'none',
+        margin: 'auto'
+    };
+
     return (
         <div className="container">
             <div className="center">

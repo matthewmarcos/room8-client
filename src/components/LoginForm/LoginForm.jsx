@@ -1,6 +1,6 @@
 import React from 'react';
 import { 
-    Grid, Row, Col, Input, Form, 
+    Grid, Row, Col, Form, 
     ControlLabel, FormControl, FormGroup,
     Checkbox, Button
 } from 'react-bootstrap';

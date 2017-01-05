@@ -7,6 +7,8 @@ import store from './redux/store';
 import AppContainer from './containers/AppContainer/AppContainer';
 import LandingContainer from './containers/LandingContainer/LandingContainer';
 import LoginContainer from './containers/LoginContainer/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
+
 import NoMatch from './components/NoMatch/NoMatch';
 
 const Routes = (props) => {
@@ -16,6 +18,7 @@ const Routes = (props) => {
                 <Route path="/" component={AppContainer}>
                     <IndexRoute component={LandingContainer} />
                     <Route path="login" component={LoginContainer} />
+                    <Route path="register" component={RegisterContainer} />
                 </Route>
                 <Route path={'*'} component={NoMatch}/>
             </Router>
