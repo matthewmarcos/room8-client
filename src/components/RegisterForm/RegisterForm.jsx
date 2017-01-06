@@ -29,12 +29,12 @@ const RegisterForm = (props) => {
 
                     <Row>
                         <Col sm={4} md={4} lg={4} style={{ ...centerStyle, ...loginBannerStyle }}>
-                            <h1 className="center" style={{ ...loginBannerStyle }}>REGISTER</h1>
+                            <h1 className="text-center" style={{ ...loginBannerStyle }}>REGISTER</h1>
                         </Col>
                     </Row>
 
                     <Row style={marginTopStyle}>
-                        <Form horizontal>
+                        <Form horizontal className="text-center">
                             <FormGroup controlId="formHorizontalEmail">
                                 <Col componentClass={ControlLabel} sm={3}>
                                 Username

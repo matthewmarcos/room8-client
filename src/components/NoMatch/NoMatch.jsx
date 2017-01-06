@@ -2,15 +2,10 @@ import React from 'react';
 
 const NoMatch = (props) => {
 
-    const centerStyle = {
-        float: 'none',
-        margin: 'auto'
-    };
-
     return (
         <div className="container">
-            <div className="center">
-                <h1>Something about a 404</h1>
+            <div className="text-center">
+                <h1><span>Something about a 404!</span></h1>
             </div>
         </div>
     );

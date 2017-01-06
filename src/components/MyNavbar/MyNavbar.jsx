@@ -8,8 +8,8 @@ const MyNavbar = (props) => {
     // https://react-bootstrap.github.io/components.html#navbars
 
     const myNavbarStyle = {
-        paddingLeft: '30px',
-        paddingRight: '30px',
+        paddingLeft: '40px',
+        paddingRight: '40px',
         listStyle: 'none'
     };
 

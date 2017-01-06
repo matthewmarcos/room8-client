@@ -8,6 +8,7 @@ import AppContainer from './containers/AppContainer/AppContainer';
 import LandingContainer from './containers/LandingContainer/LandingContainer';
 import LoginContainer from './containers/LoginContainer/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
+import ForgotContainer from './containers/ForgotContainer/ForgotContainer';
 
 import NoMatch from './components/NoMatch/NoMatch';
 
@@ -19,6 +20,7 @@ const Routes = (props) => {
                     <IndexRoute component={LandingContainer} />
                     <Route path="login" component={LoginContainer} />
                     <Route path="register" component={RegisterContainer} />
+                    <Route path="forgot" component={ForgotContainer} />
                 </Route>
                 <Route path={'*'} component={NoMatch}/>
             </Router>
