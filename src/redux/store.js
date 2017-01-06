@@ -12,4 +12,6 @@ const store = createStore(
     compose(middleware, window.devToolsExtension ? window.devToolsExtension() : f => f)
 );
 
+window.getStore = store.getState;
+
 export default store;

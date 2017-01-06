@@ -4,6 +4,7 @@ import {
     ControlLabel, FormControl, FormGroup,
     Checkbox, Button
 } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 const LoginForm = (props) => {
 
@@ -27,13 +28,13 @@ const LoginForm = (props) => {
 
                 <Row>
                     <Col sm={4} md={4} lg={4} style={{ ...centerStyle, ...loginBannerStyle }}>
-                        <h1 className="center" style={{ ...centerStyle, ...loginBannerStyle }}>LOG IN</h1>
+                        <h1 className="center" style={{ ...loginBannerStyle }}>LOG IN</h1>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col sm={4} md={4} lg={4} style={{ ...centerStyle }}>
-                        <span>Don't have an account yet? Register for free!</span>
+                        <span>Don't have an account yet? <Link to="register">Register now for free!</Link></span>
                     </Col>
                 </Row>
 
@@ -56,7 +57,7 @@ const LoginForm = (props) => {
                                 <FormControl type="password" placeholder="Password" />
                             </Col>
                             <Col componentClass={ControlLabel} sm={2}>
-                                Forgot Password?
+                                <Link to="forgot">Forgot Password?!</Link>
                             </Col>
  
                         </FormGroup>
