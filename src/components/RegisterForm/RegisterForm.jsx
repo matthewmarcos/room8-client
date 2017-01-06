@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Grid, Row, Col, Form, 
     ControlLabel, FormControl, FormGroup,
-    Checkbox, Button
+    Button, Well, ButtonGroup
 } from 'react-bootstrap';
 
 const RegisterForm = (props) => {
@@ -24,7 +24,7 @@ const RegisterForm = (props) => {
 
     return (
         <div className="register-form">
-            <div className="container-fluid">
+            <div className="container">
                 <Grid style={marginTopStyle}>
 
                     <Row>
@@ -34,35 +34,65 @@ const RegisterForm = (props) => {
                     </Row>
 
                     <Row style={marginTopStyle}>
-                        <Form horizontal className="text-center">
-                            <FormGroup controlId="formHorizontalEmail">
-                                <Col componentClass={ControlLabel} sm={3}>
-                                Username
-                                </Col>
-                                <Col sm={6}>
-                                    <FormControl type="text" placeholder="Username" />
-                                </Col>
-                            </FormGroup>
+                        <Well>
+                            <Form horizontal onSubmit={props.handleSubmit} className="text-center">
+                                <FormGroup controlId="formHorizontalUsername">
+                                    <Col componentClass={ControlLabel} sm={3}>
+                                    Username
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormControl type="text" placeholder="Username" />
+                                    </Col>
+                                </FormGroup>
 
-                            <FormGroup controlId="formHorizontalPassword">
-                                <Col componentClass={ControlLabel} sm={3}>
-                                    Password
-                                </Col>
-                                <Col sm={4}>
-                                    <FormControl type="password" placeholder="Password" />
-                                </Col>
-                           </FormGroup>
+                                <FormGroup controlId="formHorizontalPassword">
+                                    <Col componentClass={ControlLabel} sm={3}>
+                                        Password
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormControl type="password" placeholder="Password" />
+                                    </Col>
+                                </FormGroup>
 
-                           <FormGroup>
-                                <Col smOffset={3} sm={2}>
-                                    <Button type="submit">
-                                        Sign in
-                                    </Button>
-                                </Col>
-                            </FormGroup>
-                        </Form>
+                                <FormGroup controlId="formHorizontalPassword2">
+                                    <Col componentClass={ControlLabel} sm={3}>
+                                        Retype Password
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormControl type="password" placeholder="Password" />
+                                    </Col>
+                                </FormGroup>
+
+                                <FormGroup controlId="formHorizontalEmail">
+                                    <Col componentClass={ControlLabel} sm={3}>
+                                    Email
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormControl type="email" placeholder="you@domain.com"/>
+                                    </Col>
+                                </FormGroup>
+
+                                <FormGroup controlId="formHorizontalNickname">
+                                    <Col componentClass={ControlLabel} sm={3}>
+                                    Nickname
+                                    </Col>
+                                    <Col sm={6}>
+                                        <FormControl type="text" placeholder="Nickname"/>
+                                    </Col>
+                                </FormGroup>
+    
+                                <FormGroup>
+                                    <Col sm={6} smOffset={3}>
+                                        <ButtonGroup vertical block>
+                                            <Button type="submit" bsStyle="primary">
+                                                REGISTER
+                                            </Button>
+                                        </ButtonGroup>
+                                    </Col>
+                                </FormGroup>
+                            </Form>
+                        </Well>
                     </Row>
-
                 </Grid>
             </div>
         </div>

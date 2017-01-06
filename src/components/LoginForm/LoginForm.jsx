@@ -2,7 +2,7 @@ import React from 'react';
 import { 
     Grid, Row, Col, Form, 
     ControlLabel, FormControl, FormGroup,
-    Checkbox, Button
+    Checkbox, Button, Well, ButtonGroup
 } from 'react-bootstrap';
 import { Link } from 'react-router';
 
@@ -39,8 +39,9 @@ const LoginForm = (props) => {
                 </Row>
 
                 <Row style={marginTopStyle}>
-                    <Form horizontal>
-                        <FormGroup controlId="formHorizontalEmail">
+                    <Well>
+                    <Form onSubmit={props.handleSubmit} horizontal>
+                        <FormGroup controlId="formHorizontalUsername">
                             <Col componentClass={ControlLabel} sm={3}>
                                Username
                             </Col>
@@ -66,15 +67,16 @@ const LoginForm = (props) => {
                             <Col smOffset={3} sm={2}>
                                 <Checkbox>Remember me</Checkbox>
                             </Col>
-                        </FormGroup>
-                        <FormGroup>
-                            <Col smOffset={3} sm={2}>
-                                <Button type="submit">
-                                    Sign in
-                                </Button>
+                            <Col sm={2} smOffset={2}>
+                                <ButtonGroup vertical block>
+                                    <Button type="submit" bsStyle="primary">
+                                       LOG IN
+                                    </Button>
+                                </ButtonGroup>
                             </Col>
                         </FormGroup>
                     </Form>
+                    </Well>
                 </Row>
 
         </Grid>
