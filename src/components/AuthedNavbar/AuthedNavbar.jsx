@@ -7,21 +7,13 @@ const AuthedNavbar = (props) => {
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
 
-    const { links } = props;
-
-    const navLinks = links.map((links, index) => {
-        return (
-            <LinkContainer onlyActiveOnIndex={true} to={links.to} key={index}>
-                <NavItem eventKey={index + 2}>{links.name}</NavItem>
-            </LinkContainer>
-
-        );
-    });
-
+    const { username } = props;
 
     return (
         <Nav pullRight={true}>
-            { navLinks }
+            <LinkContainer onlyActiveOnIndex={true} to="/profile">
+                <NavItem eventKey={2}>{username}</NavItem>
+            </LinkContainer>
         </Nav>
     );
 

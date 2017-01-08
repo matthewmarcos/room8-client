@@ -1,6 +1,6 @@
 export const login = (username, password) => {
     return {
-        type: 'LOGIN',
+        type: 'FAKE_LOGIN',
         payload: {
             username,
             password

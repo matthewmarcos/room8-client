@@ -21,18 +21,36 @@ export const userReducer = (state = userReducerInitialState, action) => {
     const { payload } = action;
 
     switch (action.type) {
-        case 'LOGIN': {
+
+        case 'FAKE_LOGIN': {
             return {
                 ...state,
                 isLoggedIn: true,
-                username: payload.username
+                username: payload.username,
+
+                //Fake data here
+                fullName: 'Jonathan Crow-Secant',
+                userId: '1234',
+                contactNumber: '1234567',
+                sex: 'Male',
+                gender: 'ApacheHelicopter',
+                course: 'BS Computer Science',
+                batch: '2013',
+                birthDate: new Date(),
+                organizations: ['YSES', 'Jammers', 'Painters'],
+                hobbies: ['guitar'],
+                interests: ['BananaMaking'],
+                bio: 'I love my SP and my Adviser is so awesome'
             };
         }
+
         case 'ACTION_TYPE_2': {
             return state;
         }
+
         default: {
             return state;
         }
+
     }
 }
