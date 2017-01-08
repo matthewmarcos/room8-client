@@ -1,19 +1,11 @@
-
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Nav, NavItem } from 'react-bootstrap';
 
 const AuthedNavbar = (props) => {
 
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
-
-    const myNavbarStyle = {
-        paddingLeft: '40px',
-        paddingRight: '40px',
-        listStyle: 'none'
-    };
-
 
     const { links } = props;
 
@@ -28,20 +20,9 @@ const AuthedNavbar = (props) => {
 
 
     return (
-        <Navbar staticTop={true} inverse={true} fluid={true}>
-            <div style={myNavbarStyle}>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <LinkContainer to="/">
-                            <NavItem eventKey={1}>Room8!</NavItem>
-                        </LinkContainer>
-                    </Navbar.Brand>
-                    </Navbar.Header>
-                <Nav pullRight={true}>
-                    { props.username }
-                </Nav>
-            </div>
-        </Navbar>
+        <Nav pullRight={true}>
+            { navLinks }
+        </Nav>
     );
 
 };
