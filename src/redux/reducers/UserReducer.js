@@ -17,9 +17,16 @@ const userReducerInitialState = {
 };
 
 export const userReducer = (state = userReducerInitialState, action) => {
+
+    const { payload } = action;
+
     switch (action.type) {
-        case 'ACTION_TYPE_1': {
-            return state;
+        case 'LOGIN': {
+            return {
+                ...state,
+                isLoggedIn: true,
+                username: payload.username
+            };
         }
         case 'ACTION_TYPE_2': {
             return state;

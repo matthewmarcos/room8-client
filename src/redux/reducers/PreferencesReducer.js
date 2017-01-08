@@ -1,21 +1,5 @@
 const preferencesReducerInitialState = {
-    isLoggedIn: false,
-    userId: '',
-    status: 'I am looking for a room',
-    username: '',
-    nickname: '',
-    fullName: '',
-    contactNumber: '',
-    sex: 'ApacheHelicopter',
-    gender: 'ApacheHelicopter',
-    course: '',
-    batch:'',
-    email: '',
-    birthDate: null,
-    organizations: [],
-    hobbies: [],
-    interests: [],
-    bio: ''
+    wantedCleanliness: 10
 };
 
 export const preferencesReducer = (state = preferencesReducerInitialState, action) => {
