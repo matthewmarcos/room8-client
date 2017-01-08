@@ -1,5 +1,5 @@
 const userReducerInitialState = {
-    isLonggedIn: false,
+    isLoggedIn: false,
     userId: '',
     status: 'I am looking for a room',
     username: '',

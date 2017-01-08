@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 import MyNavbar from '../../components/MyNavbar/MyNavbar';
 
@@ -9,7 +10,7 @@ class NavbarContainer extends Component {
         super();
 
         this.state = {
-            links: [
+            splashLinks: [
                 {
                     to: '/',
                     name: 'Home'
@@ -27,15 +28,26 @@ class NavbarContainer extends Component {
         };
     }
 
+    getCorrectNavbar() {
+        const { isLoggedIn } = this.props.user;
+    }
+
     render() {
-        const { links } = this.state;
+        const { splashLinks } = this.state;
 
         return (
             <div>
-                <MyNavbar links={links}/>
+                <MyNavbar links={splashLinks}/>
             </div>
         );
     }
 }
 
-export default NavbarContainer;
+export default connect(store => {
+
+    const { user } = store;
+
+    return {
+        user
+    };
+})(NavbarContainer);

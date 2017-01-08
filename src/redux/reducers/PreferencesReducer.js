@@ -1,5 +1,5 @@
-const userReducerInitialState = {
-    isLonggedIn: false,
+const preferencesReducerInitialState = {
+    isLoggedIn: false,
     userId: '',
     status: 'I am looking for a room',
     username: '',
@@ -18,12 +18,12 @@ const userReducerInitialState = {
     bio: ''
 };
 
-export const userReducer = (state = userReducerInitialState, action) => {
+export const preferencesReducer = (state = preferencesReducerInitialState, action) => {
     switch (action.type) {
-        case 'ACTION_TYPE_1': {
+        case 'ACTION_TYpE_1': {
             return state;
         }
-        case 'ACTION_TYPE_2': {
+        case 'ACTION_TYpE_2': {
             return state;
         }
         default: {
