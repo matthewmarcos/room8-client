@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, Image, Glyphicon, Button } from 'react-bootstrap';
+import { Nav, NavItem, Image, Glyphicon, Button, Badge } from 'react-bootstrap';
 
 import profileImage from './profile.jpg'; //Temporary Image!
 
@@ -42,9 +42,14 @@ const AuthedNavbar = (props) => {
                 </NavItem>
             </LinkContainer>
             <NavItem eventKey={4}>
-                <span style={ lineHeightStyle }>
+                <span style={{ lineHeight: 2 }}>
                     {/* Different icon on hover */}
-                    <Glyphicon glyph="glyphicon glyphicon-bell"/>
+                    <Glyphicon style={{ fontSize: 19 }} glyph="glyphicon glyphicon-bell"/>
+                </span>
+                <span>
+                    <Badge>
+                        {2}
+                    </Badge>
                 </span>
             </NavItem>
        </Nav>
