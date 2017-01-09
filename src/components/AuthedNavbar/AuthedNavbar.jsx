@@ -1,8 +1,9 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, Image, Glyphicon, Badge } from 'react-bootstrap';
+import { Nav, NavItem, Image, Glyphicon, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import profileImage from './profile.jpg'; //Temporary Image!
+import NotificationsList from '../NotificationsList/NotificationsList';
 
 const AuthedNavbar = (props) => {
 
@@ -20,7 +21,9 @@ const AuthedNavbar = (props) => {
         lineHeight: 2, // Forces elements to have same v-align to username
         verticalAlign: 'middle',
         fontWeight: 'bold'
-    };
+    }
+
+    const hamburgerTitle = (<Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>);
 
     return (
         <Nav pullRight={true}>
@@ -41,20 +44,20 @@ const AuthedNavbar = (props) => {
                     </span>
                 </NavItem>
             </LinkContainer>
-            <NavItem eventKey={4}>
-                <span style={{ lineHeight: 2 }}>
-                    {/* Different icon on hover */}
-                    <Glyphicon style={{ fontSize: 19 }} glyph="glyphicon glyphicon-bell"/>
-                </span>
-                <span>
-                    <Badge>
-                        {2}
-                    </Badge>
-                </span>
-            </NavItem>
-            <NavItem eventKey={5}>
-                <Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>
-            </NavItem>
+            <NotificationsList/>
+            <NavDropdown
+                title={hamburgerTitle} 
+                eventKey={5}
+                id="nav-dropdown2"
+            >
+                <MenuItem eventKey="5.1">Discovery Settings</MenuItem>
+                <MenuItem eventKey="5.2">Roommate Preferences</MenuItem>
+                <MenuItem eventKey="5.4">Edit Profile</MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey="5.5">Instructions</MenuItem>
+                <MenuItem divider />
+                <MenuItem eventKey="5.6">Log Out</MenuItem>
+            </NavDropdown>
        </Nav>
     );
 
