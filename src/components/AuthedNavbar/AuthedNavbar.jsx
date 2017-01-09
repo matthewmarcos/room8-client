@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, Image, Glyphicon, Button, Badge } from 'react-bootstrap';
+import { Nav, NavItem, Image, Glyphicon, Badge } from 'react-bootstrap';
 
 import profileImage from './profile.jpg'; //Temporary Image!
 
@@ -9,7 +9,7 @@ const AuthedNavbar = (props) => {
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
 
-    const { username, fullName } = props;
+    const { fullName } = props;
 
     const usernameStyle = { 
         paddingLeft: 10,
@@ -51,6 +51,9 @@ const AuthedNavbar = (props) => {
                         {2}
                     </Badge>
                 </span>
+            </NavItem>
+            <NavItem eventKey={5}>
+                <Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>
             </NavItem>
        </Nav>
     );
