@@ -1,9 +1,10 @@
 import React from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Nav, NavItem, Image, Glyphicon, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Nav, NavItem, Image } from 'react-bootstrap';
 
 import profileImage from './profile.jpg'; //Temporary Image!
 import NotificationsList from '../NotificationsList/NotificationsList';
+import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 const AuthedNavbar = (props) => {
 
@@ -22,8 +23,6 @@ const AuthedNavbar = (props) => {
         verticalAlign: 'middle',
         fontWeight: 'bold'
     }
-
-    const hamburgerTitle = (<Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>);
 
     return (
         <Nav pullRight={true}>
@@ -45,22 +44,9 @@ const AuthedNavbar = (props) => {
                 </NavItem>
             </LinkContainer>
             <NotificationsList/>
-            <NavDropdown
-                title={hamburgerTitle} 
-                eventKey={5}
-                id="nav-dropdown2"
-            >
-                <MenuItem eventKey="5.1">Discovery Settings</MenuItem>
-                <MenuItem eventKey="5.2">Roommate Preferences</MenuItem>
-                <MenuItem eventKey="5.4">Edit Profile</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey="5.5">Instructions</MenuItem>
-                <MenuItem divider />
-                <MenuItem eventKey="5.6">Log Out</MenuItem>
-            </NavDropdown>
+            <DropdownMenu />
        </Nav>
     );
-
 };
 
 AuthedNavbar.propTypes = {

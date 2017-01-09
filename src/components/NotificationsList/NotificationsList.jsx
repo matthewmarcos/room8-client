@@ -17,6 +17,7 @@ const NotificationsList = (props) => {
         </div>
 
     );
+
     // MenuItem[eventKey=$]{Item number$}*5
     return (
         <NavDropdown
