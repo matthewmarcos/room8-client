@@ -34,12 +34,13 @@ class NavbarContainer extends Component {
     }
 
     getCorrectNavbar() {
-        const { isLoggedIn, username } = this.props.user;
+        const { isLoggedIn, username, fullName } = this.props.user;
         const { splashLinks } = this.state;
 
         if(isLoggedIn) {
             return <AuthedNavbar 
                 username={username}
+                fullName={fullName}
             />
         }
         else {
