@@ -1,0 +1,8 @@
+.preferences-container {
+    /* Removes the margin bottom of bootstrap navbar */
+    margin-top: -20px; 
+}
+
+.preferences-children {
+    float: left;
+}

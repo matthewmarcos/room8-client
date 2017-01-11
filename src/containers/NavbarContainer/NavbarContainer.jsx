@@ -6,6 +6,8 @@ import { Navbar, NavItem } from 'react-bootstrap';
 import MyNavbar from '../../components/MyNavbar/MyNavbar';
 import AuthedNavbar from '../../components/AuthedNavbar/AuthedNavbar';
 
+import'./NavbarContainer.css';
+
 class NavbarContainer extends Component {
 
     // Documentation for react-bootstrap navbars:
@@ -58,7 +60,7 @@ class NavbarContainer extends Component {
 
 
         return (
-            <Navbar staticTop={true} inverse={true} fluid={true}>
+            <Navbar  staticTop={true} inverse={true} fluid={true}>
                 <div style={myNavbarStyle}>
                     <Navbar.Header>
                         <Navbar.Brand>

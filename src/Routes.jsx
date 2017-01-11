@@ -9,6 +9,9 @@ import LandingContainer from './containers/LandingContainer/LandingContainer';
 import LoginContainer from './containers/LoginContainer/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
 import ForgotContainer from './containers/ForgotContainer/ForgotContainer';
+import ProfileContainer from './containers/ProfileContainer/ProfileContainer';
+// import DashboardContainer from './containers/DashboardContainer/DashboardContainer';
+import PreferencesContainer from './containers/PreferencesContainer/PreferencesContainer';
 
 import NoMatch from './components/NoMatch/NoMatch';
 
@@ -21,6 +24,9 @@ const Routes = (props) => {
                     <Route path="login" component={LoginContainer} />
                     <Route path="register" component={RegisterContainer} />
                     <Route path="forgot" component={ForgotContainer} />
+                    <Route path="profile" component={ProfileContainer}>
+                    </Route>
+                    <Route path="preferences" component={PreferencesContainer} />
                 </Route>
                 <Route path={'*'} component={NoMatch}/>
             </Router>
