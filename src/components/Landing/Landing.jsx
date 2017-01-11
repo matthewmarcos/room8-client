@@ -8,8 +8,12 @@ const Landing = (props) => {
 
     const landingStyle = {
         marginTop: '-20px',
-        background: `#EEEEEE url(${ landingImage }) no-repeat fixed center`,
-        height: '768px'
+        background: `#EEEEEE url(${ landingImage }) no-repeat center center fixed`,
+        height: '2000px',
+        '-webkit-background-size': 'cover',
+        '-moz-background-size': 'cover',
+        '-o-background-size': 'cover',
+        'background-size': 'cover'
     };
 
     const heroImageStyle = {
