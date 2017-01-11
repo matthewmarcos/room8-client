@@ -6,31 +6,44 @@ import './Sidebar.css';
 
 const Sidebar = (props) => {
 
-    const preferencesHeaderStyle = {
+    const sidebarTextStyle = {
         color: 'black',
         fontWeight: 'bold'
     };
 
+    const sideBarStyle = {
+        borderRight: 'solid 1px #999999',
+        height: '100%'
+    };
+
+    const prefHeaderStyle = {
+        backgroundColor: '#DDDDDD'
+    };
+
+    const navItemBottomStyle = {
+        borderBottom: 'solid 1px #999999'
+    };
+
     return(
         <div className="sidebar">
-            <Nav bsStyle="pills" stacked pullLeft={true}>
-                <NavItem disabled>
-                    <h4 style={ preferencesHeaderStyle } className="text-center">Preferences</h4>
+            <Nav stacked pullLeft={true} style={ sideBarStyle }>
+                <NavItem disabled style={{ ...prefHeaderStyle, ...navItemBottomStyle }}>
+                    <h3 style={ sidebarTextStyle }>Preferences</h3>
                 </NavItem>
                 <LinkContainer to="preferences/when">
-                    <NavItem>When</NavItem>
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>When</NavItem>
                 </LinkContainer>
                 <LinkContainer to="preferences/cost">
-                    <NavItem>Cost</NavItem>
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Cost</NavItem>
                 </LinkContainer>
                 <LinkContainer to="preferences/location">
-                    <NavItem>Location</NavItem>
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Location</NavItem>
                 </LinkContainer>
                 <LinkContainer to="preferences/utilities">
-                    <NavItem>Utilities</NavItem>
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Utilities</NavItem>
                 </LinkContainer>
                 <LinkContainer to="preferences/lifestyle">
-                    <NavItem>Lifestyle</NavItem>
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Lifestyle</NavItem>
                 </LinkContainer>
             </Nav>
         </div>

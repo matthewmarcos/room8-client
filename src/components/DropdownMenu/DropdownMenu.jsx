@@ -6,11 +6,16 @@ const DropdownMenu = (props) => {
 
     const hamburgerTitle = (<Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>);
 
+    const handleSelect = (eventKey) => {
+        console.log(eventKey);
+    };
+
     return (
         <NavDropdown
             title={hamburgerTitle} 
             eventKey={5}
             id="nav-dropdown2"
+            onSelect={handleSelect}
         >
             <LinkContainer to="settings/discovery">
                 <MenuItem eventKey="5.1">Discovery Settings</MenuItem>
@@ -32,9 +37,7 @@ const DropdownMenu = (props) => {
 
             <MenuItem divider />
 
-            <LinkContainer to="logout">
-                <MenuItem eventKey="5.6">Log Out</MenuItem>
-            </LinkContainer>
+            <MenuItem eventKey="5.6">Log Out</MenuItem>
         </NavDropdown>
     );
 };
