@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 
 import store from './redux/store';
 
+// Containers
 import AppContainer from './containers/AppContainer/AppContainer';
 // import DashboardContainer from './containers/DashboardContainer/DashboardContainer';
 import DiscoveryContainer from './containers/DiscoveryContainer/DiscoveryContainer';
@@ -14,6 +15,7 @@ import ProfileContainer from './containers/ProfileContainer/ProfileContainer';
 import PreferencesContainer from './containers/PreferencesContainer/PreferencesContainer';
 import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
 
+// Components
 import NoMatch from './components/NoMatch/NoMatch';
 import PreferencesCost from './components/PreferencesCost/PreferencesCost';
 import PreferencesIndex from './components/PreferencesIndex/PreferencesIndex';
@@ -21,10 +23,8 @@ import PreferencesLifestyle from './components/PreferencesLifestyle/PreferencesL
 import PreferencesLocation from './components/PreferencesLocation/PreferencesLocation';
 import PreferencesUtilities from './components/PreferencesUtilities/PreferencesUtilities';
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
-
-
-import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
+import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 
 const Routes = (props) => {
 
@@ -49,8 +49,8 @@ const Routes = (props) => {
                         <Route path="when" component={PreferencesWhen} />
                         <Route path="cost" component={PreferencesCost} />
                         <Route path="location" component={PreferencesLocation} />
-                        <Route path="lifestyle" component={PreferencesLifestyle} />
                         <Route path="utilities" component={PreferencesUtilities} />
+                        <Route path="lifestyle" component={PreferencesLifestyle} />
                     </Route>
 
                 </Route>

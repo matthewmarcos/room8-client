@@ -1,19 +1,20 @@
 import React from 'react';
-import { Grid, Row, Col, Image, Button } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 import landingImage from './landing_hero.gif';
-import styles from './Landing.css';
+import Radium from 'radium';
 
 const Landing = (props) => {
 
     const landingStyle = {
         marginTop: '-20px',
-        background: `#EEEEEE url(${ landingImage }) no-repeat center center fixed`,
+        backgroundColor: '#EEEEEE',
+        backgroundImage: `url(${ landingImage })`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
         height: '2000px',
-        '-webkit-background-size': 'cover',
-        '-moz-background-size': 'cover',
-        '-o-background-size': 'cover',
-        'background-size': 'cover'
     };
 
     const heroImageStyle = {
@@ -32,7 +33,7 @@ const Landing = (props) => {
             <Grid bsClass="container-fluid">
                 <Row>
                     <Col sm={3}>
-                        I am compensating for something... weak people looking at my unfinished SP
+                        Hello Pau
                     </Col>
                 </Row>
             </Grid> 
@@ -41,4 +42,4 @@ const Landing = (props) => {
 
 };
 
-export default Landing;
+export default Radium(Landing);

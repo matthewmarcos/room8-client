@@ -60,17 +60,15 @@ class NavbarContainer extends Component {
 
 
         return (
-            <Navbar  staticTop={true} inverse={true} fluid={true}>
-                <div style={myNavbarStyle}>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <LinkContainer to="/">
-                                <NavItem eventKey={1}>Room8!</NavItem>
-                            </LinkContainer>
-                        </Navbar.Brand>
-                        </Navbar.Header>
-                    { this.getCorrectNavbar() }
-                </div>
+            <Navbar style={myNavbarStyle} staticTop={true} inverse={true} fluid={true}>
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <LinkContainer to="/">
+                            <NavItem eventKey={1}>Room8!</NavItem>
+                        </LinkContainer>
+                    </Navbar.Brand>
+                </Navbar.Header>
+                { this.getCorrectNavbar() }
             </Navbar>
         );
     }
