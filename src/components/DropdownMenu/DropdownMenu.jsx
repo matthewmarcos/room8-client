@@ -17,7 +17,7 @@ const DropdownMenu = (props) => {
             id="nav-dropdown2"
             onSelect={handleSelect}
         >
-            <LinkContainer to="settings/discovery">
+            <LinkContainer to="discovery">
                 <MenuItem eventKey="5.1">Discovery Settings</MenuItem>
             </LinkContainer>
 

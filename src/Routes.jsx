@@ -5,13 +5,14 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import AppContainer from './containers/AppContainer/AppContainer';
+// import DashboardContainer from './containers/DashboardContainer/DashboardContainer';
+import DiscoveryContainer from './containers/DiscoveryContainer/DiscoveryContainer';
+import ForgotContainer from './containers/ForgotContainer/ForgotContainer';
 import LandingContainer from './containers/LandingContainer/LandingContainer';
 import LoginContainer from './containers/LoginContainer/LoginContainer';
-import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
-import ForgotContainer from './containers/ForgotContainer/ForgotContainer';
 import ProfileContainer from './containers/ProfileContainer/ProfileContainer';
-// import DashboardContainer from './containers/DashboardContainer/DashboardContainer';
 import PreferencesContainer from './containers/PreferencesContainer/PreferencesContainer';
+import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
 
 import NoMatch from './components/NoMatch/NoMatch';
 import PreferencesCost from './components/PreferencesCost/PreferencesCost';
@@ -26,6 +27,7 @@ import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 
 const Routes = (props) => {
+
     return (
         <Provider store={store} key="provider">
             <Router history={browserHistory}>
@@ -35,7 +37,7 @@ const Routes = (props) => {
                     <Route path="login" component={LoginContainer} />
                     <Route path="register" component={RegisterContainer} />
                     <Route path="forgot" component={ForgotContainer} />
-                    <Route path="forgot" component={ForgotContainer} />
+                    <Route path="discovery" component={DiscoveryContainer} />
 
                     <Route path="profile" component={ProfileContainer}>
                         <IndexRoute component={ProfileIndex} />

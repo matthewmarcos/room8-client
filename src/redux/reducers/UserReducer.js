@@ -62,8 +62,10 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'ACTION_TYPE_2': {
-            return state;
+        case 'LOGIN': {
+            return {
+                ...state
+            };
         }
 
         default: {
