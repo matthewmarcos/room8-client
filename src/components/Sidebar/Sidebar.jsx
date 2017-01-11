@@ -27,22 +27,24 @@ const Sidebar = (props) => {
     return(
         <div className="sidebar">
             <Nav stacked pullLeft={true} style={ sideBarStyle }>
-                <NavItem disabled style={{ ...prefHeaderStyle, ...navItemBottomStyle }}>
-                    <h3 style={ sidebarTextStyle }>Preferences</h3>
-                </NavItem>
-                <LinkContainer to="preferences/when">
+                <LinkContainer to="/preferences">
+                    <NavItem style={{ ...prefHeaderStyle, ...navItemBottomStyle }}>
+                        <h3 style={ sidebarTextStyle }>Preferences</h3>
+                    </NavItem>
+                </LinkContainer>
+                <LinkContainer to="/preferences/when">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>When</NavItem>
                 </LinkContainer>
-                <LinkContainer to="preferences/cost">
+                <LinkContainer to="/preferences/cost">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Cost</NavItem>
                 </LinkContainer>
-                <LinkContainer to="preferences/location">
+                <LinkContainer to="/preferences/location">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Location</NavItem>
                 </LinkContainer>
-                <LinkContainer to="preferences/utilities">
+                <LinkContainer to="/preferences/utilities">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Utilities</NavItem>
                 </LinkContainer>
-                <LinkContainer to="preferences/lifestyle">
+                <LinkContainer to="/preferences/lifestyle">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Lifestyle</NavItem>
                 </LinkContainer>
             </Nav>
