@@ -49,8 +49,8 @@ const Routes = (props) => {
                         <Route path="when" component={PreferencesWhen} />
                         <Route path="cost" component={PreferencesCost} />
                         <Route path="location" component={PreferencesLocation} />
-                        <Route path="utilities" component={PreferencesUtilities} />
                         <Route path="lifestyle" component={PreferencesLifestyle} />
+                        <Route path="utilities" component={PreferencesUtilities} />
                     </Route>
 
                 </Route>
