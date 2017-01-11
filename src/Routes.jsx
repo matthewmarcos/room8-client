@@ -21,6 +21,10 @@ import PreferencesLocation from './components/PreferencesLocation/PreferencesLoc
 import PreferencesUtilities from './components/PreferencesUtilities/PreferencesUtilities';
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
 
+
+import ProfileIndex from './components/ProfileIndex/ProfileIndex';
+import ProfileEdit from './components/ProfileEdit/ProfileEdit';
+
 const Routes = (props) => {
     return (
         <Provider store={store} key="provider">
@@ -34,6 +38,8 @@ const Routes = (props) => {
                     <Route path="forgot" component={ForgotContainer} />
 
                     <Route path="profile" component={ProfileContainer}>
+                        <IndexRoute component={ProfileIndex} />
+                        <Route path="edit" component={ProfileEdit} />
                     </Route>
 
                     <Route path="/preferences" component={PreferencesContainer}>
