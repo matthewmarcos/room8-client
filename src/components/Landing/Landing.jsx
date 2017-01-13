@@ -75,16 +75,18 @@ const Landing = (props) => {
     const boxesContainerStyle = {
         marginTop: '20px',
         display: 'flex',
+        flexFlow: 'row wrap',
+        justifyContent: 'space-around'
 
-        '@media (min-width: 576px)': {
-            justifyContent: 'space-around'
-        },
+        // '@media (min-width: 960px)': {
+            // justifyContent: 'space-around'
+        // },
 
-        '@media (max-width: 576px)': {
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            flexDirection: 'column'
-        }
+        // '@media (max-width: 960px)': {
+            // marginLeft: 'auto',
+            // marginRight: 'auto',
+            // flexDirection: 'column'
+        // }
     };
 
     return (
