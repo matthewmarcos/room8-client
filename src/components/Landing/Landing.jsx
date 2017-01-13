@@ -56,13 +56,9 @@ const boxes = [{
             justifyContent: 'center'
         };
 
-        const buttonStyle = {
-            // width: '66%'
-        };
-
         const buttonComponent = (
             <LinkContainer to={data.to}>
-                <Button className="text-center" style={ buttonStyle } bsSize="large">
+                <Button bsSize="lg">
                     { data.buttonText }
                     </Button>
             </LinkContainer>
@@ -112,7 +108,7 @@ const Landing = (props) => {
                 </Row>
                 <Row>
                     <Col md={4}>
-                        <Image style={{ marginTop: '15px' }} thumbnail responsive src={HappyRoommates} />
+                        <Image style={{ marginTop: '15px' }} thumbnail responsive src={ HappyRoommates } />
                     </Col>
                     <Col  xs={12} md={8}>
                         <Well>
