@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
+import { StyleRoot } from 'radium';
 
 import store from './redux/store';
 
@@ -30,34 +31,36 @@ const Routes = (props) => {
 
     return (
         <Provider store={store} key="provider">
-            <Router history={browserHistory}>
+            <StyleRoot>
+                <Router history={browserHistory}>
 
-                <Route path="/" component={AppContainer}>
-                    <IndexRoute component={LandingContainer} />
-                    <Route path="login" component={LoginContainer} />
-                    <Route path="register" component={RegisterContainer} />
-                    <Route path="forgot" component={ForgotContainer} />
-                    <Route path="discovery" component={DiscoveryContainer} />
+                    <Route path="/" component={AppContainer}>
+                        <IndexRoute component={LandingContainer} />
+                        <Route path="login" component={LoginContainer} />
+                        <Route path="register" component={RegisterContainer} />
+                        <Route path="forgot" component={ForgotContainer} />
+                        <Route path="discovery" component={DiscoveryContainer} />
 
-                    <Route path="profile" component={ProfileContainer}>
-                        <IndexRoute component={ProfileIndex} />
-                        <Route path="edit" component={ProfileEdit} />
+                        <Route path="profile" component={ProfileContainer}>
+                            <IndexRoute component={ProfileIndex} />
+                            <Route path="edit" component={ProfileEdit} />
+                        </Route>
+
+                        <Route path="/preferences" component={PreferencesContainer}>
+                            <IndexRoute component={PreferencesIndex} />
+                            <Route path="when" component={PreferencesWhen} />
+                            <Route path="cost" component={PreferencesCost} />
+                            <Route path="location" component={PreferencesLocation} />
+                            <Route path="utilities" component={PreferencesUtilities} />
+                            <Route path="lifestyle" component={PreferencesLifestyle} />
+                        </Route>
+
                     </Route>
 
-                    <Route path="/preferences" component={PreferencesContainer}>
-                        <IndexRoute component={PreferencesIndex} />
-                        <Route path="when" component={PreferencesWhen} />
-                        <Route path="cost" component={PreferencesCost} />
-                        <Route path="location" component={PreferencesLocation} />
-                        <Route path="utilities" component={PreferencesUtilities} />
-                        <Route path="lifestyle" component={PreferencesLifestyle} />
-                    </Route>
+                    <Route path={'*'} component={NoMatch}/>
 
-                </Route>
-
-                <Route path={'*'} component={NoMatch}/>
-
-            </Router>
+                </Router>
+            </StyleRoot>
         </Provider>
     );
 };
