@@ -2,8 +2,8 @@ import React from 'react';
 
 const PreferencesWhen = (props) => {
     return (
-        <div className="preferences-index">
-            <h1>PreferencesWhen goes here!</h1>
+        <div className="preferences-when">
+            <h1>Preferences When goes here!</h1>
         </div>
     );
 };

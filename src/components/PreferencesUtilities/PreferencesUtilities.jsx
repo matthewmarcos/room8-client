@@ -2,9 +2,9 @@ import React from 'react';
 
 const PreferencesUtilities = (props) => {
     return (
-        <div className="preferences-index">
-            <h1>PreferencesUtilities goes here!</h1>
-        </div>
+        <div className="preferences-utilities">
+            <h1>Preferences Utilities goes here!</h1>
+        </div>index
     );
 };
 
