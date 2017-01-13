@@ -21,7 +21,7 @@ const boxStyle = {
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     height: '256px',
-    width: '356px',
+    width: '326px',
     padding: '5px'
 };
 
@@ -32,26 +32,47 @@ const boxes = [{
     },{
         to: '/instructions',
         description: 'Insert some stuff here',
-        image: CollegeSenior
+        image: CollegeSenior,
+        buttonText: 'Instructions'
 
     },{
-        to: '/instructions',
+        to: '/login',
         description: 'Insert some stuff here',
-        image: CollegeSenior
+        image: CollegeSenior,
+        buttonText: 'LOG IN'
     },{
-        to: '/instructions',
+        to: '/register',
         description: 'Insert some stuff here',
-        image: CollegeSenior
+        image: CollegeSenior,
+        buttonText: 'SIGN UP'
     }].map((data, key) => {
 
         const myStyle = {
             ...boxStyle,
-            backgroundImage: `url(${ data.image })`
+            backgroundImage: `url(${ data.image })`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'flex-end',
+            justifyContent: 'center'
         };
+
+        const buttonStyle = {
+            // width: '66%'
+        };
+
+        const buttonComponent = (
+            <LinkContainer to={data.to}>
+                <Button className="text-center" style={ buttonStyle } bsSize="large">
+                    { data.buttonText }
+                    </Button>
+            </LinkContainer>
+        );
 
         return (
             <div style={ myStyle } key={key}>
                 { data.description }
+                {/* Render a button if there is a button text */}
+                { data.buttonText ? buttonComponent : '' } 
             </div>
         );
     });
@@ -77,16 +98,6 @@ const Landing = (props) => {
         display: 'flex',
         flexFlow: 'row wrap',
         justifyContent: 'space-around'
-
-        // '@media (min-width: 960px)': {
-            // justifyContent: 'space-around'
-        // },
-
-        // '@media (max-width: 960px)': {
-            // marginLeft: 'auto',
-            // marginRight: 'auto',
-            // flexDirection: 'column'
-        // }
     };
 
     return (
