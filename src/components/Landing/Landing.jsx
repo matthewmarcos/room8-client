@@ -58,9 +58,9 @@ const boxes = [{
 
         const buttonComponent = (
             <LinkContainer to={data.to}>
-                <Button bsSize="lg">
+                <Button bsSize="sm">
                     { data.buttonText }
-                    </Button>
+                </Button>
             </LinkContainer>
         );
 

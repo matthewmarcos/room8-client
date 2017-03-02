@@ -1,4 +1,5 @@
 import React from 'react';
+import EditString from '../EditString/EditString';
 
 const ProfileEdit = (props) => {
     return (

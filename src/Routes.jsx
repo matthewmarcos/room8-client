@@ -35,28 +35,39 @@ const Routes = (props) => {
                 <Router history={browserHistory}>
 
                     <Route path="/" component={AppContainer}>
+                        {/* / */}
                         <IndexRoute component={LandingContainer} />
+                        {/* /login, /register, /forgot, /discovery */}
                         <Route path="login" component={LoginContainer} />
                         <Route path="register" component={RegisterContainer} />
                         <Route path="forgot" component={ForgotContainer} />
                         <Route path="discovery" component={DiscoveryContainer} />
 
                         <Route path="profile" component={ProfileContainer}>
+                            {/* /profile */}
                             <IndexRoute component={ProfileIndex} />
+                            {/* /profile/edit */}
                             <Route path="edit" component={ProfileEdit} />
                         </Route>
 
-                        <Route path="/preferences" component={PreferencesContainer}>
+                        <Route path="preferences" component={PreferencesContainer}>
+                            {/* /preferences */}
                             <IndexRoute component={PreferencesIndex} />
+                            {/* /preferences/when 
+                                /preferences/cost
+                                /preferences/location
+                                /preferences/utilities
+                                /preferences/lifestyle
+                            */}
                             <Route path="when" component={PreferencesWhen} />
                             <Route path="cost" component={PreferencesCost} />
                             <Route path="location" component={PreferencesLocation} />
                             <Route path="utilities" component={PreferencesUtilities} />
                             <Route path="lifestyle" component={PreferencesLifestyle} />
-                        </Route>
-
+                        </Route> 
                     </Route>
 
+                    {/* 404 page */}
                     <Route path={'*'} component={NoMatch}/>
 
                 </Router>
