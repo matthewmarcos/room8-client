@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "localhost:3001",
   "devDependencies": {
+    "react-cosmos-webpack": "^2.0.0-beta.8",
     "react-scripts": "0.8.4"
   },
   "dependencies": {

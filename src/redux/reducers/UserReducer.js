@@ -13,8 +13,22 @@ const userReducerInitialState = {
     birthDate: new Date(),
     organizations: ['YSES', 'Jammers', 'Painters'],
     hobbies: ['guitar'],
-    interests: ['BananaMaking']
+    interests: ['BananaMaking'],
+
+    tempFields: {
+        bio: '',
+        status: '',
+        fullName: '',
+        contactNumber: '',
+        sex: '',
+        gender: '',
+        course: '',
+        batch: ''
+    }
 };
+
+
+// On app start, set the tempFields to what is fetched from server.
 
 // const userReducerInitialState = {
     // isLoggedIn: false,
@@ -31,7 +45,20 @@ const userReducerInitialState = {
     // organizations: [],
     // hobbies: [],
     // interests: [],
-    // bio: ''
+    // bio: '',
+//
+    // tempFields: {
+        // username: '',
+        // bio: '',
+        // status: '',
+        // fullName: '',
+        // userId: '',
+        // contactNumber: '',
+        // sex: '',
+        // gender: '',
+        // course: '',
+        // batch: ''
+    // }
 // };
 
 export const userReducer = (state = userReducerInitialState, action) => {
@@ -62,7 +89,7 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'LOGIN': {
+        case 'UPDATE_USER_PROPERTY': {
             return {
                 ...state
             };

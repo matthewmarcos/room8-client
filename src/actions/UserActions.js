@@ -6,4 +6,14 @@ export const login = (username, password) => {
             password
         }
     };
+}
+
+export const changeUserProperty = (propName, propValue) => {
+    return {
+        type: 'UPDATE_USER_PROPERTY',
+        payload: {
+            propName,
+            propValue
+        }
+    };
 };

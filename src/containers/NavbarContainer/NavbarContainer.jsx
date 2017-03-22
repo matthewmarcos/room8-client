@@ -41,9 +41,9 @@ class NavbarContainer extends Component {
 
         if(isLoggedIn) {
             return <AuthedNavbar 
-                username={username}
-                fullName={fullName}
-            />
+                    username={username}
+                    fullName={fullName}
+                />
         }
         else {
             return <MyNavbar links={splashLinks} />
@@ -75,7 +75,6 @@ class NavbarContainer extends Component {
 }
 
 export default connect(store => {
-
     const { user } = store;
 
     return {
