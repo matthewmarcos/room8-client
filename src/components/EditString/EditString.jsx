@@ -10,7 +10,12 @@
 */
 
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import {
+    FormGroup, ControlLabel, FormControl,
+    HelpBlock, Grid, Row, Col, Button,
+    Collapse
+} from 'react-bootstrap';
+
 import { connect } from 'react-redux';
 import * as actions from '../../actions/UserActions';
 
@@ -21,61 +26,72 @@ class EditString extends Component {
         super();
 
         this.state = {
-            isEditing: false // if form is active or not
+            tempValue: '',
+            isOpen: false // if form is active or not
         };
     }
 
+    componentDidMount() {
+        // Initialize tempValue to what is passed from value in props
+        this.setState({
+            tempValue: this.props.value
+        });
+    }
+
+
+    handleChange(e) {
+        // Change tempValue based on change
+        this.setState({
+            tempValue: e.target.value
+        });
+    };
+
+
+    toggleOpenMode(e) {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    };
+
 
     render() {
-        const { label, fieldName, value, handler, minLength } = this.props;
-
-        let userInput = value;
-
-        const getValidationState = (userInput) => {
-
-            if(userInput.length < minLength) {
-                return 'error';
-            }
-
-            return 'success';
-        };
-
-        const changeValue = (fieldName, newValue) => {
-            console.log(
-                'CHANGE_VALUE',
-                'fieldName', fieldName,
-                'newValue', newValue
-            );
-        };
-
-        const handleChange = (event, attrib) => {
-            const tempValue = event.target.value;
-            // userInput = tempValue;
-            // handler(tempValue);
-
-            this.props.dispatch(actions.changeUserProperty(fieldName, tempValue));
-        };
+        const { label, fieldName, minLength } = this.props;
 
         const labelStyle = {
             fontWeight:'bold'
         };
 
-        return(
-            <div className="edit-string">
-                <span style={ labelStyle }>{ label }</span>
+        const displayForm = (
+            <div className="display-mode">
+                displayMode!
+            </div>
+        );
+
+        const editForm = (
+            <div className="edit-mode">
                 <form id={fieldName}>
                     <FormGroup
                         controlId={ fieldName }
-                        validationState="error"
                     >
                         <FormControl
                             type="text"
-                            value={ userInput }
-                            onChange={ handleChange }
-                            placeholder={ userInput }
+                            value={ this.state.tempValue }
+                            onChange={ this.handleChange.bind(this) }
                         />
                     </FormGroup>
                 </form>
+            </div>
+        );
+
+        return(
+            <div className="edit-string">
+                <span style={ labelStyle }>{ label }</span>
+                <Button onClick={ this.toggleOpenMode.bind(this) }>
+                    Edit
+                </Button>
+                <Collapse in={ this.state.isOpen }>
+                    { editForm }
+                </Collapse>
             </div>
         );
     }
@@ -96,5 +112,4 @@ export default connect(store => {
         user: store.user
     };
 })(EditString);
-
 
