@@ -25,8 +25,8 @@ const DropdownMenu = (props) => {
                 <MenuItem eventKey="5.2">Roommate Preferences</MenuItem>
             </LinkContainer>
 
-            <LinkContainer to="profile/edit">
-            <MenuItem eventKey="5.4">Edit Profile</MenuItem>
+            <LinkContainer to="/profile/edit">
+                <MenuItem eventKey="5.4">Edit Profile</MenuItem>
             </LinkContainer>
 
             <MenuItem divider />

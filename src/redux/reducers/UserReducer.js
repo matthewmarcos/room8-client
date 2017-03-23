@@ -1,30 +1,25 @@
 const userReducerInitialState = {
+    userId: '1234',
     isLoggedIn: true,
     username: 'mattemhotep',
-    bio: 'I love my SP and my Adviser is so awesome',
-    status: 'I am looking for a room',
+
+
+    /* User Profile */
     fullName: 'Jonathan Crow-Secant',
-    userId: '1234',
+    nickname: 'Joe',
+    status: 'I am looking for a room',
     contactNumber: '1234567',
+    email: 'joe12@gmail.com',
+    cleanliness: 5,
     sex: 'Male',
-    gender: 'ApacheHelicopter',
+    gender: 'Male',
     course: 'BS Computer Science',
     batch: '2013',
-    birthDate: new Date(),
     organizations: ['YSES', 'Jammers', 'Painters'],
     hobbies: ['guitar'],
     interests: ['BananaMaking'],
-
-    tempFields: {
-        bio: '',
-        status: '',
-        fullName: '',
-        contactNumber: '',
-        sex: '',
-        gender: '',
-        course: '',
-        batch: ''
-    }
+    bio: 'I love my SP and my Adviser is so awesome',
+    birthday: new Date()
 };
 
 

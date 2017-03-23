@@ -13,11 +13,14 @@ import React, { PropTypes, Component } from 'react';
 import {
     FormGroup, ControlLabel, FormControl,
     HelpBlock, Grid, Row, Col, Button,
-    Collapse
+    Collapse, Form
 } from 'react-bootstrap';
 
-import { connect } from 'react-redux';
-import * as actions from '../../actions/UserActions';
+
+import Radium from 'radium';
+
+// import { connect } from 'react-redux';
+// import * as actions from '../../actions/UserActions';
 
 
 class EditString extends Component {
@@ -54,44 +57,82 @@ class EditString extends Component {
     };
 
 
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log(e.target, ' has been submitted');
+    }
+
+
     render() {
-        const { label, fieldName, minLength } = this.props;
+        const { label, fieldName, value } = this.props;
 
-        const labelStyle = {
-            fontWeight:'bold'
-        };
-
-        const displayForm = (
-            <div className="display-mode">
-                displayMode!
-            </div>
-        );
-
+        // Margin and padding to 0 to reduce animation lag
         const editForm = (
-            <div className="edit-mode">
-                <form id={fieldName}>
+            <div style={{
+                margin: 0,
+                padding: 0
+            }}>
+                <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
                     <FormGroup
-                        controlId={ fieldName }
-                    >
-                        <FormControl
-                            type="text"
-                            value={ this.state.tempValue }
-                            onChange={ this.handleChange.bind(this) }
-                        />
+                        controlId={`${fieldName}-text-form`}>
+                        <Row>
+                            <Col xs={12} sm={10} md={10}>
+                                <FormControl
+                                    type="text"
+                                    value={this.state.tempValue}
+                                    onChange={this.handleChange.bind(this)}/>
+                            </Col>
+                            <Col xs={12} sm={2} md={2}>
+                                <Button
+                                    bsSize="small"
+                                    type="submit">
+                                    Change
+                                </Button>
+                            </Col>
+                        </Row>
                     </FormGroup>
-                </form>
+                </Form>
             </div>
         );
 
         return(
             <div className="edit-string">
-                <span style={ labelStyle }>{ label }</span>
-                <Button onClick={ this.toggleOpenMode.bind(this) }>
-                    Edit
-                </Button>
-                <Collapse in={ this.state.isOpen }>
-                    { editForm }
-                </Collapse>
+                <Grid fluid={true}>
+                    <div onClick={this.toggleOpenMode.bind(this)}>
+                        <Row>
+                            <Col xs={12} sm={4} md={7}>
+                                <span style={{
+                                    fontWeight:'bold'
+                                }}>
+                                {label}
+                            </span>
+                        </Col>
+
+                        {/* Do I hide the value when the screen is small? */}
+                        <Col xs={12} sm={4} md={3}>
+                            {value}
+                        </Col>
+
+                        <Col xs={12} sm={4} md={2}>
+                            <Button 
+                                bsSize="small"
+                                onClick={this.toggleOpenMode.bind(this)}>
+                                Edit
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <span style={{
+                            marginTop: 1,
+                            marginBottom: 1
+                        }}>
+                        </span>
+                    </Row>
+                </div>
+                    <Collapse in={this.state.isOpen}>
+                        {editForm}
+                    </Collapse>
+                </Grid>
             </div>
         );
     }
@@ -107,9 +148,4 @@ EditString.propTypes = {
 };
 
 
-export default connect(store => {
-    return {
-        user: store.user
-    };
-})(EditString);
-
+export default Radium(EditString);
