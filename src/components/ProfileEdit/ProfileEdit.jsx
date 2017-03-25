@@ -1,5 +1,6 @@
 import React from 'react';
 import EditString from '../EditString/EditString';
+import EditDropdown from '../EditDropdown/EditDropdown';
 
 const ProfileEdit = (props) => {
 
@@ -62,6 +63,21 @@ const ProfileEdit = (props) => {
                 />
 
                 {/* Status */}
+                <EditDropdown
+                    label="Status"
+                    value={status}
+                    fieldName="status"
+                    selectOptions={[
+                        {
+                            value: 'I am looking for a room',
+                            label: 'I am looking for a room',
+                        },
+                        {
+                            value: 'I have a room',
+                            label: 'I have a room'
+                        }
+                    ]}
+                />
 
                 <EditString
                     label="Contact Number"
