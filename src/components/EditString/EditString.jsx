@@ -59,7 +59,9 @@ class EditString extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target, ' has been submitted');
+
+        const toSubmitValue = e.target.elements[this.props.fieldName].value;
+        console.log(toSubmitValue, ' has been submitted');
     }
 
 
@@ -78,6 +80,7 @@ class EditString extends Component {
                         <Row>
                             <Col xs={12} sm={10} md={10}>
                                 <FormControl
+                                    name={this.props.fieldName}
                                     type="text"
                                     value={this.state.tempValue}
                                     onChange={this.handleChange.bind(this)}/>

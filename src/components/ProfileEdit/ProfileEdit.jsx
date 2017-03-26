@@ -8,6 +8,7 @@ const ProfileEdit = (props) => {
 
     console.log('user', user); //To know the fields
     const batchCount = 20;
+    const batchLastYear = 2016;
 
     const {
         fullName,
@@ -141,8 +142,8 @@ const ProfileEdit = (props) => {
                     fieldName="batch"
                     selectOptions={[...Array(batchCount).keys()].map((key, index) => {
                         return {
-                            value: 2016-index,
-                            label: 2016-index
+                            value: batchLastYear - index,
+                            label: batchLastYear - index
                         };
                     })}
                 />
