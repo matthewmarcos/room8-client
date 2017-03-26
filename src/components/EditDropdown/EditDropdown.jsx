@@ -67,6 +67,17 @@ class EditDropdown extends Component {
     render() {
         const { label, fieldName, value, selectOptions } = this.props;
 
+        const options = selectOptions.map(x => {
+                        return (
+                            <option 
+                                key={x.value}
+                                id={x.value}
+                                name={x.label}>
+                                {x.label}
+                            </option>
+                        );
+                    });
+
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
             <div style={{
@@ -78,16 +89,10 @@ class EditDropdown extends Component {
                         controlId={`${fieldName}-text-form`}>
                         <Row>
                             <Col xs={12} sm={10} md={10}>
-                                <FormControl componentClass="select">
-                                    {
-                                        selectOptions.map(x => {
-                                            return (
-                                                <option key={x.value} id={x.value} name={x.label}>
-                                                    {x.label}
-                                                </option>
-                                            );
-                                        })
-                                    }
+                                <FormControl 
+                                    componentClass="select"
+                                    placeholder={value}>
+                                    { options }
                                 </FormControl>
                             </Col>
                             <Col xs={12} sm={2} md={2}>

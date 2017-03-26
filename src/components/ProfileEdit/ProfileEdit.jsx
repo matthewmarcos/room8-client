@@ -6,7 +6,8 @@ const ProfileEdit = (props) => {
 
     const { user } = props;
 
-    console.log('user', user);
+    console.log('user', user); //To know the fields
+    const batchCount = 20;
 
     const {
         fullName,
@@ -98,6 +99,26 @@ const ProfileEdit = (props) => {
                 {/* Cleanliness */}
 
                 {/* Sex */}
+                <EditDropdown
+                    label="Sex"
+                    value={sex}
+                    fieldName="sex"
+                    selectOptions={[
+                        {
+                            value: 'Male',
+                            label: 'Male',
+                        },
+                        {
+                            value: 'Female',
+                            label: 'Female'
+                        },
+                        {
+                            value: 'Do not know',
+                            label: 'I do not know'
+                        }
+                    ]}
+                />
+
 
                 <EditString
                     label="Gender"
@@ -114,6 +135,18 @@ const ProfileEdit = (props) => {
                 />
 
                 {/* Batch */}
+                <EditDropdown
+                    label="University Batch"
+                    value={batch}
+                    fieldName="batch"
+                    selectOptions={[...Array(batchCount).keys()].map((key, index) => {
+                        return {
+                            value: 2016-index,
+                            label: 2016-index
+                        };
+                    })}
+                />
+
                 {/* Organizations */}
                 {/* Hobbies */}
                 {/* Interests */}
