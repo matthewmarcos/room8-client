@@ -11,6 +11,7 @@
 
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import DatePicker from 'react-bootstrap-date-picker';
 
 
 import Radium from 'radium';
@@ -94,11 +95,13 @@ class EditDate extends Component {
                                 </span>
                             </Col>
                             <Col xs={12} sm={8} md={8}>
-                                <FormControl
-                                    name={this.props.fieldName}
-                                    type="text"
-                                    value={this.state.tempValue}
-                                    onChange={this.handleChange.bind(this)}/>
+                                {/*
+                                    <FormControl
+                                        name={this.props.fieldName}
+                                        type="text"
+                                        value={this.state.tempValue}
+                                        onChange={this.handleChange.bind(this)}/>
+                                */}
                             </Col>
                             <Col xs={12} sm={2} md={2}>
                                 <Button

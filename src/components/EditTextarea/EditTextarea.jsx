@@ -26,15 +26,40 @@ class EditTextarea extends Component {
 
         this.state = {
             tempValue: '',
+            displayString: '',
             isOpen: false // if form is active or not
         };
     }
 
+    sliceAndDice(length, string) {
+        if(length <= 3) {
+            return '...';
+        }
+        if(string.length <= length) {
+            return string;
+        }
+
+        else {
+            // Subtract length by three to make space for ellipsis
+            const tempString = string.slice(0, length - 3);
+            return tempString + '...';
+        }
+
+    }
+
+
     componentDidMount() {
         // Initialize tempValue to what is passed from value in props
+
+        // Takes the first 'length-3' characters of a string then appends ellipsis if too long.
+        const displayString = this.sliceAndDice(40, this.props.value);
+
         this.setState({
-            tempValue: this.props.value
+            tempValue: this.props.value,
+            displayString
         });
+
+        window.dice = this.sliceAndDice;
     }
 
 
@@ -101,6 +126,7 @@ class EditTextarea extends Component {
             </div>
         );
 
+
         return(
             <div className="edit-string">
                 <Grid fluid={true}>
@@ -117,9 +143,12 @@ class EditTextarea extends Component {
                         {/* Do I hide the value when the screen is small? */}
                         <Col xs={12} sm={4} md={3}>
                             <span style={{
-                                fontStyle: 'italic'
+                                fontStyle: 'italic',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden'
                             }}>
-                                {value}
+                                { this.state.displayString }
                             </span>
                         </Col>
 
