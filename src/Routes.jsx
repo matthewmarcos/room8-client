@@ -53,7 +53,7 @@ const Routes = (props) => {
                         <Route path="preferences" component={PreferencesContainer}>
                             {/* /preferences */}
                             <IndexRoute component={PreferencesIndex} />
-                            {/* /preferences/when 
+                            {/* /preferences/when
                                 /preferences/cost
                                 /preferences/location
                                 /preferences/utilities
@@ -64,7 +64,7 @@ const Routes = (props) => {
                             <Route path="location" component={PreferencesLocation} />
                             <Route path="utilities" component={PreferencesUtilities} />
                             <Route path="lifestyle" component={PreferencesLifestyle} />
-                        </Route> 
+                        </Route>
                     </Route>
 
                     {/* 404 page */}

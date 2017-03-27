@@ -3,6 +3,7 @@ import EditString from '../EditString/EditString';
 import EditDropdown from '../EditDropdown/EditDropdown';
 import EditNumber from '../EditNumber/EditNumber';
 import EditTextarea from '../EditTextarea/EditTextarea';
+import EditDate from '../EditDate/EditDate';
 
 const ProfileEdit = (props) => {
 
@@ -66,7 +67,6 @@ const ProfileEdit = (props) => {
                     minLength={5}
                 />
 
-                {/* Status */}
                 <EditDropdown
                     label="Status"
                     value={status}
@@ -98,6 +98,11 @@ const ProfileEdit = (props) => {
                 />
 
                 {/* Birthday */}
+                <EditDate
+                    label="Birthday"
+                    value={birthday}
+                    fieldName="birthday"
+                />
 
                 <EditNumber
                     label="Cleanliness"
@@ -142,7 +147,6 @@ const ProfileEdit = (props) => {
                     minLength={1}
                 />
 
-                {/* Batch */}
                 <EditDropdown
                     label="University Batch"
                     value={batch}

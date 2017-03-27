@@ -1,10 +1,11 @@
-
 /*
- * EditDropdown - dumb component that contains a textfield. Takes in the following props:
+ * EditDate - dumb component that contains a textfield. Takes in the following props:
  * label - Label for the form
- * value - initial value
  * fieldName - Name of the field
- * selectOptions [{value, label}] - Value and label of items in the dropdown
+ * value - initial value
+ * handler - handler function
+ * minLength - Minimum length of the string it accepts
+ *
  * Wrap editString with connect and edit the fieldName in userStore?
 */
 
@@ -18,7 +19,7 @@ import Radium from 'radium';
 // import * as actions from '../../actions/UserActions';
 
 
-class EditDropdown extends Component {
+class EditDate extends Component {
 
     constructor() {
         super();
@@ -61,18 +62,19 @@ class EditDropdown extends Component {
 
 
     render() {
-        const { label, fieldName, value, selectOptions } = this.props;
+        const { label, fieldName, value } = this.props;
 
-        const options = selectOptions.map(x => {
-                        return (
-                            <option 
-                                key={x.value}
-                                id={x.value}
-                                name={x.label}>
-                                {x.label}
-                            </option>
-                        );
-                    });
+        // http://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
+        Date.prototype.yyyymmdd = function() {
+            var mm = this.getMonth() + 1; // getMonth() is zero-based
+            var dd = this.getDate();
+
+            return [this.getFullYear(),
+                    (mm>9 ? '' : '0') + mm,
+                    (dd>9 ? '' : '0') + dd
+                    ].join('-');
+
+        };
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
@@ -92,12 +94,11 @@ class EditDropdown extends Component {
                                 </span>
                             </Col>
                             <Col xs={12} sm={8} md={8}>
-                                <FormControl 
+                                <FormControl
                                     name={this.props.fieldName}
-                                    componentClass="select"
-                                    placeholder={value}>
-                                    { options }
-                                </FormControl>
+                                    type="text"
+                                    value={this.state.tempValue}
+                                    onChange={this.handleChange.bind(this)}/>
                             </Col>
                             <Col xs={12} sm={2} md={2}>
                                 <Button
@@ -121,35 +122,36 @@ class EditDropdown extends Component {
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                        {label}
-                                    </span>
-                            </Col>
-
-                            {/* Do I hide the value when the screen is small? */}
-                            <Col xs={12} sm={4} md={3}>
-                                <span style={{
-                                    fontStyle: 'italic'
-                                }}>
-                                    {value}
-                                </span>
-                            </Col>
-
-                            <Col xs={12} sm={4} md={2}>
-                                <Button 
-                                    bsSize="small"
-                                    onClick={this.toggleOpenMode.bind(this)}>
-                                    Edit
-                                </Button>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <span style={{
-                                marginTop: 1,
-                                marginBottom: 1
-                            }}>
+                                {label}
                             </span>
-                        </Row>
-                    </div>
+                        </Col>
+
+                        {/* Do I hide the value when the screen is small? */}
+                        <Col xs={12} sm={4} md={3}>
+                            <span style={{
+                                fontStyle: 'italic'
+                            }}>
+                            {/* Make the date a string */}
+                            { value.yyyymmdd() }
+                            </span>
+                        </Col>
+
+                        <Col xs={12} sm={4} md={2}>
+                            <Button 
+                                bsSize="small"
+                                onClick={this.toggleOpenMode.bind(this)}>
+                                Edit
+                            </Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <span style={{
+                            marginTop: 1,
+                            marginBottom: 1
+                        }}>
+                        </span>
+                    </Row>
+                </div>
                     <Collapse in={this.state.isOpen}>
                         {editForm}
                     </Collapse>
@@ -160,13 +162,10 @@ class EditDropdown extends Component {
 }
 
 
-EditDropdown.propTypes = {
+EditDate.propTypes = {
     'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.string.isRequired,
-    'selectOptions': PropTypes.array.isRequired,
-    // 'minLength': PropTypes.number.isRequired
+    'fieldName': PropTypes.string.isRequired
 };
 
 
-export default Radium(EditDropdown);
+export default Radium(EditDate);
