@@ -2,6 +2,7 @@ import React from 'react';
 import EditString from '../EditString/EditString';
 import EditDropdown from '../EditDropdown/EditDropdown';
 import EditNumber from '../EditNumber/EditNumber';
+import EditTextarea from '../EditTextarea/EditTextarea';
 
 const ProfileEdit = (props) => {
 
@@ -98,7 +99,6 @@ const ProfileEdit = (props) => {
 
                 {/* Birthday */}
 
-                {/* Cleanliness */}
                 <EditNumber
                     label="Cleanliness"
                     value={cleanliness}
@@ -107,7 +107,6 @@ const ProfileEdit = (props) => {
                     max={10}
                 />
 
-                {/* Sex */}
                 <EditDropdown
                     label="Sex"
                     value={sex}
@@ -160,6 +159,12 @@ const ProfileEdit = (props) => {
                 {/* Hobbies */}
                 {/* Interests */}
                 {/* Bio */}
+                <EditTextarea
+                    label="Bio"
+                    value={bio}
+                    fieldName="bio"
+                    minLength={1}
+                />
 
 
             </div>
