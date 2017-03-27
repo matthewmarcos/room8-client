@@ -1,10 +1,12 @@
 
 /*
- * EditDropdown - dumb component that contains a textfield. Takes in the following props:
+ * EditNumber - dumb component that contains an edit . Takes in the following props:
  * label - Label for the form
- * value - initial value
  * fieldName - Name of the field
- * selectOptions [{value, label}] - Value and label of items in the dropdown
+ * value - initial value
+ * handler - handler function
+ * minLength - Minimum length of the string it accepts
+ *
  * Wrap editString with connect and edit the fieldName in userStore?
 */
 
@@ -13,18 +15,17 @@ import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from '
 
 
 import Radium from 'radium';
+import ReactBootstrapSlider from 'react-bootstrap-slider';
+import 'bootstrap-slider/dist/css/bootstrap-slider.min.css'
 
-// import { connect } from 'react-redux';
-// import * as actions from '../../actions/UserActions';
 
-
-class EditDropdown extends Component {
+class EditNumber extends Component {
 
     constructor() {
         super();
 
         this.state = {
-            tempValue: '',
+            tempValue: 0,
             isOpen: false // if form is active or not
         };
     }
@@ -61,18 +62,7 @@ class EditDropdown extends Component {
 
 
     render() {
-        const { label, fieldName, value, selectOptions } = this.props;
-
-        const options = selectOptions.map(x => {
-                        return (
-                            <option 
-                                key={x.value}
-                                id={x.value}
-                                name={x.label}>
-                                {x.label}
-                            </option>
-                        );
-                    });
+        const { label, fieldName, value, min, max } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
@@ -92,12 +82,15 @@ class EditDropdown extends Component {
                                 </span>
                             </Col>
                             <Col xs={12} sm={8} md={8}>
-                                <FormControl 
-                                    name={this.props.fieldName}
-                                    componentClass="select"
-                                    placeholder={value}>
-                                    { options }
-                                </FormControl>
+                                <ReactBootstrapSlider
+                                    value={this.state.tempValue}
+                                    slideStop={this.handleChange.bind(this)}
+                                    change={this.handleChange.bind(this)}
+                                    step={1}
+                                    max={max}
+                                    min={min}
+                                    orientation="horizontal"/>
+                                { this.state.tempValue }
                             </Col>
                             <Col xs={12} sm={2} md={2}>
                                 <Button
@@ -160,13 +153,15 @@ class EditDropdown extends Component {
 }
 
 
-EditDropdown.propTypes = {
+EditNumber.propTypes = {
     'label': PropTypes.string.isRequired,
+    'value': PropTypes.number.isRequired,
     'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.string.isRequired,
-    'selectOptions': PropTypes.array.isRequired,
-    // 'minLength': PropTypes.number.isRequired
+    'min': PropTypes.number.isRequired,
+    'max': PropTypes.number.isRequired
 };
 
 
-export default Radium(EditDropdown);
+export default Radium(EditNumber);
+
+

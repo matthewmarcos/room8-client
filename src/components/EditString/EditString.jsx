@@ -10,11 +10,7 @@
 */
 
 import React, { PropTypes, Component } from 'react';
-import {
-    FormGroup, ControlLabel, FormControl,
-    HelpBlock, Grid, Row, Col, Button,
-    Collapse, Form
-} from 'react-bootstrap';
+import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
 import Radium from 'radium';
@@ -78,7 +74,14 @@ class EditString extends Component {
                     <FormGroup
                         controlId={`${fieldName}-text-form`}>
                         <Row>
-                            <Col xs={12} sm={10} md={10}>
+                            <Col xs={12} sm={2} md={2}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    Change {this.props.label}
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={8} md={8}>
                                 <FormControl
                                     name={this.props.fieldName}
                                     type="text"
@@ -113,7 +116,11 @@ class EditString extends Component {
 
                         {/* Do I hide the value when the screen is small? */}
                         <Col xs={12} sm={4} md={3}>
-                            {value}
+                            <span style={{
+                                fontStyle: 'italic'
+                            }}>
+                                {value}
+                            </span>
                         </Col>
 
                         <Col xs={12} sm={4} md={2}>

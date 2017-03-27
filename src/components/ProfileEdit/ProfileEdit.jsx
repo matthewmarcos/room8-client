@@ -1,6 +1,7 @@
 import React from 'react';
 import EditString from '../EditString/EditString';
 import EditDropdown from '../EditDropdown/EditDropdown';
+import EditNumber from '../EditNumber/EditNumber';
 
 const ProfileEdit = (props) => {
 
@@ -98,6 +99,13 @@ const ProfileEdit = (props) => {
                 {/* Birthday */}
 
                 {/* Cleanliness */}
+                <EditNumber
+                    label="Cleanliness"
+                    value={cleanliness}
+                    fieldName="cleanliness"
+                    min={1}
+                    max={10}
+                />
 
                 {/* Sex */}
                 <EditDropdown
