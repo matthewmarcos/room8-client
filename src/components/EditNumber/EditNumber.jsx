@@ -11,7 +11,7 @@
 */
 
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { FormGroup, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
 import Radium from 'radium';

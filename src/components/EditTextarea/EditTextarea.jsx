@@ -87,7 +87,7 @@ class EditTextarea extends Component {
 
 
     render() {
-        const { label, fieldName, value } = this.props;
+        const { label, fieldName } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
