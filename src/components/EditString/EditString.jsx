@@ -64,7 +64,8 @@ class EditString extends Component {
         const editForm = (
             <div style={{
                 margin: 0,
-                padding: 0
+                padding: 0,
+                cursor: 'pointer'
             }}>
                 <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
                     <FormGroup

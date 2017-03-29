@@ -1,6 +1,6 @@
 
 /*
- * EditNumber - dumb component that contains an edit . Takes in the following props:
+ * EditNumberSlider - dumb component that contains an edit . Takes in the following props:
  * label - Label for the form
  * fieldName - Name of the field
  * value - initial value
@@ -19,7 +19,7 @@ import ReactBootstrapSlider from 'react-bootstrap-slider';
 import 'bootstrap-slider/dist/css/bootstrap-slider.min.css'
 
 
-class EditNumber extends Component {
+class EditNumberSlider extends Component {
 
     constructor() {
         super();
@@ -153,7 +153,7 @@ class EditNumber extends Component {
 }
 
 
-EditNumber.propTypes = {
+EditNumberSlider.propTypes = {
     'label': PropTypes.string.isRequired,
     'value': PropTypes.number.isRequired,
     'fieldName': PropTypes.string.isRequired,
@@ -162,6 +162,5 @@ EditNumber.propTypes = {
 };
 
 
-export default Radium(EditNumber);
-
+export default Radium(EditNumberSlider);
 

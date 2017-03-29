@@ -1,7 +1,7 @@
 import React from 'react';
 import EditString from '../EditString/EditString';
 import EditDropdown from '../EditDropdown/EditDropdown';
-import EditNumber from '../EditNumber/EditNumber';
+import EditNumberSlider from '../EditNumberSlider/EditNumberSlider';
 import EditTextarea from '../EditTextarea/EditTextarea';
 import EditDate from '../EditDate/EditDate';
 
@@ -104,7 +104,7 @@ const ProfileEdit = (props) => {
                     fieldName="birthday"
                 />
 
-                <EditNumber
+                <EditNumberSlider
                     label="Cleanliness"
                     value={cleanliness}
                     fieldName="cleanliness"
