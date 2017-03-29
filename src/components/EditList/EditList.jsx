@@ -1,15 +1,3 @@
-
-/*
- * EditList - dumb component that contains a textfield. Takes in the following props:
- * label - Label for the form
- * fieldName - Name of the field
- * value - initial value
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- *
- * Wrap editString with connect and edit the fieldName in userStore?
-*/
-
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
@@ -29,17 +17,24 @@ class EditList extends Component {
 
     componentDidMount() {
         // Initialize tempValue to what is passed from value in props
+        let value;
+
+        if('value' in this.props) {
+            value = this.props.value;
+        }
+        else {
+            value = [];
+        }
+
         this.setState({
-            tempValue: this.props.value
+            tempValue: value
         });
     }
 
 
     handleChange(e) {
         // Change tempValue based on change
-        this.setState({
-            tempValue: e.target.value
-        });
+        console.log('Event Change');
     };
 
 
@@ -53,8 +48,7 @@ class EditList extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const toSubmitValue = e.target.elements[this.props.fieldName].value;
-        console.log(toSubmitValue, ' has been submitted');
+        console.log('submit the form!');
     }
 
 
@@ -99,7 +93,7 @@ class EditList extends Component {
             </div>
         );
 
-        return(
+        return (
             <div className="edit-string">
                 <Grid fluid={true}>
                     <div onClick={this.toggleOpenMode.bind(this)}>
@@ -111,8 +105,6 @@ class EditList extends Component {
                                 {label}
                             </span>
                         </Col>
-
-                        {/* Do I hide the value when the screen is small? */}
                         <Col xs={12} sm={4} md={3}>
                             <span style={{
                                 fontStyle: 'italic'
@@ -147,12 +139,25 @@ class EditList extends Component {
 }
 
 
+
+/*
+ * EditList - component that contains a list of strings.
+ *
+ * Props:
+ * label* - Form label that gets printed in bold
+ * fieldName* - Gets plugged as the name attribute of the form.
+ * value - initial value. If not specified, will render an empty array
+ * handler - handler function
+ * minLength - Minimum length of the string it accepts
+ * maxLength - Maximum length of the string it accepts
+*/
 EditList.propTypes = {
     'label': PropTypes.string.isRequired,
     'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.string.isRequired,
-    // 'handler': PropTypes.func.isRequired,
-    'minLength': PropTypes.number.isRequired
+    'value': PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.string
+        })),
+    'url': PropTypes.string
 };
 
 
