@@ -58,11 +58,11 @@ class EditDate extends Component {
         const { label, fieldName, value } = this.props;
 
         // http://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
-        Date.prototype.yyyymmdd = function() {
-            var mm = this.getMonth() + 1; // getMonth() is zero-based
-            var dd = this.getDate();
+        const formatDate = function(date) {
+            var mm = date.getMonth() + 1; // getMonth() is zero-based
+            var dd = date.getDate();
 
-            return [this.getFullYear(),
+            return [date.getFullYear(),
                     (mm>9 ? '' : '0') + mm,
                     (dd>9 ? '' : '0') + dd
                     ].join('/');
@@ -125,7 +125,7 @@ class EditDate extends Component {
                                 fontStyle: 'italic'
                             }}>
                             {/* Make the date a string */}
-                                { value.yyyymmdd() }
+                                { formatDate(value) }
                             </span>
                         </Col>
 

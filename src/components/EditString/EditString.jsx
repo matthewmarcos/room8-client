@@ -1,14 +1,6 @@
 /*
- * EditString - dumb component that contains a textfield. Takes in the following props:
- * label - Label for the form
- * fieldName - Name of the field
- * value - initial value
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- *
- * Wrap editString with connect and edit the fieldName in userStore?
+ *  See documentation before the export
 */
-
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
@@ -146,12 +138,24 @@ class EditString extends Component {
 }
 
 
+/*
+ * EditString - dumb component that contains a textfield. Takes in the following props:
+ *
+ * label* - Form label that gets printed in bold
+ * fieldName* - Gets plugged as the name attribute of the form.
+ * value - initial value of the field. If not specified, will draw an 'x'
+ * url - makes a PUT request to that url with the following object:
+ *      { value: String }
+ * minLength - Minimum length of the string it accepts
+ * maxLength - Maximum length of the string it accepts
+*/
 EditString.propTypes = {
     'label': PropTypes.string.isRequired,
     'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.string.isRequired,
-    // 'handler': PropTypes.func.isRequired,
-    'minLength': PropTypes.number.isRequired
+    'value': PropTypes.string,
+    'url': PropTypes.string,
+    'minLength': PropTypes.number,
+    'maxLength': PropTypes.number,
 };
 
 
