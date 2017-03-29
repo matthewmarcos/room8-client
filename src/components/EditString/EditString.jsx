@@ -12,11 +12,7 @@
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
-
 import Radium from 'radium';
-
-// import { connect } from 'react-redux';
-// import * as actions from '../../actions/UserActions';
 
 
 class EditString extends Component {

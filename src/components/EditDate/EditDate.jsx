@@ -49,7 +49,7 @@ class EditDate extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const toSubmitValue = e.target.elements[this.props.fieldName].value;
+        const toSubmitValue = new Date(e.target.elements[this.props.fieldName].value);
         console.log(toSubmitValue, ' has been submitted');
     }
 
