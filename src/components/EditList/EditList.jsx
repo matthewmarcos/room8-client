@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import HiddenMenu from './HiddenMenu';
+import AddElement from './AddElement';
 
 import Radium from 'radium';
 
@@ -13,6 +15,9 @@ class EditList extends Component {
             tempValue: '',
             isOpen: false // if form is active or not
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -32,12 +37,6 @@ class EditList extends Component {
     }
 
 
-    handleChange(e) {
-        // Change tempValue based on change
-        console.log('Event Change');
-    };
-
-
     toggleOpenMode(e) {
         this.setState({
             isOpen: !this.state.isOpen
@@ -45,92 +44,73 @@ class EditList extends Component {
     };
 
 
+    handleChange(e) {
+        e.preventDefault();
+
+        console.log('Form change: ', e.target);
+    }
+
+
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log('submit the form!');
+        console.log('Form submitted: ', e.target);
     }
-
 
     render() {
         const { label, fieldName, value } = this.props;
 
-        // Margin and padding to 0 to reduce animation lag
-        const editForm = (
-            <div style={{
-                margin: 0,
-                padding: 0,
-                cursor: 'pointer'
-            }}>
-                <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
-                    <FormGroup
-                        controlId={`${fieldName}-text-form`}>
-                        <Row>
-                            <Col xs={12} sm={2} md={2}>
-                                <span style={{
-                                    fontStyle: 'italic'
-                                }}>
-                                    Change {this.props.label}
-                                </span>
-                            </Col>
-                            <Col xs={12} sm={8} md={8}>
-                                <FormControl
-                                    name={this.props.fieldName}
-                                    type="text"
-                                    value={this.state.tempValue}
-                                    onChange={this.handleChange.bind(this)}/>
-                            </Col>
-                            <Col xs={12} sm={2} md={2}>
-                                <Button
-                                    bsSize="small"
-                                    type="submit">
-                                    Change
-                                </Button>
-                            </Col>
-                        </Row>
-                    </FormGroup>
-                </Form>
-            </div>
-        );
-
         return (
-            <div className="edit-string">
+            <div>
                 <Grid fluid={true}>
-                    <div onClick={this.toggleOpenMode.bind(this)}>
+                    <div 
+                        onClick={this.toggleOpenMode.bind(this)}
+                        style={{ 
+                            ':hover': {
+                                cursor: 'pointer',
+                                backgroundColor: '#dddddd'
+                            }
+                        }}
+                    >
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                {label}
-                            </span>
-                        </Col>
-                        <Col xs={12} sm={4} md={3}>
-                            <span style={{
-                                fontStyle: 'italic'
-                            }}>
-                                {value}
-                            </span>
-                        </Col>
+                                    {label}
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={4} md={3}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    {'Whatever the value is, goes here'}
+                                </span>
+                            </Col>
 
-                        <Col xs={12} sm={4} md={2}>
-                            <Button 
-                                bsSize="small"
-                                onClick={this.toggleOpenMode.bind(this)}>
-                                Edit
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <span style={{
-                            marginTop: 1,
-                            marginBottom: 1
-                        }}>
-                        </span>
-                    </Row>
-                </div>
+                            <Col xs={12} sm={4} md={2}>
+                                <Button
+                                    bsSize="small"
+                                    onClick={this.toggleOpenMode.bind(this)}>
+                                    Edit
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <span style={{
+                                marginTop: 1,
+                                marginBottom: 1
+                            }}>
+                            </span>
+                        </Row>
+                    </div>
                     <Collapse in={this.state.isOpen}>
-                        {editForm}
+                        <div>
+                            Ipsum aspernatur fugit aliquid voluptatibus inventore at ullam explicabo. Odio exercitationem rerum cum fuga et unde amet nulla? Neque facere itaque tenetur temporibus quo. Voluptatibus nam itaque iste distinctio dolorem.
+                            Consectetur totam molestiae veniam dolorem aspernatur repellat iure fugiat culpa magnam error. Explicabo consectetur illum eligendi repellat enim ut aperiam repudiandae dolor minus quis? Ducimus tenetur deserunt vel nam impedit.
+                            Sit ipsum eaque quo ut in! Cupiditate modi doloremque nostrum fuga et! Incidunt delectus veniam aut aut nulla labore magni recusandae nisi deleniti magni! Nobis dolore nemo veritatis molestiae ducimus.
+                        </div>
+                        
                     </Collapse>
                 </Grid>
             </div>
@@ -138,6 +118,14 @@ class EditList extends Component {
     }
 }
 
+                        // <HiddenMenu
+                            // label={this.props.label}
+                            // handleSubmit={this.handleSubmit}
+                            // handleChange={this.handleChange}
+                            // fieldName={this.props.fieldName}
+                            // value={this.props.value}
+                            // url={this.props.url}
+                        // />
 
 
 /*
@@ -154,10 +142,8 @@ class EditList extends Component {
 EditList.propTypes = {
     'label': PropTypes.string.isRequired,
     'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.arrayOf(PropTypes.shape({
-            value: PropTypes.string
-        })),
-    'url': PropTypes.string
+    'value': PropTypes.arrayOf(PropTypes.string),
+    'url': PropTypes.string.isRequired
 };
 
 

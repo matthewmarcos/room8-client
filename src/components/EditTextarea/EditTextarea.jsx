@@ -130,7 +130,15 @@ class EditTextarea extends Component {
         return(
             <div className="edit-string">
                 <Grid fluid={true}>
-                    <div onClick={this.toggleOpenMode.bind(this)}>
+                    <div
+                        onClick={this.toggleOpenMode.bind(this)}
+                        style={{ 
+                            ':hover': {
+                                cursor: 'pointer',
+                                backgroundColor: '#dddddd'
+                            }
+                        }}
+                    >
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{
@@ -140,7 +148,6 @@ class EditTextarea extends Component {
                             </span>
                         </Col>
 
-                        {/* Do I hide the value when the screen is small? */}
                         <Col xs={12} sm={4} md={3}>
                             <span style={{
                                 fontStyle: 'italic',

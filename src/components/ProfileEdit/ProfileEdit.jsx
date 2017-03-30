@@ -4,6 +4,7 @@ import EditDropdown from '../EditDropdown/EditDropdown';
 import EditNumberSlider from '../EditNumberSlider/EditNumberSlider';
 import EditTextarea from '../EditTextarea/EditTextarea';
 import EditDate from '../EditDate/EditDate';
+import EditList from '../EditList/EditList';
 
 const ProfileEdit = (props) => {
 
@@ -12,6 +13,9 @@ const ProfileEdit = (props) => {
     console.log('user', user); //To know the fields
     const batchCount = 20;
     const batchLastYear = 2016;
+    const ORGANIZATION_EDIT_URL = 'fake_url_here';
+    const HOBBIES_EDIT_URL = 'fake_url_here';
+    const INTERESTS_EDIT_URL = 'fake_url_here';
 
     const {
         fullName,
@@ -50,7 +54,7 @@ const ProfileEdit = (props) => {
 
     return (
         <div className="profile-index">
-            <div className="container">
+            <div className="conta">
                 <h1>Edit Profile</h1>
 
                 <EditString
@@ -160,8 +164,29 @@ const ProfileEdit = (props) => {
                 />
 
                 {/* Organizations */}
+                <EditList
+                    label="Organizations"
+                    value={organizations}
+                    fieldName="organizations"
+                    url={ORGANIZATION_EDIT_URL}
+                />
+
                 {/* Hobbies */}
+                <EditList
+                    label="Hobbies"
+                    value={hobbies}
+                    fieldName="hobbies"
+                    url={HOBBIES_EDIT_URL}
+                />
+
                 {/* Interests */}
+                <EditList
+                    label="Interests"
+                    value={interests}
+                    fieldName="interests"
+                    url={INTERESTS_EDIT_URL}
+                />
+
                 {/* Bio */}
                 <EditTextarea
                     label="Bio"

@@ -115,7 +115,15 @@ class EditDropdown extends Component {
         return(
             <div className="edit-string">
                 <Grid fluid={true}>
-                    <div onClick={this.toggleOpenMode.bind(this)}>
+                    <div 
+                        onClick={this.toggleOpenMode.bind(this)}
+                        style={{ 
+                            ':hover': {
+                                cursor: 'pointer',
+                                backgroundColor: '#dddddd'
+                            }
+                        }}
+                    >
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{

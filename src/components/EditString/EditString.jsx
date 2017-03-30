@@ -56,8 +56,7 @@ class EditString extends Component {
         const editForm = (
             <div style={{
                 margin: 0,
-                padding: 0,
-                cursor: 'pointer'
+                padding: 0
             }}>
                 <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
                     <FormGroup
@@ -91,9 +90,17 @@ class EditString extends Component {
         );
 
         return(
-            <div className="edit-string">
+            <div>
                 <Grid fluid={true}>
-                    <div onClick={this.toggleOpenMode.bind(this)}>
+                    <div
+                        onClick={this.toggleOpenMode.bind(this)}
+                        style={{ 
+                            ':hover': {
+                                cursor: 'pointer',
+                                backgroundColor: '#dddddd'
+                            }
+                        }}
+                    >
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{
