@@ -106,35 +106,35 @@ class EditString extends Component {
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                {label}
-                            </span>
-                        </Col>
+                                    {label}
+                                </span>
+                            </Col>
 
-                        {/* Do I hide the value when the screen is small? */}
-                        <Col xs={12} sm={4} md={3}>
+                            {/* Do I hide the value when the screen is small? */}
+                            <Col xs={12} sm={4} md={3}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    {value}
+                                </span>
+                            </Col>
+
+                            <Col xs={12} sm={4} md={2}>
+                                <Button 
+                                    bsSize="small"
+                                    onClick={this.toggleOpenMode.bind(this)}>
+                                    Edit
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
                             <span style={{
-                                fontStyle: 'italic'
+                                marginTop: 1,
+                                marginBottom: 1
                             }}>
-                                {value}
                             </span>
-                        </Col>
-
-                        <Col xs={12} sm={4} md={2}>
-                            <Button 
-                                bsSize="small"
-                                onClick={this.toggleOpenMode.bind(this)}>
-                                Edit
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <span style={{
-                            marginTop: 1,
-                            marginBottom: 1
-                        }}>
-                        </span>
-                    </Row>
-                </div>
+                        </Row>
+                    </div>
                     <Collapse in={this.state.isOpen}>
                         {editForm}
                     </Collapse>

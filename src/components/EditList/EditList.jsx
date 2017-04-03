@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 import HiddenMenu from './HiddenMenu';
-import AddElement from './AddElement';
 
 import Radium from 'radium';
 
@@ -106,11 +105,12 @@ class EditList extends Component {
                     </div>
                     <Collapse in={this.state.isOpen}>
                         <div>
-                            Ipsum aspernatur fugit aliquid voluptatibus inventore at ullam explicabo. Odio exercitationem rerum cum fuga et unde amet nulla? Neque facere itaque tenetur temporibus quo. Voluptatibus nam itaque iste distinctio dolorem.
-                            Consectetur totam molestiae veniam dolorem aspernatur repellat iure fugiat culpa magnam error. Explicabo consectetur illum eligendi repellat enim ut aperiam repudiandae dolor minus quis? Ducimus tenetur deserunt vel nam impedit.
-                            Sit ipsum eaque quo ut in! Cupiditate modi doloremque nostrum fuga et! Incidunt delectus veniam aut aut nulla labore magni recusandae nisi deleniti magni! Nobis dolore nemo veritatis molestiae ducimus.
+                            <HiddenMenu
+                                handleChange={this.handleChange}
+                                handleSubmit={this.handleSubmit}
+                                { ...this.props }
+                            />
                         </div>
-                        
                     </Collapse>
                 </Grid>
             </div>
@@ -118,14 +118,6 @@ class EditList extends Component {
     }
 }
 
-                        // <HiddenMenu
-                            // label={this.props.label}
-                            // handleSubmit={this.handleSubmit}
-                            // handleChange={this.handleChange}
-                            // fieldName={this.props.fieldName}
-                            // value={this.props.value}
-                            // url={this.props.url}
-                        // />
 
 
 /*

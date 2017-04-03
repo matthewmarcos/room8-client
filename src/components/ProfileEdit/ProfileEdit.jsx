@@ -12,7 +12,7 @@ const ProfileEdit = (props) => {
 
     console.log('user', user); //To know the fields
     const batchCount = 20;
-    const batchLastYear = 2016;
+    const batchLastYear = new Date().getFullYear(); //End year of the batches
     const ORGANIZATION_EDIT_URL = 'fake_url_here';
     const HOBBIES_EDIT_URL = 'fake_url_here';
     const INTERESTS_EDIT_URL = 'fake_url_here';
