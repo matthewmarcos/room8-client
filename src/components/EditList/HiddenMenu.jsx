@@ -1,25 +1,53 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import ListMenu from './ListMenu';
 
-const HiddenMenu = (props) => {
-    const { label, fieldName, value } = props;
+class HiddenMenu extends Component {
 
-    // Margin and padding to 0 to reduce animation lag
-    return (
-        <div style={{
-            margin: 0,
-            padding: 0
-        }}>
-            {
-                value.map((interest, key) => (
-                    <div key={key}>
-                        {`${key + 1}: ${interest}`}
-                    </div>
-                ))
-            }
-        </div>
-    );
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            // Temp state is here. Submit enture tempState to database
+            tempValue: []
+        };
+    }
+
+
+    componentDidMount() {
+        this.setState({
+            tempValue: this.props.value
+        });
+    }
+
+
+    handleSubmit(e) {
+
+    }
+
+
+    handleDelete(e, index) {
+
+    }
+
+
+    render() {
+        const { label, fieldName } = this.props;
+
+        // Margin and padding to 0 to reduce animation lag
+        return (
+            <div style={{
+                margin: 0,
+                padding: 0
+            }}>
+                <ListMenu
+                    tempValue={this.state.tempValue}
+                    handleDelete={this.handleDelete.bind(this)}
+                />
+            </div>
+        );
+    }
+
 };
 
 HiddenMenu.propTypes = {
