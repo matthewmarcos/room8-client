@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
 import ListMenu from './ListMenu';
+import AddElement from './AddElement';
 
 class HiddenMenu extends Component {
 
@@ -32,7 +33,7 @@ class HiddenMenu extends Component {
 
 
     render() {
-        const { label, fieldName } = this.props;
+        const { label, fieldName, handleSubmit } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         return (
@@ -40,6 +41,11 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
+                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div>
+                <AddElement
+                    fieldName={fieldName}
+                    handleSubmit={handleSubmit}
+                />
                 <ListMenu
                     tempValue={this.state.tempValue}
                     handleDelete={this.handleDelete.bind(this)}
