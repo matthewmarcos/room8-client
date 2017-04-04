@@ -45,7 +45,6 @@ class EditList extends Component {
 
     handleChange(e) {
         e.preventDefault();
-
         console.log('Form change: ', e.target);
     }
 
@@ -62,9 +61,9 @@ class EditList extends Component {
         return (
             <div>
                 <Grid fluid={true}>
-                    <div 
+                    <div
                         onClick={this.toggleOpenMode.bind(this)}
-                        style={{ 
+                        style={{
                             ':hover': {
                                 cursor: 'pointer',
                                 backgroundColor: '#dddddd'

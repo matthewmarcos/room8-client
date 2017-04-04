@@ -2,6 +2,8 @@ import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
 import ListMenu from './ListMenu';
 import AddElement from './AddElement';
+import { Button } from 'react-bootstrap';
+
 
 class HiddenMenu extends Component {
 
@@ -10,10 +12,10 @@ class HiddenMenu extends Component {
 
         this.state = {
             // Temp state is here. Submit enture tempState to database
-            tempValue: []
+            tempValue: [],
+            tempString: ''
         };
     }
-
 
     componentDidMount() {
         this.setState({
@@ -21,16 +23,27 @@ class HiddenMenu extends Component {
         });
     }
 
-
     handleSubmit(e) {
-
+        e.preventDefault();
+        console.log(`submitting ${this.state.tempValue} to ${this.props.url}`);
     }
 
+    handleChange(e) {
+        this.setState({
+            tempString: e.target.value
+        });
+    }
 
     handleAdd(e) {
+        e.preventDefault();
 
+        this.setState({
+            tempValue: [
+                this.state.tempString,
+                ...this.state.tempValue
+            ]
+        })
     }
-
 
     handleDelete(index, e) {
         console.log(`Deleting item number ${index}: ${this.state.tempValue[index]}`);
@@ -52,13 +65,18 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div> <AddElement fieldName={fieldName}
+                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div>
+                <AddElement fieldName={this.props.fieldName}
                     handleAdd={this.handleAdd.bind(this)}
+                    handleChange={this.handleChange.bind(this)}
+                    fieldName={this.props.fieldName}
+                    tempString={this.state.tempString}
                 />
                 <ListMenu
                     tempValue={this.state.tempValue}
                     handleDelete={this.handleDelete.bind(this)}
                 />
+                <Button onClick={this.handleSubmit.bind(this)}>Submit</Button>
             </div>
         );
     }
