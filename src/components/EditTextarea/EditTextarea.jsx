@@ -132,7 +132,7 @@ class EditTextarea extends Component {
                 <Grid fluid={true}>
                     <div
                         onClick={this.toggleOpenMode.bind(this)}
-                        style={{ 
+                        style={{
                             ':hover': {
                                 cursor: 'pointer',
                                 backgroundColor: '#dddddd'
@@ -160,7 +160,7 @@ class EditTextarea extends Component {
                         </Col>
 
                         <Col xs={12} sm={4} md={2}>
-                            <Button 
+                            <Button
                                 bsSize="small"
                                 onClick={this.toggleOpenMode.bind(this)}>
                                 Edit

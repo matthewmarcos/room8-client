@@ -41,7 +41,8 @@ class HiddenMenu extends Component {
             tempValue: [
                 this.state.tempString,
                 ...this.state.tempValue
-            ]
+            ],
+            tempString: ''
         })
     }
 
@@ -65,12 +66,12 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div>
                 <AddElement fieldName={this.props.fieldName}
                     handleAdd={this.handleAdd.bind(this)}
                     handleChange={this.handleChange.bind(this)}
                     fieldName={this.props.fieldName}
                     tempString={this.state.tempString}
+                    label={label}
                 />
                 <ListMenu
                     tempValue={this.state.tempValue}

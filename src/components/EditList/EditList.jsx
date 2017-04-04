@@ -58,6 +58,28 @@ class EditList extends Component {
     render() {
         const { label, fieldName, value } = this.props;
 
+        const length = 40;
+
+        const renderPreview = (string) => {
+            return sliceAndDice(length, string.join(' '));
+        };
+
+        const sliceAndDice = (length, string) => {
+            if(length <= 3) {
+                return '...';
+            }
+            if(string.length <= length) {
+                return string;
+            }
+
+            else {
+                // Subtract length by three to make space for ellipsis
+                const tempString = string.slice(0, length - 3);
+                return tempString + '...';
+            }
+
+        };
+
         return (
             <div>
                 <Grid fluid={true}>
@@ -82,7 +104,7 @@ class EditList extends Component {
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    {'Whatever the value is, goes here'}
+                                    {renderPreview(value)}
                                 </span>
                             </Col>
 

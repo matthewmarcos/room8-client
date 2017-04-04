@@ -1,9 +1,4 @@
 /* Please look at: http://stackoverflow.com/questions/39974486/accordion-sidebar-menu-using-nav-components-with-react-bootstrap */
-
-.sidebar {
-
-}
-
 ul.nav.nav-stacked.pull-left {
     width: 200px;
 }
