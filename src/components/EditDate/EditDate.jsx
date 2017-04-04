@@ -3,21 +3,13 @@
  * label - Label for the form
  * fieldName - Name of the field
  * value - initial value
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- *
- * Wrap editString with connect and edit the fieldName in userStore?
 */
 
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { FormGroup, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 
-
 import Radium from 'radium';
-
-// import { connect } from 'react-redux';
-// import * as actions from '../../actions/UserActions';
 
 
 class EditDate extends Component {
@@ -26,7 +18,7 @@ class EditDate extends Component {
         super();
 
         this.state = {
-            tempValue: '',
+            tempValue: new Date().toISOString(),
             isOpen: false // if form is active or not
         };
     }
@@ -34,15 +26,15 @@ class EditDate extends Component {
     componentDidMount() {
         // Initialize tempValue to what is passed from value in props
         this.setState({
-            tempValue: this.props.value
+            tempValue: this.props.value.toISOString()
         });
     }
 
 
-    handleChange(e) {
+    handleChange(value, formattedValue) {
         // Change tempValue based on change
         this.setState({
-            tempValue: e.target.value
+            tempValue: value
         });
     };
 
@@ -57,7 +49,7 @@ class EditDate extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const toSubmitValue = e.target.elements[this.props.fieldName].value;
+        const toSubmitValue = new Date(e.target.elements[this.props.fieldName].value);
         console.log(toSubmitValue, ' has been submitted');
     }
 
@@ -66,14 +58,14 @@ class EditDate extends Component {
         const { label, fieldName, value } = this.props;
 
         // http://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
-        Date.prototype.yyyymmdd = function() {
-            var mm = this.getMonth() + 1; // getMonth() is zero-based
-            var dd = this.getDate();
+        const formatDate = function(date) {
+            var mm = date.getMonth() + 1; // getMonth() is zero-based
+            var dd = date.getDate();
 
-            return [this.getFullYear(),
+            return [date.getFullYear(),
                     (mm>9 ? '' : '0') + mm,
                     (dd>9 ? '' : '0') + dd
-                    ].join('-');
+                    ].join('/');
 
         };
 
@@ -95,13 +87,11 @@ class EditDate extends Component {
                                 </span>
                             </Col>
                             <Col xs={12} sm={8} md={8}>
-                                {/*
-                                    <FormControl
-                                        name={this.props.fieldName}
-                                        type="text"
-                                        value={this.state.tempValue}
-                                        onChange={this.handleChange.bind(this)}/>
-                                */}
+                                <DatePicker
+                                    name={this.props.fieldName}
+                                    onChange={this.handleChange.bind(this)}
+                                    value={this.state.tempValue}
+                                />
                             </Col>
                             <Col xs={12} sm={2} md={2}>
                                 <Button
@@ -119,7 +109,15 @@ class EditDate extends Component {
         return(
             <div className="edit-string">
                 <Grid fluid={true}>
-                    <div onClick={this.toggleOpenMode.bind(this)}>
+                    <div 
+                        onClick={this.toggleOpenMode.bind(this)}
+                        style={{ 
+                            ':hover': {
+                                cursor: 'pointer',
+                                backgroundColor: '#dddddd'
+                            }
+                        }}
+                    >
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{
@@ -135,7 +133,7 @@ class EditDate extends Component {
                                 fontStyle: 'italic'
                             }}>
                             {/* Make the date a string */}
-                            { value.yyyymmdd() }
+                                { formatDate(value) }
                             </span>
                         </Col>
 
