@@ -27,8 +27,8 @@ class HiddenMenu extends Component {
     }
 
 
-    handleDelete(e, index) {
-
+    handleDelete(index, e) {
+        console.log(`Deleting item number ${index}: ${this.state.tempValue[index]}`);
     }
 
 

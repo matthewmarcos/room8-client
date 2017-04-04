@@ -15,6 +15,7 @@ const ListMenu = (props) => {
                         key={key}
                         index={key+1}
                         interest={interest}
+                        handleDelete={props.handleDelete.bind(this, key)}
                     />
                 ))
             }
