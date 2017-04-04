@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
 import HiddenMenu from './HiddenMenu';
 
 import Radium from 'radium';

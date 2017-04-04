@@ -27,8 +27,19 @@ class HiddenMenu extends Component {
     }
 
 
+    handleAdd(e) {
+
+    }
+
+
     handleDelete(index, e) {
         console.log(`Deleting item number ${index}: ${this.state.tempValue[index]}`);
+        let temp = this.state.tempValue;
+        temp.splice(index, 1);
+
+        this.setState({
+            tempValue: [ ...temp ]
+        });
     }
 
 
@@ -41,10 +52,8 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div>
-                <AddElement
-                    fieldName={fieldName}
-                    handleSubmit={handleSubmit}
+                <div style={{fontStyle: 'italic'}}>{`Editing ${label}`}</div> <AddElement fieldName={fieldName}
+                    handleAdd={this.handleAdd.bind(this)}
                 />
                 <ListMenu
                     tempValue={this.state.tempValue}

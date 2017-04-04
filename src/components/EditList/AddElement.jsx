@@ -1,4 +1,4 @@
-import React, { PropType } from 'react';
+import React, { PropTypes } from 'react';
 import Radium from 'radium';
 
 const AddElement = (props) => {
@@ -9,5 +9,8 @@ const AddElement = (props) => {
     );
 };
 
+AddElement.PropTypes = {
+    'handleAdd': PropTypes.func.isRequired
+};
 
 export default Radium(AddElement);
