@@ -8,32 +8,20 @@ class AppContainer extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        const instance = axios.create({
-            baseURL: 'http://localhost:3001',
-            timeout: 10000
-        });
-        // instance.get('/get');
-        // fetch('/post', {
-        //     method: 'POST',
-        //     credentials: 'include',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({ asd: 'asd'})
-        // })
-        // .then()
-        dispatch({
-            type: 'TEST_DISPATCH_FOR_CORS',
-            payload: fetch('/get', {
-                method: 'GET',
-                credentials: 'include',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-        });
+        // dispatch({
+        //     type: 'TEST_DISPATCH_FOR_CORS',
+        //     payload: axios.post('/post', {
+        //         method: 'POST',
+        //         credentials: 'include',
+        //         headers: {
+        //             Accept: 'application/json',
+        //             'Content-Type': 'application/json',
+        //         },
+        //         body: {
+        //             name: 'Matthew Marcos'
+        //         }
+        //     })
+        // });
     }
 
     render() {

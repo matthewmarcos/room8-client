@@ -77,7 +77,15 @@ export const userReducer = (state = userReducerInitialState, action) => {
         }
 
         case 'REGISTER_PENDING': {
-            console.log('Register is pending now!');
+            return {
+                ...state
+            };
+        }
+
+
+        case 'REGISTER_FULFILLED': {
+            console.log('REGISTER_FULFILLED');
+            console.log(payload);
             return {
                 ...state
             };
