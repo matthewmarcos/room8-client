@@ -76,7 +76,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'UPDATE_USER_PROPERTY': {
+        case 'REGISTER_PENDING': {
+            console.log('Register is pending now!');
             return {
                 ...state
             };
