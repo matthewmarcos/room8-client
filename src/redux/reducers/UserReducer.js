@@ -25,6 +25,7 @@
 
 // On app start, set the tempFields to what is fetched from server.
 const userReducerInitialState = {
+    /* important for app state */
     userId: '',
     isLoggedIn: false,
     username: '',
@@ -76,16 +77,51 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'REGISTER_PENDING': {
+
+        // User logging in
+        case 'LOGIN_PENDING': {
             return {
                 ...state
             };
         }
 
 
-        case 'REGISTER_FULFILLED': {
-            console.log('REGISTER_FULFILLED');
+        case 'LOGIN_FULFILLED': {
+            console.log('LOGIN_FULFILLED!');
             console.log(payload);
+            return {
+                ...state,
+                isLoggedIn: true
+            };
+        }
+
+
+        // LoginRequired HOC checking if user is logged in
+        case 'CHECK_LOGIN_PENDING': {
+            return {
+                ...state
+            };
+        }
+
+
+        case 'CHECK_LOGIN_FULFILLED': {
+            return {
+                ...state,
+                isLoggedIn: true
+            };
+        }
+
+
+        // User Registering
+        case 'REGISTER_PENDING': {
+            return {
+                ...state
+                // Add some loading state
+            };
+        }
+
+
+        case 'REGISTER_FULFILLED': {
             return {
                 ...state
             };

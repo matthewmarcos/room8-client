@@ -6,7 +6,7 @@ import { Navbar, NavItem } from 'react-bootstrap';
 import MyNavbar from '../../components/MyNavbar/MyNavbar';
 import AuthedNavbar from '../../components/AuthedNavbar/AuthedNavbar';
 
-import'./NavbarContainer.css';
+// import'./NavbarContainer.css';
 
 class NavbarContainer extends Component {
 
@@ -36,11 +36,11 @@ class NavbarContainer extends Component {
     }
 
     getCorrectNavbar() {
-        const { isLoggedIn, username, fullName } = this.props.user;
+        const { username, fullName, isLoggedIn } = this.props.user;
         const { splashLinks } = this.state;
 
         if(isLoggedIn) {
-            return <AuthedNavbar 
+            return <AuthedNavbar
                     username={username}
                     fullName={fullName}
                 />
@@ -75,9 +75,10 @@ class NavbarContainer extends Component {
 }
 
 export default connect(store => {
-    const { user } = store;
+    const { user, app } = store;
 
     return {
-        user
+        user,
+        appState: app
     };
 })(NavbarContainer);

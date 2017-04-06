@@ -69,7 +69,7 @@ class HiddenMenu extends Component {
                 <AddElement fieldName={this.props.fieldName}
                     handleAdd={this.handleAdd.bind(this)}
                     handleChange={this.handleChange.bind(this)}
-                    fieldName={this.props.fieldName}
+                    fieldName={fieldName}
                     tempString={this.state.tempString}
                     label={label}
                 />
