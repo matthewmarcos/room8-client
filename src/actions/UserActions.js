@@ -34,6 +34,14 @@ export const register = (username, password, email, nickname) => {
 }
 
 
+export const logout = () => {
+    return {
+        type: 'LOGOUT',
+        payload: axios.post('/auth/logout', {})
+    };
+}
+
+
 export const changeUserProperty = (propName, propValue) => {
     return {
         type: 'UPDATE_USER_PROPERTY',

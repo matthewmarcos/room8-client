@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { whoami } from '../../actions/AppActions';
+
 class LoginRequired extends component {
-    onComponentdidmount() {
+    componentDidMount() {
         const { dispatch, currentURL } = this.props;
+        const { isLoggedIn } = this.props.user;
+
+        dispatch(whoami()); //Initially Check if the user is logged in or something
 
         if (!isLoggedIn) {
             // set the current url/path for future redirection (we use a Redux action)
@@ -14,7 +19,9 @@ class LoginRequired extends component {
     }
 
     render() {
-        if(user.isLoggedIn) {
+        const { isLoggedIn } = this.props.user;
+
+        if(isLoggedIn) {
             return this.props.children;
         }
         else {

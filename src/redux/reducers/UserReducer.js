@@ -135,6 +135,23 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
 
 
+        case 'LOGOUT_PENDING': {
+            return {
+                ...state
+                // Add some loading state
+            };
+        }
+
+
+        case 'LOGOUT_FULFILLED': {
+            return {
+                ...state,
+                isLoggedIn: false,
+                id: '',
+                username: ''
+            };
+        }
+
         default: {
             return state;
         }
