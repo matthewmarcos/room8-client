@@ -36,7 +36,7 @@ const userReducerInitialState = {
     status: '',
     contactNumber: '',
     email: '',
-    cleanliness: 5,
+    cleanliness: 0,
     sex: '',
     gender: '',
     course: '',
@@ -87,10 +87,10 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
 
         case 'LOGIN_FULFILLED': {
-            console.log('LOGIN_FULFILLED!');
-            console.log(payload);
+            const { user } = action.payload.data;
             return {
                 ...state,
+                ...user,
                 isLoggedIn: true
             };
         }
@@ -126,6 +126,14 @@ export const userReducer = (state = userReducerInitialState, action) => {
                 ...state
             };
         }
+
+
+        case 'WHO_AM_I_FULFILLED':
+            return {
+                ...state,
+                isLoggedIn: action.payload.data.isLoggedIn
+            };
+
 
         default: {
             return state;

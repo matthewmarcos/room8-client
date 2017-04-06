@@ -5,13 +5,18 @@ export const appReducer = (state = AppReducerInitialState, action) => {
     switch (action.type) {
         case 'WHO_AM_I_PENDING':
             return {
-                ...state
+                ...state,
+                isfetchingdata: true
             };
+
+
         case 'WHO_AM_I_FULFILLED':
             return {
                 ...state,
-                isLoggedIn: action.payload.data.isLoggedIn
+                isfetchingdata: false
             };
+
+
         default:
             return {
                 ...state
