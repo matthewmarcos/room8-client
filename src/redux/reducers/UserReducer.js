@@ -79,15 +79,15 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
 
         // User logging in
-        case 'LOGIN_PENDING': {
+        case 'LOGIN_FAILED': {
             return {
                 ...state
             };
         }
 
 
-        case 'LOGIN_FULFILLED': {
-            const { user } = action.payload.data;
+        case 'LOGIN_SUCCESS': {
+            const { user } = action.payload;
             return {
                 ...state,
                 ...user,
@@ -95,27 +95,11 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-
-        // LoginRequired HOC checking if user is logged in
-        case 'CHECK_LOGIN_PENDING': {
-            return {
-                ...state
-            };
-        }
-
-
-        case 'CHECK_LOGIN_FULFILLED': {
-            return {
-                ...state,
-                ...action.payload.user,
-                isLoggedIn: true
-            };
-        }
-
         case 'WHO_AM_I_SUCCESS':
             return {
                 ...state,
-                ...action.payload
+                ...action.payload.user,
+                isLoggedIn: action.payload.isLoggedIn
             };
 
         case 'LOGOUT_SUCCESS': {

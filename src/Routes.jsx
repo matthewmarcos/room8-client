@@ -15,6 +15,7 @@ import LoginContainer from './containers/LoginContainer/LoginContainer';
 import ProfileContainer from './containers/ProfileContainer/ProfileContainer';
 import PreferencesContainer from './containers/PreferencesContainer/PreferencesContainer';
 import RegisterContainer from './containers/RegisterContainer/RegisterContainer';
+import DashboardContainer from './containers/DashboardContainer/DashboardContainer';
 
 // Components
 import NoMatch from './components/NoMatch/NoMatch';
@@ -26,6 +27,8 @@ import PreferencesUtilities from './components/PreferencesUtilities/PreferencesU
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 import ProfileIndex from './components/ProfileIndex/ProfileIndex';
+import Forbidden from './components/Forbidden/Forbidden';
+
 import LoginRequired from './HOC/LoginRequired';
 
 import { SampleComponent } from './yeah';
@@ -40,11 +43,13 @@ const Routes = (props) => {
                         <IndexRoute component={LandingContainer} />
                         {/* /login, /register, /forgot, /discovery */}
                         <Route path="login" component={LoginContainer} />
+                        <Route path="403" component={Forbidden} />
                         <Route path="register" component={RegisterContainer} />
                         <Route path="forgot" component={ForgotContainer} />
 
                         <Route component={LoginRequired}>
                             <Route path="discovery" component={DiscoveryContainer} />
+                            <Route path="dashboard" component={DashboardContainer} />
                             <Route path="profile" component={ProfileContainer}>
                                 <IndexRoute component={ProfileIndex} /> {/* /profile */}
                                 <Route path="edit" component={ProfileEdit} /> {/* /profile/edit */}
