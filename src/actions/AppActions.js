@@ -9,7 +9,6 @@ export const whoami = (propName, propValue) => {
     return (dispatch) => {
 
         request.then(({data}) => {
-            console.log(data);
             dispatch({
                 type: 'WHO_AM_I_SUCCESS',
                 payload: {

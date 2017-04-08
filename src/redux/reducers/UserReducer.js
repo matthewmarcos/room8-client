@@ -79,15 +79,15 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
 
         // User logging in
-        case 'LOGIN_PENDING': {
+        case 'LOGIN_FAILED': {
             return {
                 ...state
             };
         }
 
 
-        case 'LOGIN_FULFILLED': {
-            const { user } = action.payload.data;
+        case 'LOGIN_SUCCESS': {
+            const { user } = action.payload;
             return {
                 ...state,
                 ...user,
