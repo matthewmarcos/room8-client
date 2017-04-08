@@ -23,7 +23,6 @@ class LoginRequired extends Component {
 
     render() {
         const { isLoggedIn } = this.props.user;
-        console.log(isLoggedIn)
 
         if(isLoggedIn) {
             return this.props.children;

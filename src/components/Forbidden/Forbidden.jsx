@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-bootstrap';
+import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Forbidden = (props) => {
-    const LoginPage = (
-        <Link to="login">Login page</Link>
-    );
+    // const LoginPage = (
+    //     <Link to="login">Login page</Link>
+    // );
 
     return (
         <div>
-            <h1>Forbidden!</h1>
+            <h1 className="text-center">Forbidden!</h1>
         </div>
     );
 }

@@ -7,11 +7,14 @@ export const whoami = (propName, propValue) => {
     const request = axios.get('/auth/profile');
 
     return (dispatch) => {
+
         request.then(({data}) => {
+            console.log(data);
             dispatch({
                 type: 'WHO_AM_I_SUCCESS',
                 payload: {
-                    ...data
+                    ...data,
+                    isLoggedIn: data.isLoggedIn
                 }
             });
         });
