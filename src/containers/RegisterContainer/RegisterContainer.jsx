@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import * as actions from '../../actions/UserActions';
 
 class RegisterContainer extends Component {
 
@@ -12,13 +14,20 @@ class RegisterContainer extends Component {
         const email = e.target.elements['formHorizontalEmail'].value;
         const nickname = e.target.elements['formHorizontalNickname'].value;
 
-        console.log(
-            username,
-            password,
-            password2,
-            email,
-            nickname
-        );
+        if(password === password2) {
+            this.props.dispatch(actions.register(username, password, nickname, email));
+        }
+        else {
+            console.log('Passwords do not match');
+        }
+
+        // console.log(
+        //     username,
+        //     password,
+        //     password2,
+        //     email,
+        //     nickname
+        // );
     }
 
     render() {
@@ -31,4 +40,11 @@ class RegisterContainer extends Component {
 }
 
 
-export default RegisterContainer;
+export default connect((state) => {
+    const { user } = state;
+
+    return {
+        user
+    };
+
+})(RegisterContainer);

@@ -26,14 +26,15 @@ import PreferencesUtilities from './components/PreferencesUtilities/PreferencesU
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 import ProfileIndex from './components/ProfileIndex/ProfileIndex';
+import LoginRequired from './HOC/LoginRequired';
+
+import { SampleComponent } from './yeah';
 
 const Routes = (props) => {
-
     return (
         <Provider store={store} key="provider">
             <StyleRoot>
                 <Router history={browserHistory}>
-
                     <Route path="/" component={AppContainer}>
                         {/* / */}
                         <IndexRoute component={LandingContainer} />
@@ -41,29 +42,29 @@ const Routes = (props) => {
                         <Route path="login" component={LoginContainer} />
                         <Route path="register" component={RegisterContainer} />
                         <Route path="forgot" component={ForgotContainer} />
-                        <Route path="discovery" component={DiscoveryContainer} />
 
-                        <Route path="profile" component={ProfileContainer}>
-                            {/* /profile */}
-                            <IndexRoute component={ProfileIndex} />
-                            {/* /profile/edit */}
-                            <Route path="edit" component={ProfileEdit} />
-                        </Route>
-
-                        <Route path="preferences" component={PreferencesContainer}>
-                            {/* /preferences */}
-                            <IndexRoute component={PreferencesIndex} />
-                            {/* /preferences/when
-                                /preferences/cost
-                                /preferences/location
-                                /preferences/utilities
-                                /preferences/lifestyle
-                            */}
-                            <Route path="when" component={PreferencesWhen} />
-                            <Route path="cost" component={PreferencesCost} />
-                            <Route path="location" component={PreferencesLocation} />
-                            <Route path="utilities" component={PreferencesUtilities} />
-                            <Route path="lifestyle" component={PreferencesLifestyle} />
+                        <Route component={LoginRequired}>
+                            <Route path="discovery" component={DiscoveryContainer} />
+                            <Route path="profile" component={ProfileContainer}>
+                                <IndexRoute component={ProfileIndex} /> {/* /profile */}
+                                <Route path="edit" component={ProfileEdit} /> {/* /profile/edit */}
+                            </Route>
+                            <Route path="preferences" component={PreferencesContainer}>
+                                {/* /preferences */}
+                                <IndexRoute component={PreferencesIndex} />
+                                {/* /preferences/when
+                                    /preferences/cost
+                                    /preferences/location
+                                    /preferences/utilities
+                                    /preferences/lifestyle
+                                */}
+                                <Route path="when" component={PreferencesWhen} />
+                                <Route path="cost" component={PreferencesCost} />
+                                <Route path="location" component={PreferencesLocation} />
+                                <Route path="utilities" component={PreferencesUtilities} />
+                                <Route path="lifestyle" component={PreferencesLifestyle} />
+                            </Route>
+                            <Route path="sample" component={SampleComponent}/>
                         </Route>
                     </Route>
 

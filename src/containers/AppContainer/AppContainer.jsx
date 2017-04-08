@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 
 import NavbarContainer from '../NavbarContainer/NavbarContainer';
-
-import './AppContainer.css';
+import { connect } from 'react-redux';
+import { whoami } from '../../actions/AppActions';
 
 class AppContainer extends Component {
 
+    componentDidMount() {
+        const { dispatch } = this.props;
+        dispatch(whoami()); //Initially Check if the user is logged in or something
+    }
 
     render() {
         return (
@@ -17,5 +21,8 @@ class AppContainer extends Component {
     }
 }
 
-
-export default AppContainer;
+export default connect(store => {
+    return {
+        user: store.user
+    };
+})(AppContainer);

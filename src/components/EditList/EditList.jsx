@@ -56,14 +56,8 @@ class EditList extends Component {
     }
 
     render() {
-        const { label, fieldName, value } = this.props;
-
+        const { label, value } = this.props;
         const length = 40;
-
-        const renderPreview = (string) => {
-            return sliceAndDice(length, string.join(' '));
-        };
-
         const sliceAndDice = (length, string) => {
             if(length <= 3) {
                 return '...';
@@ -71,13 +65,14 @@ class EditList extends Component {
             if(string.length <= length) {
                 return string;
             }
-
             else {
                 // Subtract length by three to make space for ellipsis
                 const tempString = string.slice(0, length - 3);
                 return tempString + '...';
             }
-
+        };
+        const renderPreview = (string) => {
+            return sliceAndDice(length, string.join(' '));
         };
 
         return (
