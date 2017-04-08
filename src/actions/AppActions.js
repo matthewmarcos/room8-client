@@ -8,10 +8,12 @@ export const whoami = (propName, propValue) => {
 
     return (dispatch) => {
         request.then(({data}) => {
-            return {
-                type: 'CHECK_LOGIN_FULFILLED',
-                payload: data
-            }
+            dispatch({
+                type: 'WHO_AM_I_SUCCESS',
+                payload: {
+                    ...data
+                }
+            });
         });
     };
 };

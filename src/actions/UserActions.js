@@ -22,24 +22,34 @@ export const login = (username, password) => {
 
 
 export const register = (username, password, email, nickname) => {
+    const request = axios.post('/auth/register', {
+        username,
+        password,
+        email,
+        nickname
+    });
+
     return {
         type: 'REGISTER',
-        payload: axios.post('/auth/register', {
-            username,
-            password,
-            email,
-            nickname
-        })
+        payload: request
     };
 }
 
 
-export const logout = () => {
-    return {
-        type: 'LOGOUT',
-        payload: axios.post('/auth/logout', {})
+export const logout = (propName, propValue) => {
+    const request = axios.post('/auth/logout', {});
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'LOGOUT_SUCCESS',
+                payload: {
+                    ...data
+                }
+            });
+        });
     };
-}
+};
 
 
 export const changeUserProperty = (propName, propValue) => {

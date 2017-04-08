@@ -15,7 +15,7 @@ class LoginRequired extends Component {
             // set the current url/path for future redirection (we use a Redux action)
             // then redirect (we use a React Router method)
             // dispatch(setRedirectUrl(currentURL))
-            // browserHistory.replace('/login');
+            browserHistory.replace('/login');
         }
     }
 
