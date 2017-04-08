@@ -129,6 +129,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
 
         case 'WHO_AM_I_FULFILLED':
+            console.log('Finished whoami');
+            console.log(action.payload.data.isLoggedIn)
             return {
                 ...state,
                 isLoggedIn: action.payload.data.isLoggedIn

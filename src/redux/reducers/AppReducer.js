@@ -6,14 +6,14 @@ export const appReducer = (state = AppReducerInitialState, action) => {
         case 'WHO_AM_I_PENDING':
             return {
                 ...state,
-                isfetchingdata: true
+                isFetchingData: true
             };
 
 
         case 'WHO_AM_I_FULFILLED':
             return {
                 ...state,
-                isfetchingdata: false
+                isFetchingData: false
             };
 
 

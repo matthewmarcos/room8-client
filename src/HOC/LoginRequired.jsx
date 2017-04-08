@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
-import { whoami } from '../../actions/AppActions';
+import { whoami } from '../actions/AppActions';
 
-class LoginRequired extends component {
+class LoginRequired extends Component {
     componentDidMount() {
         const { dispatch, currentURL } = this.props;
         const { isLoggedIn } = this.props.user;
@@ -13,8 +14,8 @@ class LoginRequired extends component {
         if (!isLoggedIn) {
             // set the current url/path for future redirection (we use a Redux action)
             // then redirect (we use a React Router method)
-            dispatch(setRedirectUrl(currentURL))
-            browserHistory.replace('/login');
+            // dispatch(setRedirectUrl(currentURL))
+            // browserHistory.replace('/login');
         }
     }
 
