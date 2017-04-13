@@ -95,12 +95,34 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'WHO_AM_I_SUCCESS':
+
+        case 'WHO_AM_I_SUCCESS_TRUE': {
+            // Who am I returns a valid account
             return {
                 ...state,
                 ...action.payload.user,
                 isLoggedIn: action.payload.isLoggedIn
             };
+        }
+
+
+        case 'WHO_AM_I_SUCCESS_FALSE': {
+            // Who am I returns not logged in
+            return {
+                ...state,
+                isLoggedIn: action.payload.isLoggedIn
+            };
+        }
+
+
+        case 'WHO_AM_I_FAILED': {
+            // Who am I returns not logged in
+            return {
+                ...state,
+                isLoggedIn: action.payload.isLoggedIn
+            };
+        }
+
 
         case 'LOGOUT_SUCCESS': {
             return {
@@ -109,6 +131,41 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
+        case 'RECEIVED_PROFILE_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                ...payload.user
+            };
+        }
+
+        case 'RECEIVED_ORGANIZATIONS_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                organizations: [
+                    ...payload.organizations
+                ]
+            };
+        }
+        case 'RECEIVED_HOBBIES_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                hobbies: [
+                    ...payload.hobbies
+                ]
+            };
+        }
+        case 'RECEIVED_INTERESTS_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                interests: [
+                    ...payload.interests
+                ]
+            };
+        }
         default: {
             return state;
         }

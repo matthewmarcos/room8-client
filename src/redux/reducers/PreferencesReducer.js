@@ -47,8 +47,12 @@ const preferencesReducerInitialState = {
     //                 {/* Dogs/Cats */}
 export const preferencesReducer = (state = preferencesReducerInitialState, action) => {
     switch (action.type) {
-        case 'ACTION_TYpE_1': {
-            return state;
+        case 'RECEIVED_PREFERENCES_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                ...payload.preferences
+            };
         }
         case 'ACTION_TYpE_2': {
             return state;

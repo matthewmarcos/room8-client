@@ -7,17 +7,13 @@ import NotificationsList from '../NotificationsList/NotificationsList';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 
 const AuthedNavbar = (props) => {
-
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
-
     const { fullName } = props;
-
-    const usernameStyle = { 
+    const usernameStyle = {
         paddingLeft: 10,
         fontWeight: 'bold'
     };
-
     const lineHeightStyle = {
         lineHeight: 2, // Forces elements to have same v-align to username
         verticalAlign: 'middle',
@@ -43,7 +39,7 @@ const AuthedNavbar = (props) => {
                     </span>
                 </NavItem>
             </LinkContainer>
-            <NotificationsList/>
+            <NotificationsList {...props}/>
             <DropdownMenu />
        </Nav>
     );

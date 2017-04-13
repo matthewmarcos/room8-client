@@ -13,7 +13,6 @@ const DropdownMenu = (props) => {
 
     const clickLogout = (e) => {
         e.preventDefault();
-
         // console.log('Logging out!');
         props.dispatch(logout());
     }
