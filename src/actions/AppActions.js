@@ -46,6 +46,7 @@ export const whoami = (propName, propValue) => {
     };
 };
 
+
 export const getProfile = () => {
     const request = axios.get('/api/profile');
 
@@ -63,6 +64,7 @@ export const getProfile = () => {
     };
 }
 
+
 export const getPreferences = () => {
     const request = axios.get('/api/preferences');
 
@@ -78,4 +80,69 @@ export const getPreferences = () => {
 
         request.catch(x => x);
     };
+}
+
+
+export const getHobbies = () => {
+    const request = axios.get('/api/preferences/hobbies');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_HOBBIES_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    }
+}
+
+
+export const getOrganizations = () => {
+    const request = axios.get('/api/preferences/organizations');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_ORGANIZATIONS_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    }
+}
+
+
+export const getInterests = () => {
+    const request = axios.get('/api/preferences/interests');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_INTERESTS_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    }
+}
+
+
+export const getEverything = () => {
+    return (dispatch) => {
+        dispatch(getInterests());
+        dispatch(getOrganizations());
+        dispatch(getHobbies());
+        dispatch(getPreferences());
+        dispatch(getProfile());
+    }
 }

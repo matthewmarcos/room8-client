@@ -23,8 +23,7 @@ export const login = (username, password) => {
         });
 
         request.then(({data}) => {
-            dispatch(appActions.getProfile());
-            dispatch(appActions.getPreferences());
+            dispatch(appActions.getEverything());
             dispatch({
                 type: 'LOGIN_SUCCESS',
                 payload: {

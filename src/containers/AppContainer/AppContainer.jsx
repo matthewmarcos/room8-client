@@ -9,8 +9,7 @@ class AppContainer extends Component {
     componentDidMount() {
         const { dispatch } = this.props;
         dispatch(appActions.whoami()); //Initially Check if the user is logged in or something
-        dispatch(appActions.getProfile());
-        dispatch(appActions.getPreferences());
+        dispatch(appActions.getEverything());
     }
 
     render() {

@@ -139,6 +139,33 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
+        case 'RECEIVED_ORGANIZATIONS_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                organizations: [
+                    ...payload.organizations
+                ]
+            };
+        }
+        case 'RECEIVED_HOBBIES_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                hobbies: [
+                    ...payload.hobbies
+                ]
+            };
+        }
+        case 'RECEIVED_INTERESTS_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                interests: [
+                    ...payload.interests
+                ]
+            };
+        }
         default: {
             return state;
         }
