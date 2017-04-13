@@ -9,12 +9,8 @@ class ProfileContainer extends Component {
         return (
             <div className="profile-container container-fluid">
                 {
-                    (
-                        this.props.children &&
-                        React.cloneElement(this.props.children, {
-                            user: this.props.user
-                        })
-                    ) || 
+                    ( this.props.children &&
+                        React.cloneElement(this.props.children, { user: this.props.user })) ||
                     (<h1 className="text-center">Profile Container here!</h1>)
                 }
             </div>
@@ -24,7 +20,7 @@ class ProfileContainer extends Component {
 
 ProfileContainer = Radium(ProfileContainer);
 
-export default connect(store => {
+export default connect((store) => {
     return {
         user: store.user
     };

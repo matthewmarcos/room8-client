@@ -6,15 +6,12 @@ import { Navbar, NavItem } from 'react-bootstrap';
 import MyNavbar from '../../components/MyNavbar/MyNavbar';
 import AuthedNavbar from '../../components/AuthedNavbar/AuthedNavbar';
 
-// import'./NavbarContainer.css';
-
 class NavbarContainer extends Component {
 
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
 
     constructor() {
-
         super();
 
         this.state = {
@@ -51,7 +48,6 @@ class NavbarContainer extends Component {
     }
 
     render() {
-
         const myNavbarStyle = {
             paddingLeft: '40px',
             paddingRight: '40px',
@@ -74,7 +70,7 @@ class NavbarContainer extends Component {
     }
 }
 
-export default connect(store => {
+export default connect((store) => {
     const { user, app } = store;
 
     return {

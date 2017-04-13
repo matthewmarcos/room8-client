@@ -95,12 +95,40 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
-        case 'WHO_AM_I_SUCCESS':
+
+        case 'WHO_AM_I_SUCCESS_TRUE': {
+            // Who am I returns a valid account
+            console.log('action.payload: ')
+            console.log(action.payload)
             return {
                 ...state,
                 ...action.payload.user,
                 isLoggedIn: action.payload.isLoggedIn
             };
+        }
+
+
+        case 'WHO_AM_I_SUCCESS_FALSE': {
+            // Who am I returns not logged in
+            console.log('action.payload: ')
+            console.log(action.payload)
+            return {
+                ...state,
+                isLoggedIn: action.payload.isLoggedIn
+            };
+        }
+
+
+        case 'WHO_AM_I_FAILED': {
+            // Who am I returns not logged in
+            console.log('action.payload: ')
+            console.log(action.payload)
+            return {
+                ...state,
+                isLoggedIn: action.payload.isLoggedIn
+            };
+        }
+
 
         case 'LOGOUT_SUCCESS': {
             return {

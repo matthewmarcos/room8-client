@@ -54,146 +54,8 @@ const ProfileEdit = (props) => {
 
     return (
         <div className="profile-index">
-            <div className="conta">
+            <div className="container">
                 <h1>Edit Profile</h1>
-
-                <EditString
-                    label="Full Name"
-                    value={fullName}
-                    fieldName="fullName"
-                    minLength={5}
-                />
-
-                <EditString
-                    label="Nickname"
-                    value={nickname}
-                    fieldName="nickname"
-                    minLength={5}
-                />
-
-                <EditDropdown
-                    label="Status"
-                    value={status}
-                    fieldName="status"
-                    selectOptions={[
-                        {
-                            value: 'I am looking for a room',
-                            label: 'I am looking for a room',
-                        },
-                        {
-                            value: 'I have a room',
-                            label: 'I have a room'
-                        }
-                    ]}
-                />
-
-                <EditString
-                    label="Contact Number"
-                    value={contactNumber}
-                    fieldName="contactNumber"
-                    minLength={5}
-                />
-
-                <EditString
-                    label="Email"
-                    value={email}
-                    fieldName="email"
-                    minLength={5}
-                />
-
-                {/* Birthday */}
-                <EditDate
-                    label="Birthday"
-                    value={birthday}
-                    fieldName="birthday"
-                />
-
-                <EditNumberSlider
-                    label="Cleanliness"
-                    value={cleanliness}
-                    fieldName="cleanliness"
-                    min={1}
-                    max={10}
-                />
-
-                <EditDropdown
-                    label="Sex"
-                    value={sex}
-                    fieldName="sex"
-                    selectOptions={[
-                        {
-                            value: 'Male',
-                            label: 'Male',
-                        },
-                        {
-                            value: 'Female',
-                            label: 'Female'
-                        },
-                        {
-                            value: 'Do not know',
-                            label: 'I do not know'
-                        }
-                    ]}
-                />
-
-
-                <EditString
-                    label="Gender"
-                    value={gender}
-                    fieldName="gender"
-                    minLength={5}
-                />
-
-                <EditString
-                    label="Course"
-                    value={course}
-                    fieldName="course"
-                    minLength={1}
-                />
-
-                <EditDropdown
-                    label="University Batch"
-                    value={batch}
-                    fieldName="batch"
-                    selectOptions={[...Array(batchCount).keys()].map((key, index) => {
-                        return {
-                            value: batchLastYear - index,
-                            label: batchLastYear - index
-                        };
-                    })}
-                />
-
-                {/* Organizations */}
-                <EditList
-                    label="Organizations"
-                    value={organizations}
-                    fieldName="organizations"
-                    url={ORGANIZATION_EDIT_URL}
-                />
-
-                {/* Hobbies */}
-                <EditList
-                    label="Hobbies"
-                    value={hobbies}
-                    fieldName="hobbies"
-                    url={HOBBIES_EDIT_URL}
-                />
-
-                {/* Interests */}
-                <EditList
-                    label="Interests"
-                    value={interests}
-                    fieldName="interests"
-                    url={INTERESTS_EDIT_URL}
-                />
-
-                {/* Bio */}
-                <EditTextarea
-                    label="Bio"
-                    value={bio}
-                    fieldName="bio"
-                    minLength={1}
-                />
 
 
             </div>
@@ -202,3 +64,141 @@ const ProfileEdit = (props) => {
 };
 
 export default ProfileEdit;
+
+                // <EditString
+                //     label="Full Name"
+                //     value={fullName}
+                //     fieldName="fullName"
+                //     minLength={5}
+                // />
+
+                // <EditString
+                //     label="Nickname"
+                //     value={nickname}
+                //     fieldName="nickname"
+                //     minLength={5}
+                // />
+
+                // <EditDropdown
+                //     label="Status"
+                //     value={status}
+                //     fieldName="status"
+                //     selectOptions={[
+                //         {
+                //             value: 'I am looking for a room',
+                //             label: 'I am looking for a room',
+                //         },
+                //         {
+                //             value: 'I have a room',
+                //             label: 'I have a room'
+                //         }
+                //     ]}
+                // />
+
+                // <EditString
+                //     label="Contact Number"
+                //     value={contactNumber}
+                //     fieldName="contactNumber"
+                //     minLength={5}
+                // />
+
+                // <EditString
+                //     label="Email"
+                //     value={email}
+                //     fieldName="email"
+                //     minLength={5}
+                // />
+
+                // {/* Birthday */}
+                // <EditDate
+                //     label="Birthday"
+                //     value={birthday}
+                //     fieldName="birthday"
+                // />
+
+                // <EditNumberSlider
+                //     label="Cleanliness"
+                //     value={cleanliness}
+                //     fieldName="cleanliness"
+                //     min={1}
+                //     max={10}
+                // />
+
+                // <EditDropdown
+                //     label="Sex"
+                //     value={sex}
+                //     fieldName="sex"
+                //     selectOptions={[
+                //         {
+                //             value: 'Male',
+                //             label: 'Male',
+                //         },
+                //         {
+                //             value: 'Female',
+                //             label: 'Female'
+                //         },
+                //         {
+                //             value: 'Do not know',
+                //             label: 'I do not know'
+                //         }
+                //     ]}
+                // />
+
+
+                // <EditString
+                //     label="Gender"
+                //     value={gender}
+                //     fieldName="gender"
+                //     minLength={5}
+                // />
+
+                // <EditString
+                //     label="Course"
+                //     value={course}
+                //     fieldName="course"
+                //     minLength={1}
+                // />
+
+                // <EditDropdown
+                //     label="University Batch"
+                //     value={batch}
+                //     fieldName="batch"
+                //     selectOptions={[...Array(batchCount).keys()].map((key, index) => {
+                //         return {
+                //             value: batchLastYear - index,
+                //             label: batchLastYear - index
+                //         };
+                //     })}
+                // />
+
+                // {/* Organizations */}
+                // <EditList
+                //     label="Organizations"
+                //     value={organizations}
+                //     fieldName="organizations"
+                //     url={ORGANIZATION_EDIT_URL}
+                // />
+
+                // {/* Hobbies */}
+                // <EditList
+                //     label="Hobbies"
+                //     value={hobbies}
+                //     fieldName="hobbies"
+                //     url={HOBBIES_EDIT_URL}
+                // />
+
+                // {/* Interests */}
+                // <EditList
+                //     label="Interests"
+                //     value={interests}
+                //     fieldName="interests"
+                //     url={INTERESTS_EDIT_URL}
+                // />
+
+                // {/* Bio */}
+                // <EditTextarea
+                //     label="Bio"
+                //     value={bio}
+                //     fieldName="bio"
+                //     minLength={1}
+                // />
