@@ -98,8 +98,6 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
         case 'WHO_AM_I_SUCCESS_TRUE': {
             // Who am I returns a valid account
-            console.log('action.payload: ')
-            console.log(action.payload)
             return {
                 ...state,
                 ...action.payload.user,
@@ -110,8 +108,6 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
         case 'WHO_AM_I_SUCCESS_FALSE': {
             // Who am I returns not logged in
-            console.log('action.payload: ')
-            console.log(action.payload)
             return {
                 ...state,
                 isLoggedIn: action.payload.isLoggedIn
@@ -121,8 +117,6 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
         case 'WHO_AM_I_FAILED': {
             // Who am I returns not logged in
-            console.log('action.payload: ')
-            console.log(action.payload)
             return {
                 ...state,
                 isLoggedIn: action.payload.isLoggedIn
@@ -134,6 +128,14 @@ export const userReducer = (state = userReducerInitialState, action) => {
             return {
                 ...state,
                 ...userReducerInitialState
+            };
+        }
+
+        case 'RECEIVED_PROFILE_DATA': {
+            const { payload } = action;
+            return {
+                ...state,
+                ...payload.user
             };
         }
 

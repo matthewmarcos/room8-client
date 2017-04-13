@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as appActions from './AppActions';
 
 export const fakeLogin = (username, password) => {
     return {
@@ -9,16 +10,6 @@ export const fakeLogin = (username, password) => {
         }
     };
 }
-
-
-// export const login = (username, password) => {
-//     return {
-//         type: 'LOGIN',
-//         payload: axios.post('/auth/login', {
-//             username, password
-//         })
-//     };
-// }
 
 
 export const login = (username, password) => {
@@ -32,7 +23,8 @@ export const login = (username, password) => {
         });
 
         request.then(({data}) => {
-            console.log('loggin: ', data);
+            dispatch(appActions.getProfile());
+            dispatch(appActions.getPreferences());
             dispatch({
                 type: 'LOGIN_SUCCESS',
                 payload: {

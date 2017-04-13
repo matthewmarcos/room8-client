@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 import NavbarContainer from '../NavbarContainer/NavbarContainer';
 import { connect } from 'react-redux';
-import { whoami } from '../../actions/AppActions';
+import * as appActions from '../../actions/AppActions';
 
 class AppContainer extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(whoami()); //Initially Check if the user is logged in or something
+        dispatch(appActions.whoami()); //Initially Check if the user is logged in or something
+        dispatch(appActions.getProfile());
+        dispatch(appActions.getPreferences());
     }
 
     render() {

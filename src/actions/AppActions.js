@@ -15,13 +15,25 @@ export const whoami = (propName, propValue) => {
         request.then(({data}) => {
             const { isLoggedIn } = data;
 
-            dispatch({
-                type: 'WHO_AM_I_SUCCESS_TRUE',
-                payload: {
-                    ...data,
-                    isLoggedIn: data.isLoggedIn
-                }
-            });
+            if(isLoggedIn) {
+                dispatch({
+                    type: 'WHO_AM_I_SUCCESS_TRUE',
+                    payload: {
+                        ...data,
+                        isLoggedIn
+                    }
+                });
+            }
+            else {
+                dispatch({
+                    type: 'WHO_AM_I_SUCCESS_FALSE',
+                    payload: {
+                        ...data,
+                        isLoggedIn
+                    }
+                });
+
+            }
         });
 
         request.catch((error) => {
@@ -33,3 +45,37 @@ export const whoami = (propName, propValue) => {
         });
     };
 };
+
+export const getProfile = () => {
+    const request = axios.get('/api/profile');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_PROFILE_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    };
+}
+
+export const getPreferences = () => {
+    const request = axios.get('/api/preferences');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_PREFERENCES_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    };
+}
