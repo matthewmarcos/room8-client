@@ -9,8 +9,6 @@ const preferencesReducerInitialState = {
     utilities: [
         ''
     ]
-
-
 };
     //  {/* When */}
     //             {/* Start Date - EditDate */}

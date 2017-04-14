@@ -3,13 +3,7 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 class ProfileContainer extends Component {
-
-    componentDidMount() {
-        console.log('user', this.props.user);
-    }
-
     render() {
-        console.log('user', this.props.user);
         return (
             <div className="profile-container container-fluid">
                 {

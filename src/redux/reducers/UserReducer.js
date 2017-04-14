@@ -31,9 +31,9 @@ const userReducerInitialState = {
     username: '',
 
     /* User Profile */
+    status: '',
     fullName: '',
     nickname: '',
-    status: '',
     contactNumber: '',
     email: '',
     cleanliness: 0,
@@ -45,7 +45,8 @@ const userReducerInitialState = {
     hobbies: [],
     interests: [],
     bio: '',
-    birthday: null
+    birthday: null,
+    timeRegistered: null
 };
 
 
