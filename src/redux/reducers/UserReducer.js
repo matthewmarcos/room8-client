@@ -54,7 +54,6 @@ export const userReducer = (state = userReducerInitialState, action) => {
     const { payload } = action;
 
     switch (action.type) {
-
         case 'FAKE_LOGIN': {
             return {
                 ...state,

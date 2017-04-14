@@ -54,9 +54,17 @@ export const preferencesReducer = (state = preferencesReducerInitialState, actio
                 ...payload.preferences
             };
         }
-        case 'ACTION_TYpE_2': {
-            return state;
+
+
+        case 'LOGOUT_SUCCESS': {
+            // Clear the reducer
+            return {
+                ...state,
+                ...preferencesReducerInitialState
+            };
         }
+
+
         default: {
             return state;
         }
