@@ -1,204 +1,86 @@
-import React from 'react';
-import EditString from '../EditString/EditString';
-import EditDropdown from '../EditDropdown/EditDropdown';
-import EditNumberSlider from '../EditNumberSlider/EditNumberSlider';
-import EditTextarea from '../EditTextarea/EditTextarea';
-import EditDate from '../EditDate/EditDate';
-import EditList from '../EditList/EditList';
+import React, { Component } from 'react';
+import EditField from '../EditField/EditField';
 
-const ProfileEdit = (props) => {
 
-    const { user } = props;
+class ProfileEdit extends Component {
 
-    console.log('user', user); //To know the fields
-    const batchCount = 20;
-    const batchLastYear = new Date().getFullYear(); //End year of the batches
-    const ORGANIZATION_EDIT_URL = 'fake_url_here';
-    const HOBBIES_EDIT_URL = 'fake_url_here';
-    const INTERESTS_EDIT_URL = 'fake_url_here';
+    constructor() {
+        super();
+        this.state = {
+            tempUser: null,
+            tempHobbies: [],
+            tempOrganizations: [],
+            tempInterests: [],
 
-    const {
-        fullName,
-        nickname,
-        status,
-        contactNumber,
-        email,
-        cleanliness,
-        sex,
-        gender,
-        course,
-        batch,
-        organizations,
-        hobbies,
-        interests,
-        bio,
-        birthday
-    } = user;
+            batchCount: 20,
+            batchLastYear: new Date().getFullYear() //End year of the batches
+        };
+    }
 
-    /*
-     * Full Name
-     * Status (I am looking for)
-     * Contact (string)
-     * Email (email)
-     * Cleanliness
-     * Sex
-     * Gender
-     * Course
-     * Batch
-     * Organizations
-     * Hobbies
-     * Interests
-     * Bio
-     * Birthday
-     */
+    componentWillMount(prevProps, prevState) {
+        const { user } = this.props;
+        const {
+            fullName,
+            status, // => Dropdown
+            cleanliness,
+            sex,
+            smoker,
+            hasOrg,
+            gender,
+            course,
+            batch,
+            birthday,
+            contactNumber,
+            bio,
+            nickname,
+            email
+        } = user;
 
-    return (
-        <div className="profile-index">
-            <div className="container">
+        this.setState({
+            tempUser: {
+                fullName,
+                nickname,
+                status, // => Dropdown
+                contactNumber,
+                email,
+                cleanliness,
+                sex,
+                gender,
+                course,
+                batch,
+                bio,
+                birthday
+            },
+            tempHobbies: [ ...user.hobbies ],
+            tempOrganizations: [ ...user.organizations ],
+            tempInterests: [ ...user.interests ]
+        })
+    }
+
+    handleUserChange(e) {
+        console.log('handleUserChange from profileEdit');
+    }
+
+    render() {
+        if(!this.state.tempUser) {
+            return null;
+        }
+
+        return (
+            <div className="profile-index container">
                 <h1>Edit Profile</h1>
+                <EditField
+                    label="Full Name"
+                    value={this.state.tempUser.fullName}
+                    handler={this.handleUserChange.bind(this)}
+                    text
+                />
 
 
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default ProfileEdit;
 
-                // <EditString
-                //     label="Full Name"
-                //     value={fullName}
-                //     fieldName="fullName"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Nickname"
-                //     value={nickname}
-                //     fieldName="nickname"
-                //     minLength={5}
-                // />
-
-                // <EditDropdown
-                //     label="Status"
-                //     value={status}
-                //     fieldName="status"
-                //     selectOptions={[
-                //         {
-                //             value: 'I am looking for a room',
-                //             label: 'I am looking for a room',
-                //         },
-                //         {
-                //             value: 'I have a room',
-                //             label: 'I have a room'
-                //         }
-                //     ]}
-                // />
-
-                // <EditString
-                //     label="Contact Number"
-                //     value={contactNumber}
-                //     fieldName="contactNumber"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Email"
-                //     value={email}
-                //     fieldName="email"
-                //     minLength={5}
-                // />
-
-                // {/* Birthday */}
-                // <EditDate
-                //     label="Birthday"
-                //     value={birthday}
-                //     fieldName="birthday"
-                // />
-
-                // <EditNumberSlider
-                //     label="Cleanliness"
-                //     value={cleanliness}
-                //     fieldName="cleanliness"
-                //     min={1}
-                //     max={10}
-                // />
-
-                // <EditDropdown
-                //     label="Sex"
-                //     value={sex}
-                //     fieldName="sex"
-                //     selectOptions={[
-                //         {
-                //             value: 'Male',
-                //             label: 'Male',
-                //         },
-                //         {
-                //             value: 'Female',
-                //             label: 'Female'
-                //         },
-                //         {
-                //             value: 'Do not know',
-                //             label: 'I do not know'
-                //         }
-                //     ]}
-                // />
-
-
-                // <EditString
-                //     label="Gender"
-                //     value={gender}
-                //     fieldName="gender"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Course"
-                //     value={course}
-                //     fieldName="course"
-                //     minLength={1}
-                // />
-
-                // <EditDropdown
-                //     label="University Batch"
-                //     value={batch}
-                //     fieldName="batch"
-                //     selectOptions={[...Array(batchCount).keys()].map((key, index) => {
-                //         return {
-                //             value: batchLastYear - index,
-                //             label: batchLastYear - index
-                //         };
-                //     })}
-                // />
-
-                // {/* Organizations */}
-                // <EditList
-                //     label="Organizations"
-                //     value={organizations}
-                //     fieldName="organizations"
-                //     url={ORGANIZATION_EDIT_URL}
-                // />
-
-                // {/* Hobbies */}
-                // <EditList
-                //     label="Hobbies"
-                //     value={hobbies}
-                //     fieldName="hobbies"
-                //     url={HOBBIES_EDIT_URL}
-                // />
-
-                // {/* Interests */}
-                // <EditList
-                //     label="Interests"
-                //     value={interests}
-                //     fieldName="interests"
-                //     url={INTERESTS_EDIT_URL}
-                // />
-
-                // {/* Bio */}
-                // <EditTextarea
-                //     label="Bio"
-                //     value={bio}
-                //     fieldName="bio"
-                //     minLength={1}
-                // />
