@@ -30,6 +30,7 @@ import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 import Forbidden from './components/Forbidden/Forbidden';
 
 import LoginRequired from './HOC/LoginRequired';
+import NotLoggedIn from './HOC/NotLoggedIn';
 
 import { SampleComponent } from './yeah';
 
@@ -43,7 +44,6 @@ const Routes = (props) => {
                         <IndexRoute component={LandingContainer} />
                         {/* /login, /register, /forgot, /discovery */}
                         <Route path="login" component={LoginContainer} />
-                        <Route path="403" component={Forbidden} />
                         <Route path="register" component={RegisterContainer} />
                         <Route path="forgot" component={ForgotContainer} />
 
@@ -83,3 +83,5 @@ const Routes = (props) => {
 };
 
 export default Routes;
+                        // <Route component={NotLoggedIn}>
+                        // </Route>
