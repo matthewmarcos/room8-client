@@ -31,9 +31,9 @@ const userReducerInitialState = {
     username: '',
 
     /* User Profile */
+    status: '',
     fullName: '',
     nickname: '',
-    status: '',
     contactNumber: '',
     email: '',
     cleanliness: 0,
@@ -45,7 +45,8 @@ const userReducerInitialState = {
     hobbies: [],
     interests: [],
     bio: '',
-    birthday: null
+    birthday: null,
+    timeRegistered: null
 };
 
 
@@ -54,7 +55,6 @@ export const userReducer = (state = userReducerInitialState, action) => {
     const { payload } = action;
 
     switch (action.type) {
-
         case 'FAKE_LOGIN': {
             return {
                 ...state,
