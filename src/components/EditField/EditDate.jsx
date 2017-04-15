@@ -1,12 +1,5 @@
-/*
- * EditDate - dumb component that contains a textfield. Takes in the following props:
- * label - Label for the form
- * fieldName - Name of the field
- * value - initial value
-*/
-
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
 import DatePicker from 'react-bootstrap-date-picker';
 
 import Radium from 'radium';
@@ -18,24 +11,33 @@ class EditDate extends Component {
         super();
 
         this.state = {
-            tempValue: new Date().toISOString(),
             isOpen: false // if form is active or not
         };
     }
 
-    componentDidMount() {
-        // Initialize tempValue to what is passed from value in props
-        this.setState({
-            tempValue: this.props.value.toISOString()
-        });
+
+    isDate(value) {
+        let tempDate = Date.parse(value);
+
+        if(isNaN(tempDate)) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
 
-    handleChange(value, formattedValue) {
-        // Change tempValue based on change
-        this.setState({
-            tempValue: value
+
+    handlerWrapper(value, formattedValue) {
+        const { handler } = this.props;
+
+        handler({
+            target: {
+                value
+            }
         });
+
     };
 
 
@@ -46,16 +48,8 @@ class EditDate extends Component {
     };
 
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        const toSubmitValue = new Date(e.target.elements[this.props.fieldName].value);
-        console.log(toSubmitValue, ' has been submitted');
-    }
-
-
     render() {
-        const { label, fieldName, value } = this.props;
+        const { label, value, currentValue } = this.props;
 
         // http://stackoverflow.com/questions/3066586/get-string-in-yyyymmdd-format-from-js-date-object
         const formatDate = function(date) {
@@ -75,38 +69,25 @@ class EditDate extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
-                    <FormGroup
-                        controlId={`${fieldName}-text-form`}>
-                        <Row>
-                            <Col xs={12} sm={2} md={2}>
-                                <span style={{
-                                    fontStyle: 'italic'
-                                }}>
-                                    Change {this.props.label}
-                                </span>
-                            </Col>
-                            <Col xs={12} sm={8} md={8}>
-                                <DatePicker
-                                    name={this.props.fieldName}
-                                    onChange={this.handleChange.bind(this)}
-                                    value={this.state.tempValue}
-                                />
-                            </Col>
-                            <Col xs={12} sm={2} md={2}>
-                                <Button
-                                    bsSize="small"
-                                    type="submit">
-                                    Change
-                                </Button>
-                            </Col>
-                        </Row>
-                    </FormGroup>
-                </Form>
+                <Row>
+                    <Col xs={12} sm={2} md={2}>
+                        <span style={{
+                            fontStyle: 'italic'
+                        }}>
+                            Change { label }
+                        </span>
+                    </Col>
+                    <Col xs={12} sm={8} md={8}>
+                        <DatePicker
+                            onChange={ this.handlerWrapper.bind(this) }
+                            value={ value }
+                        />
+                    </Col>
+                </Row>
             </div>
         );
 
-        return(
+        return (
             <div className="edit-string">
                 <Grid fluid={true}>
                     <div 
@@ -123,38 +104,50 @@ class EditDate extends Component {
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                {label}
-                            </span>
-                        </Col>
+                                    { label }
+                                </span>
+                            </Col>
 
-                        {/* Do I hide the value when the screen is small? */}
-                        <Col xs={12} sm={4} md={3}>
+                            {/* Do I hide the value when the screen is small? */}
+                            <Col xs={12} sm={4} md={3}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    {/* Make the date a string */}
+                                    { value !== currentValue? 'Old ' : null}
+                                    Value: {
+                                        this.isDate(currentValue) ?
+                                            formatDate(new Date(currentValue)):
+                                            'nope'
+                                    } &nbsp;
+                                    { 
+                                        value !== currentValue? ( 
+                                            <div>
+                                                New Value: { formatDate(new Date(value)) }
+                                            </div>
+                                        ) : null
+                                    }
+                                </span>
+                            </Col>
+
+                            <Col xs={12} sm={4} md={2}>
+                                <Button 
+                                    bsSize="small"
+                                    onClick={this.toggleOpenMode.bind(this)}>
+                                    Edit
+                                </Button>
+                            </Col>
+                        </Row>
+                        <Row>
                             <span style={{
-                                fontStyle: 'italic'
+                                marginTop: 1,
+                                marginBottom: 1
                             }}>
-                            {/* Make the date a string */}
-                                { formatDate(value) }
                             </span>
-                        </Col>
-
-                        <Col xs={12} sm={4} md={2}>
-                            <Button 
-                                bsSize="small"
-                                onClick={this.toggleOpenMode.bind(this)}>
-                                Edit
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <span style={{
-                            marginTop: 1,
-                            marginBottom: 1
-                        }}>
-                        </span>
-                    </Row>
-                </div>
+                        </Row>
+                    </div>
                     <Collapse in={this.state.isOpen}>
-                        {editForm}
+                        { editForm }
                     </Collapse>
                 </Grid>
             </div>
@@ -163,10 +156,27 @@ class EditDate extends Component {
 }
 
 
+
 EditDate.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    value: function(props, propName, componentName) {
+        // Dapat kasi ISOString
+        const value = props[propName];
+        let tempDate = Date.parse(value);
+
+        if(isNaN(tempDate)) {
+            return new Error('Invalid prop `' + propName + '` supplied to' +
+            ' `' + componentName + '`. Validation failed.');
+        }
+    },
+    currentValue: PropTypes.string.isRequired,
+    handler: PropTypes.func.isRequired,
+    validator: PropTypes.func
 };
 
+
+EditDate.defaultProps = {
+    value: new Date().toISOString()
+};
 
 export default Radium(EditDate);

@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import EditList from './EditList/EditList';
 import EditString from './EditString';
-import EditTextarea from './EditTextarea';
+import EditTextarea from './EditTextarea'; // May problema pa ito sa pagtoggle and all
 import EditDropdown from './EditDropdown';
 import EditNumberSlider from './EditNumberSlider';
+import EditDate from './EditDate';
 
 
 const EditField = (props) => {
@@ -42,7 +43,14 @@ const EditField = (props) => {
             props.type === 'dropdown') {
 
             return (<EditDropdown { ...props }/>);
-            // return <div>yeah</div>;
+        }
+
+        if((props.options &&
+            props.options.type &&
+            props.options.type === 'date') ||
+            props.type === 'date') {
+
+            return <EditDate { ...props }/>;
         }
 
         // Kung walang nakadefine sa taas

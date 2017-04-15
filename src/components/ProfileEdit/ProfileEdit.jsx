@@ -77,6 +77,8 @@ class ProfileEdit extends Component {
 
         tempUserCopy[parameter] = e.target.value;
 
+        console.log('e: ', e);
+
         this.setState({
             tempUser: tempUserCopy
         });
@@ -121,6 +123,14 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.cleanliness}
                     currentValue={this.props.user.cleanliness}
                     handler={this.handleUserChange.bind(this, 'cleanliness')}/>
+                <EditField
+                    label="Birthday"
+                    options={{
+                        type: 'date'
+                    }}
+                    value={this.state.tempUser.birthday}
+                    currentValue={this.props.user.birthday}
+                    handler={this.handleUserChange.bind(this, 'birthday')}/>
             </div>
         );
     }
