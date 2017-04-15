@@ -41,9 +41,9 @@ export const userReducerInitialState = {
     gender: '',
     course: '',
     batch: '',
-    organizations: [],
-    hobbies: [],
-    interests: [],
+    organizations: [''],
+    hobbies: [''],
+    interests: [''],
     bio: '',
     birthday: new Date().toISOString(),
     timeRegistered: new Date().toISOString()

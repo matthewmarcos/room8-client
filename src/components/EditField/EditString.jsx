@@ -42,7 +42,7 @@ class EditString extends Component {
                             Change { label }
                         </span>
                     </Col>
-                    <Col xs={12} sm={10} md={10}>
+                    <Col xs={12} sm={9} md={9}>
                         <FormControl
                             type="text"
                             value={ value }
@@ -53,36 +53,43 @@ class EditString extends Component {
         );
 
         return (
-            <div>
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
                     <div
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{ 
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}>
+                        onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
                                     {label}
                                 </span>
                             </Col>
-
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={3} md={3}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    { value !== currentValue? 'Old ' : null}
-                                    Value:  { currentValue } &nbsp;
-                                    { value !== currentValue? ( <div> New Value: { value } </div>) : null}
+                                    { value !== currentValue? 'Old value: ' : null}
+                                    { currentValue }
                                 </span>
                             </Col>
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} sm={3} md={4}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    { value !== currentValue? ( <div> New value: { value } </div>) : null}
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={3} md={2}>
                                 <Button 
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit

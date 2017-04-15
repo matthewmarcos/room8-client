@@ -88,8 +88,6 @@ class ProfileEdit extends Component {
             tempOrganizations: [ ...user.organizations ],
             tempInterests: [ ...user.interests ]
         });
-
-        console.log('tempUser', this.state.tempUser);
     }
 
     handleUserChange(parameter, e) {
@@ -121,12 +119,15 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.nickname}
                     currentValue={this.props.user.nickname}
                     handler={this.handleUserChange.bind(this, 'nickname')}/>
-                <EditField
-                    type="text"
-                    label="Bio"
-                    value={this.state.tempUser.bio}
-                    currentValue={this.props.user.bio}
-                    handler={this.handleUserChange.bind(this, 'bio')}/>
+                <EditField 
+                    options={{
+                        type: 'dropdown',
+                        values: ['I am looking for a room', 'I have a room']
+                    }}
+                    label="Status"
+                    value={this.state.tempUser.status}
+                    currentValue={this.props.user.status}
+                    handler={this.handleUserChange.bind(this, 'status')}/>
                 <EditField
                     options={{
                         type: 'dropdown',
@@ -136,12 +137,41 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.sex}
                     currentValue={this.props.user.sex}
                     handler={this.handleUserChange.bind(this, 'sex')}/>
+                <EditField
+                    label="Gender"
+                    value={this.state.tempUser.gender}
+                    currentValue={this.props.user.gender}
+                    handler={this.handleUserChange.bind(this, 'gender')}/>
+                <EditField
+                    label="Course"
+                    value={this.state.tempUser.course}
+                    currentValue={this.props.user.course}
+                    handler={this.handleUserChange.bind(this, 'course')}/>
+                <EditField 
+                    options={{
+                        type: 'dropdown',
+                        values: [ ...this.state.yearsOptions ]
+                    }}
+                    label="Batch"
+                    value={this.state.tempUser.batch}
+                    currentValue={this.props.user.batch}
+                    handler={this.handleUserChange.bind(this, 'batch')}/>
                 {/* cleanliness - slider */}
                 <EditField
                     label="Cleanliness"
                     value={this.state.tempUser.cleanliness}
                     currentValue={this.props.user.cleanliness}
                     handler={this.handleUserChange.bind(this, 'cleanliness')}/>
+                <EditField
+                    label="Contact Number"
+                    value={this.state.tempUser.contactNumber}
+                    currentValue={this.props.user.contactNumber}
+                    handler={this.handleUserChange.bind(this, 'contactNumber')}/>
+                <EditField
+                    label="Email"
+                    value={this.state.tempUser.email}
+                    currentValue={this.props.user.email}
+                    handler={this.handleUserChange.bind(this, 'email')}/>
                 <EditField
                     label="Birthday"
                     options={{
@@ -150,10 +180,25 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.birthday}
                     currentValue={this.props.user.birthday}
                     handler={this.handleUserChange.bind(this, 'birthday')}/>
+                <EditField
+                    type="text"
+                    label="Bio"
+                    value={this.state.tempUser.bio}
+                    currentValue={this.props.user.bio}
+                    handler={this.handleUserChange.bind(this, 'bio')}/>
             </div>
         );
     }
 };
 
 export default ProfileEdit;
+/*
+                <EditField
+                    type="text"
+                    label="Bio"
+                    value={this.state.tempUser.bio}
+                    currentValue={this.props.user.bio}
+                    handler={this.handleUserChange.bind(this, 'bio')}/>
+*/
+
 

@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { FormControl, Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
 
 
 import Radium from 'radium';
@@ -24,7 +24,7 @@ class EditDropdown extends Component {
 
 
     render() {
-        const { label, value, handler, options } = this.props;
+        const { label, value, handler, options, currentValue } = this.props;
         const { values } = options;
         const userOptions = values.map((value, key)=> {
                         return (
@@ -63,34 +63,43 @@ class EditDropdown extends Component {
         );
 
         return (
-            <div className="edit-string">
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
                     <div
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}
-                    >
+                        onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
-                                <span style={{
+                            <Col xs={12} sm={2} md={2}>
+                               <span style={{
                                     fontWeight:'bold'
                                 }}>
                                     {label}
                                 </span>
                             </Col>
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={3} md={3}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    {value}
+                                    { value !== currentValue? 'Old value: ' : null}
+                                    { currentValue }
                                 </span>
                             </Col>
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} sm={3} md={4}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    { value !== currentValue? ( <div> New value: { value } </div>) : null}
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={3} md={2}>
                                 <Button
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit
