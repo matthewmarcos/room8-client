@@ -23,6 +23,17 @@ class EditDropdown extends Component {
     };
 
 
+    resetFields() {
+        const { currentValue, handler } = this.props;
+
+        handler({
+            target: {
+                value: currentValue
+            }
+        });
+    }
+
+
     render() {
         const { label, value, handler, options, currentValue } = this.props;
         const { values } = options;
@@ -50,13 +61,21 @@ class EditDropdown extends Component {
                             Change { label }
                         </span>
                     </Col>
-                    <Col xs={12} sm={8} md={8}>
+                    <Col xs={12} sm={9} md={9}>
                         <FormControl
                             componentClass="select"
                             onChange={handler}
                             placeholder={value}>
                             { userOptions }
                         </FormControl>
+                    </Col>
+                    <Col xs={12} sm={12} md={1}>
+                        <Button
+                            className="pull-right"
+                            bsSize="small"
+                            onClick={this.resetFields.bind(this)}>
+                            Reset
+                        </Button>
                     </Col>
                 </Row>
             </div>
