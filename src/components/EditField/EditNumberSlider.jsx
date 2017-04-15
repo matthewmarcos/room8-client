@@ -42,7 +42,7 @@ class EditNumberSlider extends Component {
                             Change {this.props.label}
                         </span>
                     </Col>
-                    <Col xs={12} sm={6} md={6}>
+                    <Col xs={12} sm={9} md={9}>
                         <ReactBootstrapSlider
                             value={ value }
                             slideStop={ handler }
@@ -52,51 +52,55 @@ class EditNumberSlider extends Component {
                             min={ min }
                             orientation="horizontal"/>
                     </Col>
-                    <Col xs={12} sm={4} md={4}>
-                        { value !== currentValue? ( <div> New Value: { value } </div>) : null}
-                    </Col>
                 </Row>
             </div>
         );
 
         return (
-            <div className="edit-string">
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
                     <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                {label}
-                            </span>
-                        </Col>
+                                    {label}
+                                </span>
+                            </Col>
 
-                        {/* Do I hide the value when the screen is small? */}
-                        <Col xs={12} sm={4} md={3}>
-                            <span style={{
-                                fontStyle: 'italic'
-                            }}>
-                                    { value !== currentValue? 'Old ' : null}
-                                    Value:  { currentValue } &nbsp;
-                            </span>
-                        </Col>
-                        <Col xs={12} sm={4} md={2}>
-                            <Button 
-                                bsSize="small"
-                                onClick={this.toggleOpenMode.bind(this)}>
-                                Edit
-                            </Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <span style={{
-                            marginTop: 1,
-                            marginBottom: 1
-                        }}>
-                        </span>
-                    </Row>
-                </div>
+                            <Col xs={12} sm={3} md={3}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    { value !== currentValue? 'Old value: ' : null}
+                                    { currentValue }
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={3} md={4}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
+                                    { value !== currentValue? ( <div> New value: { value } </div>) : null}
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={3} md={2}>
+                                <Button 
+                                    className="pull-right"
+                                    bsSize="small"
+                                    onClick={this.toggleOpenMode.bind(this)}>
+                                    Edit
+                                </Button>
+                            </Col>
+                        </Row>
+                    </div>
                     <Collapse in={this.state.isOpen}>
                         {editForm}
                     </Collapse>
