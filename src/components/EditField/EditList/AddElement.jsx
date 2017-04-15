@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from '
 import Radium from 'radium';
 
 const AddElement = (props) => {
-    const { label } = props;
+    const { label, handler, validator } = props;
 
     return (
         <div className="add-element">
@@ -31,7 +31,8 @@ const AddElement = (props) => {
 };
 
 AddElement.PropTypes = {
-    handler: PropTypes.func.isRequired
+    handler: PropTypes.func.isRequired,
+    validator: PropTypes.func
 };
 
 export default Radium(AddElement);

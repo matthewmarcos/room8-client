@@ -207,6 +207,16 @@ class ProfileEdit extends Component {
                     value={this.state.tempOrganizations}
                     currentValue={this.props.user.organizations}
                     handler={this.handleArrayChange.bind(this, 'tempOrganizations')}/>
+                <EditField
+                    label="Hobbies"
+                    value={this.state.tempHobbies}
+                    currentValue={this.props.user.hobbies}
+                    handler={this.handleArrayChange.bind(this, 'tempHobbies')}/>
+                <EditField
+                    label="Interests"
+                    value={this.state.tempInterests}
+                    currentValue={this.props.user.interests}
+                    handler={this.handleArrayChange.bind(this, 'tempInterests')}/>
             </div>
         );
     }
