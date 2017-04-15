@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
 import EditField from '../EditField/EditField';
+import _ from 'lodash';
+import { userReducerInitialState } from '../../redux/reducers/UserReducer';
 
 
 class ProfileEdit extends Component {
 
     constructor() {
         super();
+        const batchCount = 20;
+        const batchLastYear = new Date().getFullYear(); //End year of the batches
+
+        let tempUser = {
+            ...userReducerInitialState
+        };
+
+        const tempOrganizations = tempUser.organizations;
+        const tempHobbies = tempUser.hobbies;
+        const tempInterests = tempUser.interests;
+
+        delete tempUser.organizations;
+        delete tempUser.hobbies;
+        delete tempUser.interests;
+
         this.state = {
-            tempUser: null,
+            tempUser,
             tempHobbies: [],
             tempOrganizations: [],
             tempInterests: [],
 
-            batchCount: 20,
-            batchLastYear: new Date().getFullYear() //End year of the batches
+            batchCount,
+            batchLastYear,
+            yearsOptions: _.times(batchCount, (x) => {
+                return x + (batchLastYear - batchCount) + 1;
+            }).reverse()
         };
     }
 
@@ -67,7 +87,9 @@ class ProfileEdit extends Component {
             tempHobbies: [ ...user.hobbies ],
             tempOrganizations: [ ...user.organizations ],
             tempInterests: [ ...user.interests ]
-        })
+        });
+
+        console.log('tempUser', this.state.tempUser);
     }
 
     handleUserChange(parameter, e) {

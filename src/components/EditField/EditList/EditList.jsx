@@ -11,49 +11,15 @@ class EditList extends Component {
         super();
 
         this.state = {
-            tempValue: '',
             isOpen: false // if form is active or not
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    componentDidMount() {
-        // Initialize tempValue to what is passed from value in props
-        let value;
-
-        if('value' in this.props) {
-            value = this.props.value;
-        }
-        else {
-            value = [];
-        }
-
-        this.setState({
-            tempValue: value
-        });
-    }
-
 
     toggleOpenMode(e) {
         this.setState({
             isOpen: !this.state.isOpen
         });
     };
-
-
-    handleChange(e) {
-        e.preventDefault();
-        console.log('Form change: ', e.target);
-    }
-
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        console.log('Form submitted: ', e.target);
-    }
 
     render() {
         const { label, value } = this.props;
@@ -135,23 +101,13 @@ class EditList extends Component {
 }
 
 
-
-/*
- * EditList - component that contains a list of strings.
- *
- * Props:
- * label* - Form label that gets printed in bold
- * fieldName* - Gets plugged as the name attribute of the form.
- * value - initial value. If not specified, will render an empty array
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- * maxLength - Maximum length of the string it accepts
-*/
 EditList.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.arrayOf(PropTypes.string),
-    'url': PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    fieldName: PropTypes.string.isRequired,
+    value: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currentValue: PropTypes.arrayOf(PropTypes.string).isRequired,
+    handler: PropTypes.func.isRequired,
+    validator: PropTypes.func
 };
 
 

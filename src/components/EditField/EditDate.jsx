@@ -176,7 +176,8 @@ EditDate.propTypes = {
 
 
 EditDate.defaultProps = {
-    value: new Date().toISOString()
+    value: new Date().toISOString(),
+    currentValue: new Date().toISOString()
 };
 
 export default Radium(EditDate);
