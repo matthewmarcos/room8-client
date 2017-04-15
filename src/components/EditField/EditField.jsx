@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+
 import EditList from './EditList/EditList';
 import EditString from './EditString';
 import EditTextarea from './EditTextarea'; // May problema pa ito sa pagtoggle and all
@@ -34,7 +35,7 @@ const EditField = (props) => {
             props.options.type === 'text') ||
             props.type === 'text') {
 
-            return (<EditTextarea { ...props }/>);
+            return <EditTextarea { ...props }/>;
         }
 
         if((props.options &&
@@ -42,7 +43,7 @@ const EditField = (props) => {
             props.options.type === 'dropdown') ||
             props.type === 'dropdown') {
 
-            return (<EditDropdown { ...props }/>);
+            return <EditDropdown { ...props }/>;
         }
 
         if((props.options &&
@@ -56,11 +57,11 @@ const EditField = (props) => {
         // Kung walang nakadefine sa taas
         switch(defineType(value)) {
             case 'string': {
-                return (<EditString { ...props }/>);
+                return <EditString { ...props }/>;
             }
 
             case 'array': {
-                return null;
+                return <EditList { ...props } />
             }
 
             case 'number': {

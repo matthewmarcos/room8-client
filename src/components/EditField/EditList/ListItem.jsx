@@ -4,20 +4,21 @@ import Radium from 'radium';
 
 const ListItem = (props) => {
 
-    const { interest, index } = props;
+    const { unit, index, handler } = props;
 
     return (
-        <div className="list-interest">
-            {`${index}: ${interest}`} <Button onClick={props.handleDelete}>x</Button>
+        <div className="list-unit">
+            {`${index + 1}: ${unit}`} <Button onClick={ handler }>x</Button>
         </div>
     );
 
 };
 
 ListItem.propTypes = {
-    'interest': PropTypes.string.isRequired,
-    'index': PropTypes.number.isRequired,
-    'handleDelete': PropTypes.func.isRequired
+    unit: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
+    handler: PropTypes.func.isRequired
 };
+// 
 
 export default Radium(ListItem);

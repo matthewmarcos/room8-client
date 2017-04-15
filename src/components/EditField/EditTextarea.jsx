@@ -140,7 +140,6 @@ class EditTextarea extends Component {
                                     { label }
                                 </span>
                             </Col>
-
                             <Col xs={12} sm={12} md={8}>
                                 <span style={{
                                     fontStyle: 'italic',

@@ -31,10 +31,7 @@ const AddElement = (props) => {
 };
 
 AddElement.PropTypes = {
-    'handleAdd': PropTypes.func.isRequired,
-    'handleChange': PropTypes.func.isRequired,
-    'tempString': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired
+    handler: PropTypes.func.isRequired
 };
 
 export default Radium(AddElement);

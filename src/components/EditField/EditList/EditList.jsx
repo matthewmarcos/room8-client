@@ -22,8 +22,8 @@ class EditList extends Component {
     };
 
     render() {
-        const { label, value } = this.props;
-        const length = 40;
+        const { label, value, currentValue } = this.props;
+        const length = 100;
         const sliceAndDice = (length, string) => {
             if(length <= 3) {
                 return '...';
@@ -38,7 +38,7 @@ class EditList extends Component {
             }
         };
         const renderPreview = (string) => {
-            return sliceAndDice(length, string.join(' '));
+            return sliceAndDice(length, string.join(', '));
         };
 
         return (
@@ -53,23 +53,23 @@ class EditList extends Component {
                 <Grid fluid={true}>
                     <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
                                     {label}
                                 </span>
                             </Col>
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={12} md={8}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    {renderPreview(value)}
+                                    { renderPreview(currentValue) }
                                 </span>
                             </Col>
-
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} xsOffset={1} sm={12} md={1}>
                                 <Button
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit
@@ -87,8 +87,6 @@ class EditList extends Component {
                     <Collapse in={this.state.isOpen}>
                         <div>
                             <HiddenMenu
-                                handleChange={this.handleChange}
-                                handleSubmit={this.handleSubmit}
                                 { ...this.props }
                             />
                         </div>

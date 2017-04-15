@@ -101,6 +101,18 @@ class ProfileEdit extends Component {
         });
     }
 
+    handleArrayChange(parameter, e) {
+        let stateCopy = {
+            ...this.state
+        };
+
+        stateCopy[parameter] = [
+            ...e.value
+        ];
+
+        this.setState(stateCopy);
+    }
+
     render() {
         if(!this.state.tempUser) {
             return null;
@@ -190,6 +202,11 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.bio}
                     currentValue={this.props.user.bio}
                     handler={this.handleUserChange.bind(this, 'bio')}/>
+                <EditField
+                    label="Organizations"
+                    value={this.state.tempOrganizations}
+                    currentValue={this.props.user.organizations}
+                    handler={this.handleArrayChange.bind(this, 'tempOrganizations')}/>
             </div>
         );
     }

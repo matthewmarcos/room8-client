@@ -1,64 +1,44 @@
 import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
 import ListMenu from './ListMenu';
-import AddElement from './AddElement';
-import { Button } from 'react-bootstrap';
+import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
 class HiddenMenu extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
-            // Temp state is here. Submit enture tempState to database
-            tempValue: [],
             tempString: ''
         };
     }
 
-    componentDidMount() {
-        this.setState({
-            tempValue: this.props.value
-        });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        console.log(`submitting ${this.state.tempValue} to ${this.props.url}`);
-    }
-
-    handleChange(e) {
-        this.setState({
-            tempString: e.target.value
-        });
-    }
-
     handleAdd(e) {
         e.preventDefault();
+        const { handler, value } = this.props;
+        const tempArray = [
+            e.target.value,
+            value
+        ];
 
-        this.setState({
-            tempValue: [
-                this.state.tempString,
-                ...this.state.tempValue
-            ],
-            tempString: ''
+        handler({
+            value: tempArray
         })
     }
 
-    handleDelete(index, e) {
-        console.log(`Deleting item number ${index}: ${this.state.tempValue[index]}`);
-        let temp = this.state.tempValue;
-        temp.splice(index, 1);
+    handleDelete(index) {
+        const { handler, value } = this.props;
+        let tempArray = [ ...value ];
 
-        this.setState({
-            tempValue: [ ...temp ]
-        });
+        tempArray.splice(index, 1);
+
+        handler({ value: tempArray });
     }
 
 
     render() {
-        const { label, fieldName, handleSubmit } = this.props;
+        const { label, fieldName, handleSubmit, value, currentValue } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         return (
@@ -66,32 +46,24 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <AddElement fieldName={this.props.fieldName}
-                    handleAdd={this.handleAdd.bind(this)}
-                    handleChange={this.handleChange.bind(this)}
-                    fieldName={fieldName}
-                    tempString={this.state.tempString}
-                    label={label}
-                />
                 <ListMenu
-                    tempValue={this.state.tempValue}
-                    handleDelete={this.handleDelete.bind(this)}
+                    value={ value }
+                    handler={this.handleDelete.bind(this)}
                 />
-                <Button onClick={this.handleSubmit.bind(this)}>Submit</Button>
             </div>
         );
     }
 
 };
 
-HiddenMenu.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.arrayOf(PropTypes.string),
-    'url': PropTypes.string.isRequired,
-    'handleChange': PropTypes.func.isRequired,
-    'handleSubmit': PropTypes.func.isRequired
 
+HiddenMenu.propTypes = {
+    label: PropTypes.string.isRequired,
+    value: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currentValue: PropTypes.arrayOf(PropTypes.string).isRequired,
+    handler: PropTypes.func.isRequired,
+    validator: PropTypes.func
 };
+
 
 export default Radium(HiddenMenu);

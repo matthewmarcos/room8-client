@@ -5,19 +5,26 @@ import ListItem from './ListItem';
 
 const ListMenu = (props) => {
 
-    const { tempValue } = props;
+    const { value, handler } = props;
+    if(!value) {
+        return null;
+    }
+
+    function handleWrapper(index, e) {
+        handler(index);
+    }
 
     return (
         <div className="list-menu">
             {
-                tempValue.map((interest, key) => (
-                    <ListItem
-                        key={key}
-                        index={key+1}
-                        interest={interest}
-                        handleDelete={props.handleDelete.bind(this, key)}
-                    />
-                ))
+                value.map((unit, key) => {
+                    return <ListItem 
+                                index={key}
+                                key={key}
+                                unit={unit}
+                                handler={handleWrapper.bind(this, key)} 
+                            />
+                })
             }
         </div>
     );
@@ -25,8 +32,8 @@ const ListMenu = (props) => {
 };
 
 ListMenu.propTypes = {
-    'tempValue': PropTypes.arrayOf(PropTypes.string),
-    'handleDelete': PropTypes.func.isRequired
+    value: PropTypes.arrayOf(PropTypes.string).isRequired,
+    handler: PropTypes.func.isRequired
 };
 
 export default Radium(ListMenu);
