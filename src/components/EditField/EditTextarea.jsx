@@ -10,7 +10,7 @@
 */
 
 import React, { PropTypes, Component } from 'react';
-import { FormControl, Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
+import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
 
 
 import Radium from 'radium';
@@ -71,6 +71,17 @@ class EditTextarea extends Component {
     };
 
 
+    resetFields() {
+        const { currentValue, handler } = this.props;
+
+        handler({
+            target: {
+                value: currentValue
+            }
+        });
+    }
+
+
     render() {
         const { label, value, handler, currentValue } = this.props;
 
@@ -89,10 +100,21 @@ class EditTextarea extends Component {
                         </span>
                     </Col>
                     <Col xs={12} sm={9} md={9}>
-                        <FormControl
-                            componentClass="textarea"
-                            value={ value }
-                            onChange={ handler }/>
+                        <FormGroup
+                            validationState={ currentValue !== value ? 'warning' : '' }>
+                            <FormControl
+                                componentClass="textarea"
+                                value={ value }
+                                onChange={ handler }/>
+                        </FormGroup>
+                    </Col>
+                    <Col xs={12} sm={12} md={1}>
+                        <Button
+                            className="pull-right"
+                            bsSize="small"
+                            onClick={this.resetFields.bind(this)}>
+                            Reset
+                        </Button>
                     </Col>
                 </Row>
             </div>
@@ -119,18 +141,21 @@ class EditTextarea extends Component {
                                 </span>
                             </Col>
 
-                            <Col xs={12} sm={6} md={7}>
+                            <Col xs={12} sm={12} md={8}>
                                 <span style={{
                                     fontStyle: 'italic',
-                                    textOverflow: 'ellipsis',
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'hidden'
+                                    // textOverflow: 'ellipsis',
+                                    // whiteSpace: 'nowrap',
+                                    // overflow: 'visible'
                                 }}>
-                                { this.truncateString(80, currentValue) }
+                                {
+                                    this.state.isOpen ? currentValue :
+                                    this.truncateString(80, currentValue)
+                                }
                                 </span>
                             </Col>
 
-                            <Col xs={12} sm={3} md={2}>
+                            <Col xs={12} xsOffset={1} sm={12} md={1}>
                                 <Button
                                     className="pull-right"
                                     bsSize="small"

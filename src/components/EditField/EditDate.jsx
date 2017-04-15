@@ -48,6 +48,17 @@ class EditDate extends Component {
     };
 
 
+    resetFields() {
+        const { currentValue, handler } = this.props;
+
+        handler({
+            target: {
+                value: currentValue
+            }
+        });
+    }
+
+
     render() {
         const { label, value, currentValue } = this.props;
 
@@ -77,11 +88,19 @@ class EditDate extends Component {
                             Change { label }
                         </span>
                     </Col>
-                    <Col xs={12} sm={8} md={8}>
+                    <Col xs={12} sm={8} md={9}>
                         <DatePicker
                             onChange={ this.handlerWrapper.bind(this) }
                             defaultValue={ value }
                         />
+                    </Col>
+                    <Col xs={12} sm={12} md={1}>
+                        <Button
+                            className="pull-right"
+                            bsSize="small"
+                            onClick={this.resetFields.bind(this)}>
+                            Reset
+                        </Button>
                     </Col>
                 </Row>
             </div>
@@ -132,7 +151,7 @@ class EditDate extends Component {
                                     }
                                 </span>
                             </Col>
-                            <Col xs={12} sm={3} md={2}>
+                            <Col xs={12} xsOffset={1} sm={3} md={2}>
                                 <Button 
                                     className="pull-right"
                                     bsSize="small"

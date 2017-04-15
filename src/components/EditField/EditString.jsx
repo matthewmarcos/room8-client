@@ -25,6 +25,17 @@ class EditString extends Component {
     };
 
 
+    resetFields() {
+        const { currentValue, handler } = this.props;
+
+        handler({
+            target: {
+                value: currentValue
+            }
+        });
+    }
+
+
     render() {
         const { label, fieldName, value, handler, currentValue } = this.props;
 
@@ -47,6 +58,14 @@ class EditString extends Component {
                             type="text"
                             value={ value }
                             onChange={ handler }/>
+                    </Col>
+                    <Col xs={12} sm={12} md={1}>
+                        <Button
+                            className="pull-right"
+                            bsSize="small"
+                            onClick={this.resetFields.bind(this)}>
+                            Reset
+                        </Button>
                     </Col>
                 </Row>
             </div>
@@ -86,7 +105,7 @@ class EditString extends Component {
                                     { value !== currentValue? ( <div> New value: { value } </div>) : null}
                                 </span>
                             </Col>
-                            <Col xs={12} sm={3} md={2}>
+                            <Col xs={12} xsOffset={1} sm={3} md={2}>
                                 <Button 
                                     className="pull-right"
                                     bsSize="small"

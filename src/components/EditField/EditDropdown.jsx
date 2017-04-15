@@ -97,7 +97,7 @@ class EditDropdown extends Component {
                                     { value !== currentValue? ( <div> New value: { value } </div>) : null}
                                 </span>
                             </Col>
-                            <Col xs={12} sm={3} md={2}>
+                            <Col xs={12} xsOffset={1} sm={3} md={2}>
                                 <Button
                                     className="pull-right"
                                     bsSize="small"

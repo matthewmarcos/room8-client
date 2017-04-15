@@ -42,17 +42,16 @@ class EditList extends Component {
         };
 
         return (
-            <div>
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
-                    <div
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}
-                    >
+                    <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
                             <Col xs={12} sm={4} md={7}>
                                 <span style={{
