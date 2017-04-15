@@ -76,9 +76,6 @@ class ProfileEdit extends Component {
         };
 
         tempUserCopy[parameter] = e.target.value;
-
-        console.log('e: ', e);
-
         this.setState({
             tempUser: tempUserCopy
         });
