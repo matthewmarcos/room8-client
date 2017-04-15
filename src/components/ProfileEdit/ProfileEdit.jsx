@@ -17,8 +17,12 @@ class ProfileEdit extends Component {
         };
     }
 
-    componentWillMount(prevProps, prevState) {
-        const { user } = this.props;
+    componentWillReceiveProps(nextProps) {
+        if(this.props === nextProps) {
+            return false;
+        }
+
+        const { user } = nextProps;
         const {
             fullName,
             status, // => Dropdown
@@ -57,8 +61,16 @@ class ProfileEdit extends Component {
         })
     }
 
-    handleUserChange(e) {
-        console.log('handleUserChange from profileEdit');
+    handleUserChange(parameter, e) {
+        let tempUserCopy = {
+            ...this.state.tempUser
+        };
+
+        tempUserCopy[parameter] = e.target.value;
+
+        this.setState({
+            tempUser: tempUserCopy
+        });
     }
 
     render() {
@@ -72,9 +84,29 @@ class ProfileEdit extends Component {
                 <EditField
                     label="Full Name"
                     value={this.state.tempUser.fullName}
-                    handler={this.handleUserChange.bind(this)}
-                    text
-                />
+                    currentValue={this.props.user.fullName}
+                    handler={this.handleUserChange.bind(this, 'fullName')}/>
+                <EditField
+                    label="Nickname"
+                    value={this.state.tempUser.nickname}
+                    currentValue={this.props.user.nickname}
+                    handler={this.handleUserChange.bind(this, 'nickname')}/>
+                <EditField
+                    type="text"
+                    label="Bio"
+                    value={this.state.tempUser.bio}
+                    currentValue={this.props.user.bio}
+                    handler={this.handleUserChange.bind(this, 'bio')}/>
+                <EditField
+                    options={{
+                        type: 'dropdown',
+                        values: ['Male', 'Female', 'Do not know']
+                    }}
+                    label="Sex"
+                    value={this.state.tempUser.sex}
+                    currentValue={this.props.user.sex}
+                    handler={this.handleUserChange.bind(this, 'sex')}/>
+
 
 
             </div>

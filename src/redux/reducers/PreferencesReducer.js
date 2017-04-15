@@ -49,8 +49,6 @@ export const preferencesReducer = (state = preferencesReducerInitialState, actio
             delete toInsert.nickname;
             delete toInsert.timeRegistered;
 
-            console.log(toInsert);
-
             return {
                 ...state,
                 ...toInsert

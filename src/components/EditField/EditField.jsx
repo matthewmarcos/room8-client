@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import EditList from './EditList/EditList';
+import EditString from './EditString';
+import EditTextarea from './EditTextarea';
+import EditDropdown from './EditDropdown';
 
 
 const EditField = (props) => {
@@ -23,20 +26,36 @@ const EditField = (props) => {
     }
 
     function displayProperlyByType(value) {
+
+        if((props.options &&
+            props.options.type &&
+            props.options.type === 'text') ||
+            props.type === 'text') {
+
+            return (<EditTextarea { ...props }/>);
+        }
+
+        if((props.options &&
+            props.options.type &&
+            props.options.type === 'dropdown') ||
+            props.type === 'dropdown') {
+
+            return (<EditDropdown { ...props }/>);
+            // return <div>yeah</div>;
+        }
+
+        // Kung walang nakadefine sa taas
         switch(defineType(value)) {
             case 'string': {
-                if(props.text) {
-                    // return EditTextarea
-                }
-                else {
-                    // return EditString
-                }
+                return (<EditString { ...props }/>);
             }
 
             case 'array': {
+                return null;
             }
 
             case 'number': {
+                return null;
             }
 
             default: {
@@ -45,26 +64,28 @@ const EditField = (props) => {
         }
     }
 
-    return (
-        <div>
-            EditField here!
-
-            { label }
-            { value }
-            { text ? 'true' : 'false' }
-        </div>
-    );
+    return displayProperlyByType(value);
 };
 
 EditField.propTypes = {
-    label: PropTypes.string.isRequired,
-    value: PropTypes.any.isRequired,
-    handler: PropTypes.func.isRequired,
-    text: PropTypes.bool
+    label: PropTypes.string.isRequired, // What will be shown as label
+    value: PropTypes.any.isRequired, // value in state
+    currentValue: PropTypes.any.isRequired, // Will not be changed. Only to compare changes.
+    handler: PropTypes.func.isRequired, // event handler, must have 2 parameters (event and fieldName to edit)
+    type: PropTypes.string,
+    options: PropTypes.shape({
+        type: PropTypes.string,
+        values: PropTypes.arrayOf(PropTypes.string)
+    })
 };
 
 EditField.defaultProps = {
-    text: false // Applicatble if value is type string. Renders textarea if true
+    type: null 
+    /*
+     * text === textarea
+     * email === email
+     * dropdown === dropdown
+     */
 };
 
 export default EditField;

@@ -1,21 +1,8 @@
-
-/*
- * EditDropdown - dumb component that contains a textfield. Takes in the following props:
- * label - Label for the form
- * value - initial value
- * fieldName - Name of the field
- * selectOptions [{value, label}] - Value and label of items in the dropdown
- * Wrap editString with connect and edit the fieldName in userStore?
-*/
-
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
 import Radium from 'radium';
-
-// import { connect } from 'react-redux';
-// import * as actions from '../../actions/UserActions';
 
 
 class EditDropdown extends Component {
@@ -24,25 +11,9 @@ class EditDropdown extends Component {
         super();
 
         this.state = {
-            tempValue: '',
             isOpen: false // if form is active or not
         };
     }
-
-    componentDidMount() {
-        // Initialize tempValue to what is passed from value in props
-        this.setState({
-            tempValue: this.props.value
-        });
-    }
-
-
-    handleChange(e) {
-        // Change tempValue based on change
-        this.setState({
-            tempValue: e.target.value
-        });
-    };
 
 
     toggleOpenMode(e) {
@@ -52,72 +23,51 @@ class EditDropdown extends Component {
     };
 
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        const toSubmitValue = e.target.elements[this.props.fieldName].value;
-        console.log(toSubmitValue, ' has been submitted');
-    }
-
-
     render() {
-        const { label, fieldName, value, selectOptions } = this.props;
-
-        const options = selectOptions.map(x => {
+        const { label, value, handler, options } = this.props;
+        const { values } = options;
+        const userOptions = values.map((value, key)=> {
                         return (
-                            <option 
-                                key={x.value}
-                                id={x.value}
-                                name={x.label}>
-                                {x.label}
+                            <option
+                                key={key}
+                                id={value}
+                                name={value}>
+                                {value}
                             </option>
                         );
                     });
-
-        // Margin and padding to 0 to reduce animation lag
         const editForm = (
+            // Margin and padding to 0 to reduce animation lag
             <div style={{
                 margin: 0,
                 padding: 0
             }}>
-                <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
-                    <FormGroup
-                        controlId={`${fieldName}-text-form`}>
-                        <Row>
-                            <Col xs={12} sm={2} md={2}>
-                                <span style={{
-                                    fontStyle: 'italic'
-                                }}>
-                                    Change {this.props.label}
-                                </span>
-                            </Col>
-                            <Col xs={12} sm={8} md={8}>
-                                <FormControl 
-                                    name={this.props.fieldName}
-                                    componentClass="select"
-                                    placeholder={value}>
-                                    { options }
-                                </FormControl>
-                            </Col>
-                            <Col xs={12} sm={2} md={2}>
-                                <Button
-                                    bsSize="small"
-                                    type="submit">
-                                    Change
-                                </Button>
-                            </Col>
-                        </Row>
-                    </FormGroup>
-                </Form>
+                <Row>
+                    <Col xs={12} sm={2} md={2}>
+                        <span style={{
+                            fontStyle: 'italic'
+                        }}>
+                            Change { label }
+                        </span>
+                    </Col>
+                    <Col xs={12} sm={8} md={8}>
+                        <FormControl
+                            componentClass="select"
+                            onChange={handler}
+                            placeholder={value}>
+                            { userOptions }
+                        </FormControl>
+                    </Col>
+                </Row>
             </div>
         );
 
-        return(
+        return (
             <div className="edit-string">
                 <Grid fluid={true}>
-                    <div 
+                    <div
                         onClick={this.toggleOpenMode.bind(this)}
-                        style={{ 
+                        style={{
                             ':hover': {
                                 cursor: 'pointer',
                                 backgroundColor: '#dddddd'
@@ -129,11 +79,9 @@ class EditDropdown extends Component {
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                        {label}
-                                    </span>
+                                    {label}
+                                </span>
                             </Col>
-
-                            {/* Do I hide the value when the screen is small? */}
                             <Col xs={12} sm={4} md={3}>
                                 <span style={{
                                     fontStyle: 'italic'
@@ -141,9 +89,8 @@ class EditDropdown extends Component {
                                     {value}
                                 </span>
                             </Col>
-
                             <Col xs={12} sm={4} md={2}>
-                                <Button 
+                                <Button
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit
@@ -151,6 +98,7 @@ class EditDropdown extends Component {
                             </Col>
                         </Row>
                         <Row>
+                            {/* To add space between the collapse form */}
                             <span style={{
                                 marginTop: 1,
                                 marginBottom: 1
@@ -159,7 +107,7 @@ class EditDropdown extends Component {
                         </Row>
                     </div>
                     <Collapse in={this.state.isOpen}>
-                        {editForm}
+                        { editForm }
                     </Collapse>
                 </Grid>
             </div>
@@ -169,11 +117,14 @@ class EditDropdown extends Component {
 
 
 EditDropdown.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.string.isRequired,
-    'selectOptions': PropTypes.array.isRequired,
-    // 'minLength': PropTypes.number.isRequired
+    label: PropTypes.string.isRequired, // What will be shown as label
+    value: PropTypes.any.isRequired, // value in state
+    currentValue: PropTypes.any.isRequired, // Will not be changed. Only to compare changes.
+    handler: PropTypes.func.isRequired, // event handler, must have 2 parameters (event and fieldName to edit)
+    options: PropTypes.shape({
+        type: PropTypes.string,
+        values: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired
 };
 
 
