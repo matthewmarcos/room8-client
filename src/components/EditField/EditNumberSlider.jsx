@@ -1,15 +1,3 @@
-
-/*
- * EditNumberSlider - dumb component that contains an edit . Takes in the following props:
- * label - Label for the form
- * fieldName - Name of the field
- * value - initial value
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- *
- * Wrap editString with connect and edit the fieldName in userStore?
-*/
-
 import React, { PropTypes, Component } from 'react';
 import { FormGroup, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
@@ -25,25 +13,9 @@ class EditNumberSlider extends Component {
         super();
 
         this.state = {
-            tempValue: 0,
             isOpen: false // if form is active or not
         };
     }
-
-    componentDidMount() {
-        // Initialize tempValue to what is passed from value in props
-        this.setState({
-            tempValue: this.props.value
-        });
-    }
-
-
-    handleChange(e) {
-        // Change tempValue based on change
-        this.setState({
-            tempValue: e.target.value
-        });
-    };
 
 
     toggleOpenMode(e) {
@@ -53,16 +25,8 @@ class EditNumberSlider extends Component {
     };
 
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        const toSubmitValue = e.target.elements[this.props.fieldName].value;
-        console.log(toSubmitValue, ' has been submitted');
-    }
-
-
     render() {
-        const { label, fieldName, value, min, max } = this.props;
+        const { label, value, min, max, handler, currentValue } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
@@ -70,42 +34,32 @@ class EditNumberSlider extends Component {
                 margin: 0,
                 padding: 0
             }}>
-                <Form id={fieldName} onSubmit={this.handleSubmit.bind(this)}>
-                    <FormGroup
-                        controlId={`${fieldName}-text-form`}>
-                        <Row>
-                            <Col xs={12} sm={2} md={2}>
-                                <span style={{
-                                    fontStyle: 'italic'
-                                }}>
-                                    Change {this.props.label}
-                                </span>
-                            </Col>
-                            <Col xs={12} sm={8} md={8}>
-                                <ReactBootstrapSlider
-                                    value={this.state.tempValue}
-                                    slideStop={this.handleChange.bind(this)}
-                                    change={this.handleChange.bind(this)}
-                                    step={1}
-                                    max={max}
-                                    min={min}
-                                    orientation="horizontal"/>
-                                { this.state.tempValue }
-                            </Col>
-                            <Col xs={12} sm={2} md={2}>
-                                <Button
-                                    bsSize="small"
-                                    type="submit">
-                                    Change
-                                </Button>
-                            </Col>
-                        </Row>
-                    </FormGroup>
-                </Form>
+                <Row>
+                    <Col xs={12} sm={2} md={2}>
+                        <span style={{
+                            fontStyle: 'italic'
+                        }}>
+                            Change {this.props.label}
+                        </span>
+                    </Col>
+                    <Col xs={12} sm={6} md={6}>
+                        <ReactBootstrapSlider
+                            value={ value }
+                            slideStop={ handler }
+                            change={ handler }
+                            step={ 1 }
+                            max={ max }
+                            min={ min }
+                            orientation="horizontal"/>
+                    </Col>
+                    <Col xs={12} sm={4} md={4}>
+                        { value !== currentValue? ( <div> New Value: { value } </div>) : null}
+                    </Col>
+                </Row>
             </div>
         );
 
-        return(
+        return (
             <div className="edit-string">
                 <Grid fluid={true}>
                     <div onClick={this.toggleOpenMode.bind(this)}>
@@ -123,10 +77,10 @@ class EditNumberSlider extends Component {
                             <span style={{
                                 fontStyle: 'italic'
                             }}>
-                                {value}
+                                    { value !== currentValue? 'Old ' : null}
+                                    Value:  { currentValue } &nbsp;
                             </span>
                         </Col>
-
                         <Col xs={12} sm={4} md={2}>
                             <Button 
                                 bsSize="small"
@@ -154,12 +108,16 @@ class EditNumberSlider extends Component {
 
 
 EditNumberSlider.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'value': PropTypes.number.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'min': PropTypes.number.isRequired,
-    'max': PropTypes.number.isRequired
+    label: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+    currentValue: PropTypes.number.isRequired,
+    handler: PropTypes.func.isRequired
 };
+
+EditNumberSlider.defaultProps = {
+    min: 1,
+    max: 10
+}
 
 
 export default Radium(EditNumberSlider);

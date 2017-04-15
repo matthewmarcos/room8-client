@@ -17,6 +17,15 @@ class ProfileEdit extends Component {
         };
     }
 
+    updateUserProfile() {
+        const formData = {
+            ...this.state.tempUser,
+            organizations: [ ...this.state.tempOrganizations ],
+            interests: [ ...this.state.tempInterests ],
+            hobbies: [ ...this.state.tempHobbies ]
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
         if(this.props === nextProps) {
             return false;
@@ -106,9 +115,12 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.sex}
                     currentValue={this.props.user.sex}
                     handler={this.handleUserChange.bind(this, 'sex')}/>
-
-
-
+                {/* cleanliness - slider */}
+                <EditField
+                    label="Cleanliness"
+                    value={this.state.tempUser.cleanliness}
+                    currentValue={this.props.user.cleanliness}
+                    handler={this.handleUserChange.bind(this, 'cleanliness')}/>
             </div>
         );
     }

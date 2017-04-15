@@ -3,6 +3,7 @@ import EditList from './EditList/EditList';
 import EditString from './EditString';
 import EditTextarea from './EditTextarea';
 import EditDropdown from './EditDropdown';
+import EditNumberSlider from './EditNumberSlider';
 
 
 const EditField = (props) => {
@@ -55,7 +56,7 @@ const EditField = (props) => {
             }
 
             case 'number': {
-                return null;
+                return <EditNumberSlider { ...props }/>;
             }
 
             default: {
@@ -73,6 +74,8 @@ EditField.propTypes = {
     currentValue: PropTypes.any.isRequired, // Will not be changed. Only to compare changes.
     handler: PropTypes.func.isRequired, // event handler, must have 2 parameters (event and fieldName to edit)
     type: PropTypes.string,
+    validator: PropTypes.func, // returns True if input is valid. False if not 
+
     options: PropTypes.shape({
         type: PropTypes.string,
         values: PropTypes.arrayOf(PropTypes.string)

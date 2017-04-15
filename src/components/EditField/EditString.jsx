@@ -26,7 +26,7 @@ class EditString extends Component {
 
 
     render() {
-        const { label, fieldName, value, handler } = this.props;
+        const { label, fieldName, value, handler, currentValue } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
@@ -72,15 +72,15 @@ class EditString extends Component {
                                 </span>
                             </Col>
 
-                            {/* Do I hide the value when the screen is small? */}
                             <Col xs={12} sm={4} md={3}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    {value}
+                                    { value !== currentValue? 'Old ' : null}
+                                    Value:  { currentValue } &nbsp;
+                                    { value !== currentValue? ( <div> New Value: { value } </div>) : null}
                                 </span>
                             </Col>
-
                             <Col xs={12} sm={4} md={2}>
                                 <Button 
                                     bsSize="small"
@@ -119,10 +119,10 @@ class EditString extends Component {
 */
 EditString.propTypes = {
     label: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    currentValue: PropTypes.string.isRequired,
     handler: PropTypes.func.isRequired,
-    minLength: PropTypes.number,
-    maxLength: PropTypes.number
+    validator: PropTypes.func
 };
 
 export default Radium(EditString);
