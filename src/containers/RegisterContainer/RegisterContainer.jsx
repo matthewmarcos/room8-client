@@ -20,14 +20,6 @@ class RegisterContainer extends Component {
         else {
             console.log('Passwords do not match');
         }
-
-        // console.log(
-        //     username,
-        //     password,
-        //     password2,
-        //     email,
-        //     nickname
-        // );
     }
 
     render() {

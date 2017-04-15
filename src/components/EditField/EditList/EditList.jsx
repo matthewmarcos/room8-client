@@ -11,30 +11,9 @@ class EditList extends Component {
         super();
 
         this.state = {
-            tempValue: '',
             isOpen: false // if form is active or not
         };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    componentDidMount() {
-        // Initialize tempValue to what is passed from value in props
-        let value;
-
-        if('value' in this.props) {
-            value = this.props.value;
-        }
-        else {
-            value = [];
-        }
-
-        this.setState({
-            tempValue: value
-        });
-    }
-
 
     toggleOpenMode(e) {
         this.setState({
@@ -42,22 +21,9 @@ class EditList extends Component {
         });
     };
 
-
-    handleChange(e) {
-        e.preventDefault();
-        console.log('Form change: ', e.target);
-    }
-
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        console.log('Form submitted: ', e.target);
-    }
-
     render() {
-        const { label, value } = this.props;
-        const length = 40;
+        const { label, value, currentValue } = this.props;
+        const length = 80;
         const sliceAndDice = (length, string) => {
             if(length <= 3) {
                 return '...';
@@ -72,39 +38,38 @@ class EditList extends Component {
             }
         };
         const renderPreview = (string) => {
-            return sliceAndDice(length, string.join(' '));
+            return sliceAndDice(length, string.join(', '));
         };
 
         return (
-            <div>
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
-                    <div
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}
-                    >
+                    <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
                                     {label}
                                 </span>
                             </Col>
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={12} md={8}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
-                                    {renderPreview(value)}
+                                    { renderPreview(currentValue) }
                                 </span>
                             </Col>
-
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} xsOffset={1} sm={12} md={1}>
                                 <Button
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit
@@ -122,8 +87,6 @@ class EditList extends Component {
                     <Collapse in={this.state.isOpen}>
                         <div>
                             <HiddenMenu
-                                handleChange={this.handleChange}
-                                handleSubmit={this.handleSubmit}
                                 { ...this.props }
                             />
                         </div>
@@ -135,23 +98,13 @@ class EditList extends Component {
 }
 
 
-
-/*
- * EditList - component that contains a list of strings.
- *
- * Props:
- * label* - Form label that gets printed in bold
- * fieldName* - Gets plugged as the name attribute of the form.
- * value - initial value. If not specified, will render an empty array
- * handler - handler function
- * minLength - Minimum length of the string it accepts
- * maxLength - Maximum length of the string it accepts
-*/
 EditList.propTypes = {
-    'label': PropTypes.string.isRequired,
-    'fieldName': PropTypes.string.isRequired,
-    'value': PropTypes.arrayOf(PropTypes.string),
-    'url': PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    fieldName: PropTypes.string.isRequired,
+    value: PropTypes.arrayOf(PropTypes.string).isRequired,
+    currentValue: PropTypes.arrayOf(PropTypes.string).isRequired,
+    handler: PropTypes.func.isRequired,
+    validator: PropTypes.func
 };
 
 

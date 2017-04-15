@@ -24,7 +24,7 @@
 
 
 // On app start, set the tempFields to what is fetched from server.
-const userReducerInitialState = {
+export const userReducerInitialState = {
     /* important for app state */
     id: '',
     isLoggedIn: false,
@@ -41,12 +41,12 @@ const userReducerInitialState = {
     gender: '',
     course: '',
     batch: '',
-    organizations: [],
-    hobbies: [],
-    interests: [],
+    organizations: [''],
+    hobbies: [''],
+    interests: [''],
     bio: '',
-    birthday: null,
-    timeRegistered: null
+    birthday: new Date().toISOString(),
+    timeRegistered: new Date().toISOString()
 };
 
 

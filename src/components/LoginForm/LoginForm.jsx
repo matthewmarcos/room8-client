@@ -40,42 +40,41 @@ const LoginForm = (props) => {
 
                 <Row style={marginTopStyle}>
                     <Well>
-                    <Form onSubmit={props.handleSubmit} horizontal>
-                        <FormGroup controlId="formHorizontalUsername">
-                            <Col componentClass={ControlLabel} sm={3}>
-                               Username
-                            </Col>
-                            <Col sm={6}>
-                                <FormControl type="text" placeholder="Username" />
-                            </Col>
-                        </FormGroup>
+                        <Form onSubmit={props.handleSubmit} horizontal>
+                            <FormGroup controlId="formHorizontalUsername">
+                                <Col componentClass={ControlLabel} sm={3}>
+                                Username
+                                </Col>
+                                <Col sm={6}>
+                                    <FormControl type="text" placeholder="Username" />
+                                </Col>
+                            </FormGroup>
 
-                        <FormGroup controlId="formHorizontalPassword">
-                            <Col componentClass={ControlLabel} sm={3}>
-                                Password
-                            </Col>
-                            <Col sm={4}>
-                                <FormControl type="password" placeholder="Password" />
-                            </Col>
-                            <Col componentClass={ControlLabel} sm={2}>
-                                <Link to="forgot">Forgot Password?</Link>
-                            </Col>
- 
-                        </FormGroup>
+                            <FormGroup controlId="formHorizontalPassword">
+                                <Col componentClass={ControlLabel} sm={3}>
+                                    Password
+                                </Col>
+                                <Col sm={4}>
+                                    <FormControl type="password" placeholder="Password" />
+                                </Col>
+                                <Col componentClass={ControlLabel} sm={2}>
+                                    <Link to="forgot">Forgot Password?</Link>
+                                </Col>
+                            </FormGroup>
 
-                        <FormGroup>
-                            <Col smOffset={3} sm={2}>
-                                <Checkbox>Remember me</Checkbox>
-                            </Col>
-                            <Col sm={2} smOffset={2}>
-                                <ButtonGroup vertical block>
-                                    <Button type="submit" bsStyle="primary">
-                                       LOG IN
-                                    </Button>
-                                </ButtonGroup>
-                            </Col>
-                        </FormGroup>
-                    </Form>
+                            <FormGroup>
+                                <Col smOffset={3} sm={2}>
+                                    <Checkbox>Remember me</Checkbox>
+                                </Col>
+                                <Col sm={2} smOffset={2}>
+                                    <ButtonGroup vertical block>
+                                        <Button type="submit" bsStyle="primary">
+                                        LOG IN
+                                        </Button>
+                                    </ButtonGroup>
+                                </Col>
+                            </FormGroup>
+                        </Form>
                     </Well>
                 </Row>
 

@@ -1,204 +1,235 @@
-import React from 'react';
-import EditString from '../EditString/EditString';
-import EditDropdown from '../EditDropdown/EditDropdown';
-import EditNumberSlider from '../EditNumberSlider/EditNumberSlider';
-import EditTextarea from '../EditTextarea/EditTextarea';
-import EditDate from '../EditDate/EditDate';
-import EditList from '../EditList/EditList';
+import React, { Component } from 'react';
+import EditField from '../EditField/EditField';
+import _ from 'lodash';
+import { userReducerInitialState } from '../../redux/reducers/UserReducer';
 
-const ProfileEdit = (props) => {
 
-    const { user } = props;
+class ProfileEdit extends Component {
 
-    console.log('user', user); //To know the fields
-    const batchCount = 20;
-    const batchLastYear = new Date().getFullYear(); //End year of the batches
-    const ORGANIZATION_EDIT_URL = 'fake_url_here';
-    const HOBBIES_EDIT_URL = 'fake_url_here';
-    const INTERESTS_EDIT_URL = 'fake_url_here';
+    constructor() {
+        super();
+        const batchCount = 20;
+        const batchLastYear = new Date().getFullYear(); //End year of the batches
 
-    const {
-        fullName,
-        nickname,
-        status,
-        contactNumber,
-        email,
-        cleanliness,
-        sex,
-        gender,
-        course,
-        batch,
-        organizations,
-        hobbies,
-        interests,
-        bio,
-        birthday
-    } = user;
+        let tempUser = {
+            ...userReducerInitialState
+        };
 
-    /*
-     * Full Name
-     * Status (I am looking for)
-     * Contact (string)
-     * Email (email)
-     * Cleanliness
-     * Sex
-     * Gender
-     * Course
-     * Batch
-     * Organizations
-     * Hobbies
-     * Interests
-     * Bio
-     * Birthday
-     */
+        const tempOrganizations = tempUser.organizations;
+        const tempHobbies = tempUser.hobbies;
+        const tempInterests = tempUser.interests;
 
-    return (
-        <div className="profile-index">
-            <div className="container">
+        delete tempUser.organizations;
+        delete tempUser.hobbies;
+        delete tempUser.interests;
+
+        this.state = {
+            tempUser,
+            tempHobbies: [],
+            tempOrganizations: [],
+            tempInterests: [],
+
+            batchCount,
+            batchLastYear,
+            yearsOptions: _.times(batchCount, (x) => {
+                return x + (batchLastYear - batchCount) + 1;
+            }).reverse()
+        };
+    }
+
+    updateUserProfile() {
+        const formData = {
+            ...this.state.tempUser,
+            organizations: [ ...this.state.tempOrganizations ],
+            interests: [ ...this.state.tempInterests ],
+            hobbies: [ ...this.state.tempHobbies ]
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props === nextProps) {
+            return false;
+        }
+
+        const { user } = nextProps;
+        const {
+            fullName,
+            status, // => Dropdown
+            cleanliness,
+            sex,
+            smoker,
+            hasOrg,
+            gender,
+            course,
+            batch,
+            birthday,
+            contactNumber,
+            bio,
+            nickname,
+            email
+        } = user;
+
+        this.setState({
+            tempUser: {
+                fullName,
+                nickname,
+                status, // => Dropdown
+                contactNumber,
+                email,
+                cleanliness,
+                sex,
+                gender,
+                course,
+                batch,
+                bio,
+                birthday
+            },
+            tempHobbies: [ ...user.hobbies ],
+            tempOrganizations: [ ...user.organizations ],
+            tempInterests: [ ...user.interests ]
+        });
+    }
+
+    handleUserChange(parameter, e) {
+        let tempUserCopy = {
+            ...this.state.tempUser
+        };
+
+        tempUserCopy[parameter] = e.target.value;
+        this.setState({
+            tempUser: tempUserCopy
+        });
+    }
+
+    handleArrayChange(parameter, e) {
+        let stateCopy = {
+            ...this.state
+        };
+
+        stateCopy[parameter] = [
+            ...e.value
+        ];
+
+        this.setState(stateCopy);
+    }
+
+    render() {
+        if(!this.state.tempUser) {
+            return null;
+        }
+
+        const marginBottom = {
+            marginBottom: 330
+        };
+
+        return (
+            <div className="profile-index container" style={ marginBottom }>
                 <h1>Edit Profile</h1>
-
-
+                <EditField
+                    label="Full Name"
+                    value={this.state.tempUser.fullName}
+                    currentValue={this.props.user.fullName}
+                    handler={this.handleUserChange.bind(this, 'fullName')}/>
+                <EditField
+                    label="Nickname"
+                    value={this.state.tempUser.nickname}
+                    currentValue={this.props.user.nickname}
+                    handler={this.handleUserChange.bind(this, 'nickname')}/>
+                <EditField 
+                    options={{
+                        type: 'dropdown',
+                        values: ['I am looking for a room', 'I have a room']
+                    }}
+                    label="Status"
+                    value={this.state.tempUser.status}
+                    currentValue={this.props.user.status}
+                    handler={this.handleUserChange.bind(this, 'status')}/>
+                <EditField
+                    options={{
+                        type: 'dropdown',
+                        values: ['Male', 'Female', 'Do not know']
+                    }}
+                    label="Sex"
+                    value={this.state.tempUser.sex}
+                    currentValue={this.props.user.sex}
+                    handler={this.handleUserChange.bind(this, 'sex')}/>
+                <EditField
+                    label="Gender"
+                    value={this.state.tempUser.gender}
+                    currentValue={this.props.user.gender}
+                    handler={this.handleUserChange.bind(this, 'gender')}/>
+                <EditField
+                    label="Course"
+                    value={this.state.tempUser.course}
+                    currentValue={this.props.user.course}
+                    handler={this.handleUserChange.bind(this, 'course')}/>
+                <EditField 
+                    options={{
+                        type: 'dropdown',
+                        values: [ ...this.state.yearsOptions ]
+                    }}
+                    label="Batch"
+                    value={this.state.tempUser.batch}
+                    currentValue={this.props.user.batch}
+                    handler={this.handleUserChange.bind(this, 'batch')}/>
+                {/* cleanliness - slider */}
+                <EditField
+                    label="Cleanliness"
+                    value={this.state.tempUser.cleanliness}
+                    currentValue={this.props.user.cleanliness}
+                    handler={this.handleUserChange.bind(this, 'cleanliness')}/>
+                <EditField
+                    label="Contact Number"
+                    value={this.state.tempUser.contactNumber}
+                    currentValue={this.props.user.contactNumber}
+                    handler={this.handleUserChange.bind(this, 'contactNumber')}/>
+                <EditField
+                    label="Email"
+                    value={this.state.tempUser.email}
+                    currentValue={this.props.user.email}
+                    handler={this.handleUserChange.bind(this, 'email')}/>
+                <EditField
+                    label="Birthday"
+                    options={{
+                        type: 'date'
+                    }}
+                    value={this.state.tempUser.birthday}
+                    currentValue={this.props.user.birthday}
+                    handler={this.handleUserChange.bind(this, 'birthday')}/>
+                <EditField
+                    type="text"
+                    label="Bio"
+                    value={this.state.tempUser.bio}
+                    currentValue={this.props.user.bio}
+                    handler={this.handleUserChange.bind(this, 'bio')}/>
+                <EditField
+                    label="Organizations"
+                    value={this.state.tempOrganizations}
+                    currentValue={this.props.user.organizations}
+                    handler={this.handleArrayChange.bind(this, 'tempOrganizations')}/>
+                <EditField
+                    label="Hobbies"
+                    value={this.state.tempHobbies}
+                    currentValue={this.props.user.hobbies}
+                    handler={this.handleArrayChange.bind(this, 'tempHobbies')}/>
+                <EditField
+                    label="Interests"
+                    value={this.state.tempInterests}
+                    currentValue={this.props.user.interests}
+                    handler={this.handleArrayChange.bind(this, 'tempInterests')}/>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default ProfileEdit;
-
-                // <EditString
-                //     label="Full Name"
-                //     value={fullName}
-                //     fieldName="fullName"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Nickname"
-                //     value={nickname}
-                //     fieldName="nickname"
-                //     minLength={5}
-                // />
-
-                // <EditDropdown
-                //     label="Status"
-                //     value={status}
-                //     fieldName="status"
-                //     selectOptions={[
-                //         {
-                //             value: 'I am looking for a room',
-                //             label: 'I am looking for a room',
-                //         },
-                //         {
-                //             value: 'I have a room',
-                //             label: 'I have a room'
-                //         }
-                //     ]}
-                // />
-
-                // <EditString
-                //     label="Contact Number"
-                //     value={contactNumber}
-                //     fieldName="contactNumber"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Email"
-                //     value={email}
-                //     fieldName="email"
-                //     minLength={5}
-                // />
-
-                // {/* Birthday */}
-                // <EditDate
-                //     label="Birthday"
-                //     value={birthday}
-                //     fieldName="birthday"
-                // />
-
-                // <EditNumberSlider
-                //     label="Cleanliness"
-                //     value={cleanliness}
-                //     fieldName="cleanliness"
-                //     min={1}
-                //     max={10}
-                // />
-
-                // <EditDropdown
-                //     label="Sex"
-                //     value={sex}
-                //     fieldName="sex"
-                //     selectOptions={[
-                //         {
-                //             value: 'Male',
-                //             label: 'Male',
-                //         },
-                //         {
-                //             value: 'Female',
-                //             label: 'Female'
-                //         },
-                //         {
-                //             value: 'Do not know',
-                //             label: 'I do not know'
-                //         }
-                //     ]}
-                // />
+/*
+                <EditField
+                    type="text"
+                    label="Bio"
+                    value={this.state.tempUser.bio}
+                    currentValue={this.props.user.bio}
+                    handler={this.handleUserChange.bind(this, 'bio')}/>
+*/
 
 
-                // <EditString
-                //     label="Gender"
-                //     value={gender}
-                //     fieldName="gender"
-                //     minLength={5}
-                // />
-
-                // <EditString
-                //     label="Course"
-                //     value={course}
-                //     fieldName="course"
-                //     minLength={1}
-                // />
-
-                // <EditDropdown
-                //     label="University Batch"
-                //     value={batch}
-                //     fieldName="batch"
-                //     selectOptions={[...Array(batchCount).keys()].map((key, index) => {
-                //         return {
-                //             value: batchLastYear - index,
-                //             label: batchLastYear - index
-                //         };
-                //     })}
-                // />
-
-                // {/* Organizations */}
-                // <EditList
-                //     label="Organizations"
-                //     value={organizations}
-                //     fieldName="organizations"
-                //     url={ORGANIZATION_EDIT_URL}
-                // />
-
-                // {/* Hobbies */}
-                // <EditList
-                //     label="Hobbies"
-                //     value={hobbies}
-                //     fieldName="hobbies"
-                //     url={HOBBIES_EDIT_URL}
-                // />
-
-                // {/* Interests */}
-                // <EditList
-                //     label="Interests"
-                //     value={interests}
-                //     fieldName="interests"
-                //     url={INTERESTS_EDIT_URL}
-                // />
-
-                // {/* Bio */}
-                // <EditTextarea
-                //     label="Bio"
-                //     value={bio}
-                //     fieldName="bio"
-                //     minLength={1}
-                // />
