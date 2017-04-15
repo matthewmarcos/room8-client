@@ -106,8 +106,12 @@ class ProfileEdit extends Component {
             return null;
         }
 
+        const marginBottom = {
+            marginBottom: 330
+        };
+
         return (
-            <div className="profile-index container">
+            <div className="profile-index container" style={ marginBottom }>
                 <h1>Edit Profile</h1>
                 <EditField
                     label="Full Name"

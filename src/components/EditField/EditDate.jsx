@@ -80,7 +80,7 @@ class EditDate extends Component {
                     <Col xs={12} sm={8} md={8}>
                         <DatePicker
                             onChange={ this.handlerWrapper.bind(this) }
-                            value={ value }
+                            defaultValue={ value }
                         />
                     </Col>
                 </Row>
@@ -88,38 +88,41 @@ class EditDate extends Component {
         );
 
         return (
-            <div className="edit-string">
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
-                    <div 
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{ 
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}
-                    >
+                    <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
                                     { label }
                                 </span>
                             </Col>
-
-                            {/* Do I hide the value when the screen is small? */}
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={3}>
                                 <span style={{
                                     fontStyle: 'italic'
                                 }}>
                                     {/* Make the date a string */}
-                                    { value !== currentValue? 'Old ' : null}
-                                    Value: {
+                                    { value !== currentValue? 'Old value: ' : null}
+                                    {
                                         this.isDate(currentValue) ?
                                             formatDate(new Date(currentValue)):
-                                            'nope'
+                                            null
                                     } &nbsp;
+                                </span>
+                            </Col>
+                            <Col xs={12} sm={3} md={4}>
+                                <span style={{
+                                    fontStyle: 'italic'
+                                }}>
                                     { 
                                         value !== currentValue? ( 
                                             <div>
@@ -129,9 +132,9 @@ class EditDate extends Component {
                                     }
                                 </span>
                             </Col>
-
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} sm={3} md={2}>
                                 <Button 
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit

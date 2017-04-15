@@ -62,8 +62,7 @@ class EditString extends Component {
                 }
             }}>
                 <Grid fluid={true}>
-                    <div
-                        onClick={this.toggleOpenMode.bind(this)}>
+                    <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
                             <Col xs={12} sm={2} md={2}>
                                 <span style={{
