@@ -31,15 +31,6 @@ class EditTextarea extends Component {
     }
 
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if(this.props === nextProps) {
-            return false;
-        }
-
-        return true;
-    }
-
-
     truncateString(length, string) {
         if(length <= 3) {
             return '...';
@@ -81,7 +72,7 @@ class EditTextarea extends Component {
 
 
     render() {
-        const { label, value, handler } = this.props;
+        const { label, value, handler, currentValue } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (
@@ -97,7 +88,7 @@ class EditTextarea extends Component {
                             Change { label }
                         </span>
                     </Col>
-                    <Col xs={12} sm={10} md={10}>
+                    <Col xs={12} sm={9} md={9}>
                         <FormControl
                             componentClass="textarea"
                             value={ value }
@@ -109,39 +100,39 @@ class EditTextarea extends Component {
 
 
         return (
-            <div className="edit-textarea">
+            <div style={{
+                padding: 5,
+                margin: 5,
+                ':hover': {
+                    cursor: 'pointer',
+                    backgroundColor: '#dddddd'
+                }
+            }}>
                 <Grid fluid={true}>
-                    <div
-                        onClick={this.toggleOpenMode.bind(this)}
-                        style={{
-                            ':hover': {
-                                cursor: 'pointer',
-                                backgroundColor: '#dddddd'
-                            }
-                        }}
-                    >
+                    <div onClick={this.toggleOpenMode.bind(this)}>
                         <Row>
-                            <Col xs={12} sm={4} md={7}>
+                            <Col xs={12} sm={2} md={2}>
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                    {label}
+                                    { label }
                                 </span>
                             </Col>
 
-                            <Col xs={12} sm={4} md={3}>
+                            <Col xs={12} sm={6} md={7}>
                                 <span style={{
                                     fontStyle: 'italic',
                                     textOverflow: 'ellipsis',
                                     whiteSpace: 'nowrap',
                                     overflow: 'hidden'
                                 }}>
-                                { this.truncateString(40, value) }
+                                { this.truncateString(80, currentValue) }
                                 </span>
                             </Col>
 
-                            <Col xs={12} sm={4} md={2}>
+                            <Col xs={12} sm={3} md={2}>
                                 <Button
+                                    className="pull-right"
                                     bsSize="small"
                                     onClick={this.toggleOpenMode.bind(this)}>
                                     Edit
@@ -166,21 +157,12 @@ class EditTextarea extends Component {
 }
 
 
-/*
- * EditTextarea - dumb component that contains a textarea. Takes in the following props:
- *
- * label - Form label that gets printed in bold
- * value - initial value of the field. If not specified, will draw an 'x'
- * handler - function for handleChange
- * minLength - Minimum length of the string it accepts
- * maxLength - Maximum length of the string it accepts
-*/
 EditTextarea.propTypes = {
     label: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
+    currentValue: PropTypes.string.isRequired,
     handler: PropTypes.func.isRequired,
-    minLength: PropTypes.number,
-    maxLength: PropTypes.number
+    validator: PropTypes.func
 };
 
 

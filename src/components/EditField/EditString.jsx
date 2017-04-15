@@ -68,7 +68,7 @@ class EditString extends Component {
                                 <span style={{
                                     fontWeight:'bold'
                                 }}>
-                                    {label}
+                                    { label }
                                 </span>
                             </Col>
                             <Col xs={12} sm={3} md={3}>
@@ -114,15 +114,6 @@ class EditString extends Component {
 }
 
 
-/*
- * EditString - dumb component that contains a textfield. Takes in the following props:
- *
- * label - Form label that gets printed in bold
- * value - initial value of the field. If not specified, will draw an 'x'
- * handler - function for handleChange
- * minLength - Minimum length of the string it accepts
- * maxLength - Maximum length of the string it accepts
-*/
 EditString.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
