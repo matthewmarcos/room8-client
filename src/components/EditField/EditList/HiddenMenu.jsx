@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
 import ListMenu from './ListMenu';
+import AddElement from './AddElement';
 import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
@@ -15,11 +16,10 @@ class HiddenMenu extends Component {
     }
 
     handleAdd(e) {
-        e.preventDefault();
         const { handler, value } = this.props;
         const tempArray = [
             e.target.value,
-            value
+            ...value
         ];
 
         handler({
@@ -46,6 +46,9 @@ class HiddenMenu extends Component {
                 margin: 0,
                 padding: 0
             }}>
+            <AddElement
+                    { ...this.props }
+                    handler={this.handleAdd.bind(this)}/>
                 <ListMenu
                     value={ value }
                     handler={this.handleDelete.bind(this)}

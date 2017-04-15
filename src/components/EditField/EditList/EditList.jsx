@@ -23,7 +23,7 @@ class EditList extends Component {
 
     render() {
         const { label, value, currentValue } = this.props;
-        const length = 100;
+        const length = 80;
         const sliceAndDice = (length, string) => {
             if(length <= 3) {
                 return '...';
