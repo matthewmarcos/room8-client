@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import async from 'async';
 // const userReducerInitialState = {
 //     userId: '1234',
 //     isLoggedIn: true,
@@ -89,6 +91,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
         case 'LOGIN_SUCCESS': {
             const { user } = action.payload;
+            // Fix null elements
+
             return {
                 ...state,
                 ...user,
@@ -133,10 +137,24 @@ export const userReducer = (state = userReducerInitialState, action) => {
         }
 
         case 'RECEIVED_PROFILE_DATA': {
-            const { payload } = action;
+            let { user } = action.payload;
+
+            // user = _.mapValues(user, function(value, key) {
+                // if(value === null && key === 'birthday') {
+                    // return new Date('1900')
+                // }
+                // if(value === null) {
+                    // return 'Not Entered Yet...';
+                // }
+
+                // return value;
+            // });
+
+            // console.log('Done Processing user', user);
+
             return {
                 ...state,
-                ...payload.user
+                ...user
             };
         }
 

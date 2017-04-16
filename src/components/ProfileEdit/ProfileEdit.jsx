@@ -37,9 +37,14 @@ class ProfileEdit extends Component {
 
     updateUserProfile() {
         const { dispatch } = this.props;
-        const formData = {
+        let batch = Number(this.state.tempUser.batch); // Convert initial string value to a Number.
+        if(isNaN(batch)) {
+            batch = null;
+        }
+
+        let formData = {
             ...this.state.tempUser,
-            batch: Number(this.state.tempUser.batch) // Convert initial string value to a Number.
+            batch
         };
 
         dispatch(updateUserProfile(formData));
@@ -51,6 +56,12 @@ class ProfileEdit extends Component {
         formData[keyBody] = [
             ...this.state[keyState]
         ];
+
+
+        console.log(`
+            keyState: ${keyState}, 
+            keyBody: ${keyBody}
+        `);
 
         dispatch(updateArray(keyBody)(formData));
     }
@@ -226,21 +237,6 @@ class ProfileEdit extends Component {
                             value={this.state.tempUser.bio}
                             currentValue={this.props.user.bio}
                             handler={this.handleUserChange.bind(this, 'bio')}/>
-                        <EditField
-                            label="Organizations"
-                            value={this.state.tempOrganizations}
-                            currentValue={this.props.user.organizations}
-                            handler={this.handleArrayChange.bind(this, 'tempOrganizations')}/>
-                        <EditField
-                            label="Hobbies"
-                            value={this.state.tempHobbies}
-                            currentValue={this.props.user.hobbies}
-                            handler={this.handleArrayChange.bind(this, 'tempHobbies')}/>
-                        <EditField
-                            label="Interests"
-                            value={this.state.tempInterests}
-                            currentValue={this.props.user.interests}
-                            handler={this.handleArrayChange.bind(this, 'tempInterests')}/>
                         <Row>
                             <Button
                                 block
@@ -259,16 +255,43 @@ class ProfileEdit extends Component {
                             value={this.state.tempOrganizations}
                             currentValue={this.props.user.organizations}
                             handler={this.handleArrayChange.bind(this, 'tempOrganizations')}/>
+                            <Row>
+                                <Button
+                                    block
+                                    bsStyle="primary"
+                                    bsSize="large"
+                                    onClick={this.updateArray.bind(this, 'tempOrganizations', 'organizations')}>
+                                    Submit
+                                </Button>
+                            </Row>
                         <EditField
                             label="Hobbies"
                             value={this.state.tempHobbies}
                             currentValue={this.props.user.hobbies}
                             handler={this.handleArrayChange.bind(this, 'tempHobbies')}/>
+                            <Row>
+                                <Button
+                                    block
+                                    bsStyle="primary"
+                                    bsSize="large"
+                                    onClick={this.updateArray.bind(this, 'tempHobbies', 'hobbies')}>
+                                    Submit
+                                </Button>
+                            </Row>
                         <EditField
                             label="Interests"
                             value={this.state.tempInterests}
                             currentValue={this.props.user.interests}
                             handler={this.handleArrayChange.bind(this, 'tempInterests')}/>
+                            <Row>
+                                <Button
+                                    block
+                                    bsStyle="primary"
+                                    bsSize="large"
+                                    onClick={this.updateArray.bind(this, 'tempInterests', 'organizations')}>
+                                    Submit
+                                </Button>
+                            </Row>
                     </Col>
                 </Row>
             </Grid>
