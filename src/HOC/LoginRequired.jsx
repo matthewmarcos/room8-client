@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
 import { whoami } from '../actions/AppActions';
 
@@ -8,7 +8,8 @@ import Forbidden from  '../components/Forbidden/Forbidden';
 
 class LoginRequired extends Component {
     componentDidMount() {
-        const { dispatch, currentURL } = this.props;
+        const { dispatch } = this.props;
+        // const { currentUrl } = this.props;
         const { isLoggedIn } = this.props.user;
 
         dispatch(whoami()); //Initially Check if the user is logged in or something

@@ -2,7 +2,6 @@ import React, { PropTypes, Component } from 'react';
 import Radium from 'radium';
 import ListMenu from './ListMenu';
 import AddElement from './AddElement';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
 
 
 class HiddenMenu extends Component {
@@ -38,7 +37,7 @@ class HiddenMenu extends Component {
 
 
     render() {
-        const { label, fieldName, handleSubmit, value, currentValue } = this.props;
+        const { value } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         return (

@@ -24,6 +24,7 @@ class AppContainer extends Component {
 
 export default connect(store => {
     return {
-        user: store.user
+        user: store.user,
+        isFetchingData: store.app.isLoading
     };
 })(AppContainer);

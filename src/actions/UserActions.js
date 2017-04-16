@@ -76,12 +76,56 @@ export const logout = () => {
 };
 
 
-export const changeUserProperty = (propName, propValue) => {
+export const updateUserProfile = (tempUser) => {
+    const request = axios.put('/api/profile', tempUser);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            // Refetch the profile
+            dispatch(appActions.getProfile());
+
+        });
+
+        request.catch(({data}) => {
+
+        });
+    };
+};
+
+
+const updateUserOrganizations = (tempOrganizations) => {
     return {
         type: 'UPDATE_USER_PROPERTY',
         payload: {
-            propName,
-            propValue
         }
     };
 };
+
+
+const updateUserInterests = (tempInterests) => {
+    return {
+        type: 'UPDATE_USER_PROPERTY',
+        payload: {
+        }
+    };
+};
+
+
+const updateUserHobbies = (tempHobbies) => {
+    return {
+        type: 'UPDATE_USER_PROPERTY',
+        payload: {
+        }
+    };
+};
+
+
+export const updateArray = (type) => {
+    switch(type) {
+        case 'organizations' : return updateUserOrganizations;
+        case 'interests' : return updateUserInterests;
+        case 'hobbies' : return updateUserHobbies;
+        default : return (x)=> { return alert('thunkerzz'); }
+    }
+};
+

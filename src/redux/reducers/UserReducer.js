@@ -39,8 +39,9 @@ export const userReducerInitialState = {
     cleanliness: 0,
     sex: '',
     gender: '',
+    smoker: '',
     course: '',
-    batch: '',
+    batch: '', // Loads as a Number from the server.
     organizations: [''],
     hobbies: [''],
     interests: [''],

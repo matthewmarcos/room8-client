@@ -22,7 +22,7 @@ class EditList extends Component {
     };
 
     render() {
-        const { label, value, currentValue } = this.props;
+        const { label, currentValue } = this.props;
         const length = 80;
         const sliceAndDice = (length, string) => {
             if(length <= 3) {
@@ -84,13 +84,17 @@ class EditList extends Component {
                             </span>
                         </Row>
                     </div>
-                    <Collapse in={this.state.isOpen}>
-                        <div>
-                            <HiddenMenu
-                                { ...this.props }
-                            />
-                        </div>
-                    </Collapse>
+                    <Row>
+                        <Col xs={12}>
+                            <Collapse in={this.state.isOpen}>
+                                <div>
+                                    <HiddenMenu
+                                        { ...this.props }
+                                    />
+                                </div>
+                            </Collapse>
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         );
@@ -100,7 +104,6 @@ class EditList extends Component {
 
 EditList.propTypes = {
     label: PropTypes.string.isRequired,
-    fieldName: PropTypes.string.isRequired,
     value: PropTypes.arrayOf(PropTypes.string).isRequired,
     currentValue: PropTypes.arrayOf(PropTypes.string).isRequired,
     handler: PropTypes.func.isRequired,

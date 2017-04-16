@@ -101,7 +101,7 @@ class EditTextarea extends Component {
                     </Col>
                     <Col xs={12} sm={9} md={9}>
                         <FormGroup
-                            validationState={ currentValue !== value ? 'warning' : '' }>
+                            validationState={ currentValue !== value ? 'warning' : null }>
                             <FormControl
                                 componentClass="textarea"
                                 value={ value }

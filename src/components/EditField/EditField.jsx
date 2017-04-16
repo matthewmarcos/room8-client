@@ -9,7 +9,7 @@ import EditDate from './EditDate';
 
 
 const EditField = (props) => {
-    const { value, label, handler, text } = props;
+    const { value } = props;
 
     function defineType(value) {
         if(typeof value === 'string') {

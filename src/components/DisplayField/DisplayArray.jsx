@@ -1,9 +1,7 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
 
 const DisplayArray = (props) => {
     const { value } = props;
-    const { length } = value;
     const leftPad = {
         paddingLeft: '10px'
     };
