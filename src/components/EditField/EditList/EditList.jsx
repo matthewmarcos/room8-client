@@ -84,13 +84,17 @@ class EditList extends Component {
                             </span>
                         </Row>
                     </div>
-                    <Collapse in={this.state.isOpen}>
-                        <div>
-                            <HiddenMenu
-                                { ...this.props }
-                            />
-                        </div>
-                    </Collapse>
+                    <Row>
+                        <Col xs={12}>
+                            <Collapse in={this.state.isOpen}>
+                                <div>
+                                    <HiddenMenu
+                                        { ...this.props }
+                                    />
+                                </div>
+                            </Collapse>
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         );

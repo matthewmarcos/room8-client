@@ -42,9 +42,7 @@ class ProfileEdit extends Component {
             batch: Number(this.state.tempUser.batch) // Convert initial string value to a Number.
         };
 
-        console.log('Sending form: ', formData);
-
-        // dispatch(updateUserProfile(formData));
+        dispatch(updateUserProfile(formData));
     }
 
     updateArray(keyState, keyBody, e) {
@@ -75,6 +73,7 @@ class ProfileEdit extends Component {
             birthday,
             contactNumber,
             bio,
+            hasOrg,
             nickname,
             email
         } = user;
@@ -93,7 +92,8 @@ class ProfileEdit extends Component {
                 course,
                 batch,
                 bio,
-                birthday
+                birthday,
+                hasOrg
             },
             tempHobbies: [ ...user.hobbies ],
             tempOrganizations: [ ...user.organizations ],
@@ -241,10 +241,19 @@ class ProfileEdit extends Component {
                             value={this.state.tempInterests}
                             currentValue={this.props.user.interests}
                             handler={this.handleArrayChange.bind(this, 'tempInterests')}/>
+                        <Row>
+                            <Button
+                                block
+                                bsStyle="primary"
+                                bsSize="large"
+                                onClick={this.updateUserProfile.bind(this)}>
+                                Submit
+                            </Button>
+                        </Row>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
+                    <Col xs={11}>
                         <EditField
                             label="Organizations"
                             value={this.state.tempOrganizations}
