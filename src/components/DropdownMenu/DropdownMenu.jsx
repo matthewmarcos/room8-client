@@ -5,7 +5,6 @@ import { logout } from '../../actions/UserActions';
 import{ connect } from 'react-redux';
 
 const DropdownMenu = (props) => {
-    const { dispatch } = props;
     const hamburgerTitle = (<Glyphicon style={{ fontSize: 25, verticalAlign: 'middle' }} glyph="glyphicon glyphicon-menu-hamburger"/>);
 
     const handleSelect = (eventKey) => {

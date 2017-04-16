@@ -1,6 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
-
+import { Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
 
 import Radium from 'radium';
 import ReactBootstrapSlider from 'react-bootstrap-slider';

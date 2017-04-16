@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { FormGroup, FormControl, Grid, Row, Col, Button, Collapse, Form } from 'react-bootstrap';
+import { FormControl, Grid, Row, Col, Button, Form } from 'react-bootstrap';
 import Radium from 'radium';
 
 class AddElement extends Component {
@@ -22,7 +22,6 @@ class AddElement extends Component {
     handleWrapper(e) {
         const { handler } = this.props;
         e.preventDefault();
-        console.log('form submitted. ', e);
 
         handler({
             target: {
@@ -36,7 +35,7 @@ class AddElement extends Component {
 
 
     render() {
-        const { label, handler, validator } = this.props;
+        const { label } = this.props;
 
         return (
             <div className="add-element">

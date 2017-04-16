@@ -27,10 +27,10 @@ import PreferencesUtilities from './components/PreferencesUtilities/PreferencesU
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 import ProfileIndex from './components/ProfileIndex/ProfileIndex';
-import Forbidden from './components/Forbidden/Forbidden';
+// import Forbidden from './components/Forbidden/Forbidden';
 
 import LoginRequired from './HOC/LoginRequired';
-import NotLoggedIn from './HOC/NotLoggedIn';
+// import NotLoggedIn from './HOC/NotLoggedIn';
 
 import { SampleComponent } from './yeah';
 

@@ -15,9 +15,9 @@ class ProfileEdit extends Component {
             ...userReducerInitialState
         };
 
-        const tempOrganizations = tempUser.organizations;
-        const tempHobbies = tempUser.hobbies;
-        const tempInterests = tempUser.interests;
+        // const tempOrganizations = tempUser.organizations;
+        // const tempHobbies = tempUser.hobbies;
+        // const tempInterests = tempUser.interests;
 
         delete tempUser.organizations;
         delete tempUser.hobbies;
@@ -32,18 +32,20 @@ class ProfileEdit extends Component {
             batchCount,
             batchLastYear,
             yearsOptions: _.times(batchCount, (x) => {
-                return x + (batchLastYear - batchCount) + 1;
+                return `${ x + (batchLastYear - batchCount) + 1 }`;
             }).reverse()
         };
     }
 
     updateUserProfile() {
+        // Getting ready for ajax
+
         const formData = {
             ...this.state.tempUser,
-            organizations: [ ...this.state.tempOrganizations ],
-            interests: [ ...this.state.tempInterests ],
-            hobbies: [ ...this.state.tempHobbies ]
-        }
+            batch: Number(this.state.tempUser.batch) // Convert initial string value to a Number.
+        };
+
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -78,6 +80,7 @@ class ProfileEdit extends Component {
                 email,
                 cleanliness,
                 sex,
+                smoker,
                 gender,
                 course,
                 batch,
@@ -158,6 +161,15 @@ class ProfileEdit extends Component {
                     value={this.state.tempUser.gender}
                     currentValue={this.props.user.gender}
                     handler={this.handleUserChange.bind(this, 'gender')}/>
+                <EditField 
+                    options={{
+                        type: 'dropdown',
+                        values: ['Yes', 'No']
+                    }}
+                    label="Smoker"
+                    value={this.state.tempUser.smoker}
+                    currentValue={this.props.user.smoker}
+                    handler={this.handleUserChange.bind(this, 'smoker')}/>
                 <EditField
                     label="Course"
                     value={this.state.tempUser.course}

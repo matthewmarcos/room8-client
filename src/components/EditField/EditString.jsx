@@ -37,7 +37,7 @@ class EditString extends Component {
 
 
     render() {
-        const { label, fieldName, value, handler, currentValue } = this.props;
+        const { label, value, handler, currentValue } = this.props;
 
         // Margin and padding to 0 to reduce animation lag
         const editForm = (

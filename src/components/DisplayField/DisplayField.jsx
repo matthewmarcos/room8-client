@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Row, Grid, Col } from 'react-bootstrap';
+import { Row, Grid } from 'react-bootstrap';
 
 import DisplayArray from './DisplayArray';
 import DisplayString from './DisplayString';
