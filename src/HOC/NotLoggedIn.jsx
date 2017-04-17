@@ -17,9 +17,8 @@ class NotLoggedIn extends Component {
     componentWillReceiveProps(nextProps) {
         const { isLoggedIn } = nextProps.user;
 
-        console.log('isLoggedIn: ', isLoggedIn);
         if(isLoggedIn) {
-            browserHistory.replace('/dashboard');
+            browserHistory.replace('/');
         }
     }
 

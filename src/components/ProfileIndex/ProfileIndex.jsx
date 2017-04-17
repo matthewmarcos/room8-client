@@ -19,8 +19,6 @@ const ProfileIndex = (props) => {
         flexDirection: 'row-reverse'
     };
 
-    console.log('Wg kng user: ', user);
-
     return (
         <div className="container-fluid">
             <div className="profile-index">

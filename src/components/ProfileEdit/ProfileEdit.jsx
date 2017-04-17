@@ -47,6 +47,7 @@ class ProfileEdit extends Component {
             batch
         };
 
+        console.log(formData);
         dispatch(updateUserProfile(formData));
     }
 
@@ -56,12 +57,6 @@ class ProfileEdit extends Component {
         formData[keyBody] = [
             ...this.state[keyState]
         ];
-
-
-        console.log(`
-            keyState: ${keyState}, 
-            keyBody: ${keyBody}
-        `);
 
         dispatch(updateArray(keyBody)(formData));
     }

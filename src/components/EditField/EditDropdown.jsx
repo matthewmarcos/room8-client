@@ -65,6 +65,7 @@ class EditDropdown extends Component {
                         <FormControl
                             componentClass="select"
                             onChange={handler}
+                            value={value}
                             placeholder={value}>
                             { userOptions }
                         </FormControl>

@@ -45,7 +45,7 @@ export const login = (username, password) => {
 };
 
 
-export const register = (username, password, email, nickname) => {
+export const register = (username, password, nickname, email) => {
     const request = axios.post('/auth/register', {
         username,
         password,
@@ -81,13 +81,11 @@ export const updateUserProfile = (tempUser) => {
 
     return (dispatch) => {
         request.then(({data}) => {
-            // Refetch the profile
             dispatch(appActions.getProfile());
-
         });
 
-        request.catch(({data}) => {
-
+        request.catch((error) => {
+            console.error(error);
         });
     };
 };
