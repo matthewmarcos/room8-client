@@ -9,7 +9,7 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 const AuthedNavbar = (props) => {
     // Documentation for react-bootstrap navbars:
     // https://react-bootstrap.github.io/components.html#navbars
-    const { fullName } = props;
+    const { fullName, username } = props;
     const usernameStyle = {
         paddingLeft: 10,
         fontWeight: 'bold'
@@ -28,7 +28,7 @@ const AuthedNavbar = (props) => {
                     {/* In reality, you want to load profile picture from proxied server */}
                     <Image src={ profileImage } width={27}/>
                     <span style={{ ...usernameStyle, verticalAlign: 'middle' }}>
-                        { fullName }
+                        { username }
                     </span>
                 </NavItem>
             </LinkContainer>

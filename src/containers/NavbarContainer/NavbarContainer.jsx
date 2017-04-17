@@ -37,10 +37,7 @@ class NavbarContainer extends Component {
         const { splashLinks } = this.state;
 
         if(isLoggedIn) {
-            return <AuthedNavbar
-                    username={username}
-                    fullName={fullName}
-                />
+            return <AuthedNavbar { ...this.props.user }/>
         }
         else {
             return <MyNavbar links={splashLinks} />
