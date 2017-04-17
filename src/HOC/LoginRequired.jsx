@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 import { whoami } from '../actions/AppActions';
 
@@ -30,7 +30,11 @@ class LoginRequired extends Component {
         }
         else {
             // Band-aid solution
-            return (<Forbidden/>);
+            // return (<Forbidden/>);
+
+            browserHistory.push('/login');
+            return null;
+
         }
     }
 }

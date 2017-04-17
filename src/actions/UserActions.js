@@ -93,39 +93,44 @@ export const updateUserProfile = (tempUser) => {
 };
 
 
-const updateUserOrganizations = (tempOrganizations) => {
-    return {
-        type: 'UPDATE_USER_PROPERTY',
-        payload: {
-        }
-    };
-};
-
-
-const updateUserInterests = (tempInterests) => {
-    return {
-        type: 'UPDATE_USER_PROPERTY',
-        payload: {
-        }
-    };
-};
-
-
-const updateUserHobbies = (tempHobbies) => {
-    return {
-        type: 'UPDATE_USER_PROPERTY',
-        payload: {
-        }
-    };
-};
-
-
 export const updateArray = (type) => {
-    switch(type) {
-        case 'organizations' : return updateUserOrganizations;
-        case 'interests' : return updateUserInterests;
-        case 'hobbies' : return updateUserHobbies;
-        default : return (x)=> { return alert('thunkerzz'); }
-    }
+    const url = {
+        organizations: '/api/preferences/organizations',
+        interests: '/api/preferences/interests',
+        hobbies: '/api/preferences/hobbies'
+    }[type];
+
+    return (payload) => {
+        const request = axios.put(url, payload);
+
+        return (dispatch) => {
+            request.then(({data}) => {
+                switch(type) {
+                    case 'organizations': {
+                        dispatch(appActions.getOrganizations());
+                    }
+                    break;
+                    case 'hobbies': {
+                        dispatch(appActions.getHobbies());
+                    }
+                    break;
+                    case 'interests': {
+                        dispatch(appActions.getInterests());
+                    }
+                    break;
+                    default : {
+                        dispatch(appActions.getEverything());
+                    }
+                    break;
+                }
+            });
+
+
+            request.catch((error) => {
+                console.error(error);
+            });
+        };
+    };
+
 };
 

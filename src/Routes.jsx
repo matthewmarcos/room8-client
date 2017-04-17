@@ -27,10 +27,9 @@ import PreferencesUtilities from './components/PreferencesUtilities/PreferencesU
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 import ProfileIndex from './components/ProfileIndex/ProfileIndex';
-// import Forbidden from './components/Forbidden/Forbidden';
 
 import LoginRequired from './HOC/LoginRequired';
-// import NotLoggedIn from './HOC/NotLoggedIn';
+import NotLoggedIn from './HOC/NotLoggedIn';
 
 import { SampleComponent } from './yeah';
 
@@ -43,9 +42,12 @@ const Routes = (props) => {
                         {/* / */}
                         <IndexRoute component={LandingContainer} />
                         {/* /login, /register, /forgot, /discovery */}
-                        <Route path="login" component={LoginContainer} />
-                        <Route path="register" component={RegisterContainer} />
-                        <Route path="forgot" component={ForgotContainer} />
+                        <IndexRoute component={NotLoggedIn}>
+                            <Route path="/" component={LandingContainer} />
+                            <Route path="login" component={LoginContainer} />
+                            <Route path="register" component={RegisterContainer} />
+                            <Route path="forgot" component={ForgotContainer} />
+                        </IndexRoute>
 
                         <Route component={LoginRequired}>
                             <Route path="discovery" component={DiscoveryContainer} />
@@ -75,7 +77,6 @@ const Routes = (props) => {
 
                     {/* 404 page */}
                     <Route path={'*'} component={NoMatch}/>
-
                 </Router>
             </StyleRoot>
         </Provider>

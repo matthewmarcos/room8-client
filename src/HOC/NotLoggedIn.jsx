@@ -10,13 +10,6 @@ class NotLoggedIn extends Component {
     componentDidMount() {
         const { dispatch, currentURL } = this.props;
         const { isLoggedIn } = this.props.user;
-
-        if (isLoggedIn) {
-            // set the current url/path for future redirection (we use a Redux action)
-            // then redirect (we use a React Router method)
-            // dispatch(setRedirectUrl(currentURL))
-            // browserHistory.push('/dashboard');
-        }
     }
 
     render() {
@@ -26,6 +19,7 @@ class NotLoggedIn extends Component {
             return this.props.children;
         }
         else {
+            browserHistory.replace('/dashboard');
             return null;
         }
     }

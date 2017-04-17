@@ -1,3 +1,4 @@
+import _ from 'lodash';
 // const userReducerInitialState = {
 //     userId: '1234',
 //     isLoggedIn: true,
@@ -89,6 +90,7 @@ export const userReducer = (state = userReducerInitialState, action) => {
 
         case 'LOGIN_SUCCESS': {
             const { user } = action.payload;
+
             return {
                 ...state,
                 ...user,
@@ -133,10 +135,11 @@ export const userReducer = (state = userReducerInitialState, action) => {
         }
 
         case 'RECEIVED_PROFILE_DATA': {
-            const { payload } = action;
+            let { user } = action.payload;
+
             return {
                 ...state,
-                ...payload.user
+                ...user
             };
         }
 
