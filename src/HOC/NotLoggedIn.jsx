@@ -7,23 +7,28 @@ import { whoami } from '../actions/AppActions';
 import Forbidden from  '../components/Forbidden/Forbidden';
 
 class NotLoggedIn extends Component {
+
     componentDidMount() {
         const { dispatch, currentURL } = this.props;
         const { isLoggedIn } = this.props.user;
     }
 
-    render() {
-        const { isLoggedIn } = this.props.user;
 
-        if(!isLoggedIn) {
-            return this.props.children;
-        }
-        else {
+    componentWillReceiveProps(nextProps) {
+        const { isLoggedIn } = nextProps.user;
+
+        console.log('isLoggedIn: ', isLoggedIn);
+        if(isLoggedIn) {
             browserHistory.replace('/dashboard');
-            return null;
         }
     }
+
+
+    render() {
+        return this.props.children;
+    }
 }
+
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -32,4 +37,6 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+
 export default connect(mapStateToProps)(NotLoggedIn);
+

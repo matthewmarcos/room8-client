@@ -72,7 +72,7 @@ const DisplayField = (props) => {
 DisplayField.propTypes = {
     label: PropTypes.string.isRequired,
     value: PropTypes.any.isRequired,
-    newLine: PropTypes.boolean
+    newLine: PropTypes.bool
 };
 
 DisplayField.defaultProps = {

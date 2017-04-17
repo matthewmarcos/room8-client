@@ -40,14 +40,13 @@ const Routes = (props) => {
                 <Router history={browserHistory}>
                     <Route path="/" component={AppContainer}>
                         {/* / */}
-                        <IndexRoute component={LandingContainer} />
                         {/* /login, /register, /forgot, /discovery */}
-                        <IndexRoute component={NotLoggedIn}>
-                            <Route path="/" component={LandingContainer} />
+                        <IndexRoute path="/" component={LandingContainer} />
+                        <Route component={NotLoggedIn}>
                             <Route path="login" component={LoginContainer} />
                             <Route path="register" component={RegisterContainer} />
                             <Route path="forgot" component={ForgotContainer} />
-                        </IndexRoute>
+                        </Route>
 
                         <Route component={LoginRequired}>
                             <Route path="discovery" component={DiscoveryContainer} />

@@ -7,37 +7,30 @@ import { whoami } from '../actions/AppActions';
 import Forbidden from  '../components/Forbidden/Forbidden';
 
 class LoginRequired extends Component {
+
     componentDidMount() {
         const { dispatch } = this.props;
         // const { currentUrl } = this.props;
         const { isLoggedIn } = this.props.user;
 
         dispatch(whoami()); //Initially Check if the user is logged in or something
+    }
 
-        if (!isLoggedIn) {
-            // set the current url/path for future redirection (we use a Redux action)
-            // then redirect (we use a React Router method)
-            // dispatch(setRedirectUrl(currentURL))
-            // browserHistory.replace('/login');
+
+    componentWillReceiveProps(nextProps) {
+        const { isLoggedIn } = nextProps.user;
+
+        if(!isLoggedIn) {
+            browserHistory.push('/login');
         }
     }
+
 
     render() {
-        const { isLoggedIn } = this.props.user;
-
-        if(isLoggedIn) {
-            return this.props.children;
-        }
-        else {
-            // Band-aid solution
-            // return (<Forbidden/>);
-
-            browserHistory.push('/login');
-            return null;
-
-        }
+        return this.props.children;
     }
 }
+
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -46,4 +39,6 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
+
 export default connect(mapStateToProps)(LoginRequired);
+
