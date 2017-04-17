@@ -3,7 +3,7 @@ import EditField from '../EditField/EditField';
 import _ from 'lodash';
 import { userReducerInitialState } from '../../redux/reducers/UserReducer';
 import { updateUserProfile, updateArray } from '../../actions/UserActions';
-import { Grid, Row, Col, Button, Well } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 
 class ProfileEdit extends Component {

@@ -127,7 +127,7 @@ export const updateArray = (type) => {
 
 
             request.catch((error) => {
-
+                console.error(error);
             });
         };
     };

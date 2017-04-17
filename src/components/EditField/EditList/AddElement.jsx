@@ -31,6 +31,9 @@ class AddElement extends Component {
 
         // Clear the field
         e.target.elements[this.props.label].value = '';
+        this.setState({
+            tempString: ''
+        });
     }
 
 
