@@ -48,7 +48,7 @@ class ProfileEdit extends Component {
         };
 
         console.log(formData);
-        // dispatch(updateUserProfile(formData));
+        dispatch(updateUserProfile(formData));
     }
 
     updateArray(keyState, keyBody, e) {
