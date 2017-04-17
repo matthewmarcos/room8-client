@@ -45,7 +45,7 @@ export const login = (username, password) => {
 };
 
 
-export const register = (username, password, email, nickname) => {
+export const register = (username, password, nickname, email) => {
     const request = axios.post('/auth/register', {
         username,
         password,

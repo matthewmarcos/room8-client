@@ -135,6 +135,7 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
+
         case 'RECEIVED_PROFILE_DATA': {
             let { user } = action.payload;
 
@@ -143,6 +144,7 @@ export const userReducer = (state = userReducerInitialState, action) => {
                 ...user
             };
         }
+
 
         case 'RECEIVED_ORGANIZATIONS_DATA': {
             const { payload } = action;
@@ -153,6 +155,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
                 ]
             };
         }
+
+
         case 'RECEIVED_HOBBIES_DATA': {
             const { payload } = action;
             return {
@@ -162,6 +166,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
                 ]
             };
         }
+
+
         case 'RECEIVED_INTERESTS_DATA': {
             const { payload } = action;
             return {
@@ -171,9 +177,12 @@ export const userReducer = (state = userReducerInitialState, action) => {
                 ]
             };
         }
+
+
         default: {
             return state;
         }
 
     }
 }
+

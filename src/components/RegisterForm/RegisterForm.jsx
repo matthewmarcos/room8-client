@@ -80,7 +80,7 @@ const RegisterForm = (props) => {
                                         <FormControl type="text" placeholder="Nickname"/>
                                     </Col>
                                 </FormGroup>
-    
+
                                 <FormGroup>
                                     <Col sm={6} smOffset={3}>
                                         <ButtonGroup vertical block>
