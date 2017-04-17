@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
 import { Provider } from 'react-redux';
 import { StyleRoot } from 'radium';
 
@@ -30,6 +30,7 @@ import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 
 import LoginRequired from './HOC/LoginRequired';
 import NotLoggedIn from './HOC/NotLoggedIn';
+import LandingWrapper from './HOC/LandingWrapper';
 
 import { SampleComponent } from './yeah';
 
@@ -41,7 +42,7 @@ const Routes = (props) => {
                     <Route path="/" component={AppContainer}>
                         {/* / */}
                         {/* /login, /register, /forgot, /discovery */}
-                        <IndexRoute path="/" component={LandingContainer} />
+                        <IndexRoute component={LandingWrapper}/>
                         <Route component={NotLoggedIn}>
                             <Route path="login" component={LoginContainer} />
                             <Route path="register" component={RegisterContainer} />

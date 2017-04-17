@@ -122,7 +122,8 @@ export const userReducer = (state = userReducerInitialState, action) => {
             // Who am I returns not logged in
             return {
                 ...state,
-                isLoggedIn: action.payload.isLoggedIn
+                // Clear the store
+                ...userReducerInitialState
             };
         }
 

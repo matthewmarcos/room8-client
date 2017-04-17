@@ -81,13 +81,11 @@ export const updateUserProfile = (tempUser) => {
 
     return (dispatch) => {
         request.then(({data}) => {
-            // Refetch the profile
             dispatch(appActions.getProfile());
-
         });
 
-        request.catch(({data}) => {
-
+        request.catch((error) => {
+            console.error(error);
         });
     };
 };
