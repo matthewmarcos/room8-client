@@ -92,7 +92,7 @@ const PreferencesIndex = (props) => {
                 {/* I want Internet */}
                 <DisplayField
                     label="Internet"
-                    value={pref.shouldIncludeUtilities}/>
+                    value={pref.internet}/>
                 {/* Minimum speed */}
                 <DisplayField
                     label="Internet speed requirement"

@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import EditList from './EditList/EditList';
 import EditString from './EditString';
@@ -8,11 +8,23 @@ import EditNumberSlider from './EditNumberSlider';
 import EditDate from './EditDate';
 
 
-const EditField = (props) => {
-    const { value } = props;
-    console.log(props);
+class EditField extends Component {
 
-    function defineType(value) {
+    constructor(props) {
+        super(props);
+    }
+
+
+    shouldComponentUpdate(nextProps) {
+        if(this.props.value === nextProps.value) {
+            return false;
+        }
+
+        return true;
+    }
+
+
+    defineType(value) {
         if(typeof value === 'string') {
             return 'string';
         }
@@ -29,44 +41,45 @@ const EditField = (props) => {
         return 'DefaultType';
     }
 
-    function displayProperlyByType(value) {
 
-        if((props.options &&
-            props.options.type &&
-            props.options.type === 'text') ||
-            props.type === 'text') {
+    displayProperlyByType(value) {
 
-            return <EditTextarea { ...props }/>;
+        if((this.props.options &&
+            this.props.options.type &&
+            this.props.options.type === 'text') ||
+            this.props.type === 'text') {
+
+            return <EditTextarea { ...this.props }/>;
         }
 
-        if((props.options &&
-            props.options.type &&
-            props.options.type === 'dropdown') ||
-            props.type === 'dropdown') {
+        if((this.props.options &&
+            this.props.options.type &&
+            this.props.options.type === 'dropdown') ||
+            this.props.type === 'dropdown') {
 
-            return <EditDropdown { ...props }/>;
+            return <EditDropdown { ...this.props }/>;
         }
 
-        if((props.options &&
-            props.options.type &&
-            props.options.type === 'date') ||
-            props.type === 'date') {
+        if((this.props.options &&
+            this.props.options.type &&
+            this.props.options.type === 'date') ||
+            this.props.type === 'date') {
 
-            return <EditDate { ...props }/>;
+            return <EditDate { ...this.props }/>;
         }
 
         // Kung walang nakadefine sa taas
-        switch(defineType(value)) {
+        switch(this.defineType(value)) {
             case 'string': {
-                return <EditString { ...props }/>;
+                return <EditString { ...this.props }/>;
             }
 
             case 'array': {
-                return <EditList { ...props } />
+                return <EditList { ...this.props } />
             }
 
             case 'number': {
-                return <EditNumberSlider { ...props }/>;
+                return <EditNumberSlider { ...this.props }/>;
             }
 
             default: {
@@ -75,7 +88,13 @@ const EditField = (props) => {
         }
     }
 
-    return displayProperlyByType(value);
+
+    render() {
+        const { value } = this.props;
+
+
+        return this.displayProperlyByType(value);
+    }
 };
 
 EditField.propTypes = {
