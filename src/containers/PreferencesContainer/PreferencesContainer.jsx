@@ -11,7 +11,13 @@ class PreferencesContainer extends Component {
             <div className="preferences-container">
                 <Sidebar />
                 <div className="preferences-children">
-                    { this.props.children || (<h1 className="text-center">Preferences Container here!</h1>) }
+                    {
+                        this.props.children || (
+                            <h1 className="text-center">
+                                Preferences Container here!
+                            </h1>
+                        )
+                    }
                 </div>
             </div>
         );

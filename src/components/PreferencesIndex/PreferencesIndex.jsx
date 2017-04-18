@@ -1,45 +1,147 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import DisplayField from '../DisplayField/DisplayField';
+import { Grid, Row } from 'react-bootstrap';
+
 
 const PreferencesIndex = (props) => {
+    const { pref } = props;
     return (
-        <div className="preferences-index">
-            <h1>Preferences - Summary</h1>
+        <Grid>
+            <Row>
+                <h1>Preferences - Summary</h1>
+            </Row>
 
-            {/* When */}
+                {/* When */}
+                <h3>When</h3>
                 {/* Start Date - EditDate */}
+                <DisplayField
+                    label="Start Date"
+                    value={pref.startDate}/>
                 {/* Duration - EditDropdown */}
+                <DisplayField
+                    label="Duration"
+                    value={pref.duration}/>
 
-            {/* Cost */}
+                {/* Cost */}
+                <h3>Cost</h3>
                 {/* Rent Price Range */}
+                <DisplayField
+                    label="Rent Mininum"
+                    value={pref.rentPriceRangeStart}/>
+                <DisplayField
+                    label="Rent Maximum"
+                    value={pref.rentPriceRangeEnd}/>
                 {/* I want my rent to include utilities - EditDropdown */}
+                <DisplayField
+                    label="Should Include Utilities"
+                    value={pref.shouldIncludeUtilities}/>
                 {/* Utilities Price Range */}
+                <DisplayField
+                    label="Utilities Mininum"
+                    value={pref.utilitiesPriceRangeStart}/>
+                <DisplayField
+                    label="Utilities Maximum"
+                    value={pref.utilitiesPriceRangeEnd}/>
 
-            {/* Location */}
-                {/* I want to be a 5 minute walking distance from restaurants */}
+                {/* Location */}
+                <h3>Location</h3>
                 {/* I want to be within x minutes to UPLB */}
+                <DisplayField
+                    label="Travel Time to UPLB"
+                    value={pref.travelTimeToUplb}/>
                 {/* I want to be within the general area of: */}
+                <DisplayField
+                    label="General Location"
+                    value={pref.generalLocation}/>
+                <DisplayField
+                    label="There are nearby restaurants"
+                    value={pref.generalLocation}/>
 
 
-            {/* Utilities */}
+                {/* Utilities */}
+                <h3>Utilities</h3>
                 {/* I want to do my own laundry */}
+                <DisplayField
+                    label="Can do laundry"
+                    value={pref.laundry}/>
                 {/* I want to be able to cook */}
+                <DisplayField
+                    label="Can cook"
+                    value={pref.cooking}/>
                 {/* Checkbox of Cooking Utilities */}
+                <DisplayField
+                    label="Cooking utilities:"
+                    value={pref.shouldIncludeUtilities}/>
+                <DisplayField
+                    label="Has gas stove"
+                    value={pref.gasStove}/>
+                <DisplayField
+                    label="Has an electric stove"
+                    value={pref.electricStove}/>
+                <DisplayField
+                    label="Has a microwave"
+                    value={pref.microwave}/>
+                <DisplayField
+                    label="Can bring water kettles"
+                    value={pref.waterKettle}/>
                 {/* I want Air Conditioning */}
+                <DisplayField
+                    label="Has airconditioning"
+                    value={pref.aircon}/>
                 {/* I want Internet */}
-                {/* Minimum and Maximum speed */}
+                <DisplayField
+                    label="Internet"
+                    value={pref.shouldIncludeUtilities}/>
+                {/* Minimum speed */}
+                <DisplayField
+                    label="Internet speed requirement"
+                    value={pref.speedRequirement}/>
+                {/* Can torrent */}
+                <DisplayField
+                    label="Can Torrent"
+                    value={pref.torrent}/>
 
-            {/* Lifestyle */}
+                {/* Lifestyle */}
+                <h3>Lifestyle</h3>
                 {/* I am okay with Alcohol */}
+                <DisplayField
+                    label="It is okay for my roommate to drink alcohol"
+                    value={pref.alcohol}/>
                 {/* I am okay with Smokers */}
+                <DisplayField
+                    label="Smoking is okay"
+                    value={pref.smokers}/>
+                {/* Cleanliness */}
+                <DisplayField
+                    label="My preferred roommate's cleanliness level is"
+                    value={pref.cleanliness}/>
                 {/* I am okay with roommates affiliated with an org */}
-                {/* I want to bring guests to the room /}
-                {/* I need a study area for guests */}
-                {/* I study best in the */}
-                {/* I have pets */}
-                    {/* Small Caged Pets (ex. Hamsters) */}
-                    {/* Dogs/Cats */}
-        </div>
+                <DisplayField
+                    label="It is okay if my roommate is affiliated with an organization"
+                    value={pref.hasOrg}/>
+                {/* I want to bring guests to the room */}
+                <DisplayField
+                    label="It is okay for my roommate to bring guests in the room"
+                    value={pref.guestsInRoom}/>
+                    {/* I need a study area for guests */}
+                <DisplayField
+                    label="There is a study area for guests"
+                    value={pref.guestsStudyArea}/>
+                    {/* I study best in the */}
+                <DisplayField
+                    label="Studying is best done in the"
+                    value={pref.studyTime}/>
+                    {/* I have pets */}
+                <DisplayField
+                    label="Pets are allowed"
+                    value={pref.pets}/>
+        </Grid>
     );
 };
 
-export default PreferencesIndex;
+export default connect((store) => {
+    return {
+        pref: store.preferences
+    };
+})(PreferencesIndex);

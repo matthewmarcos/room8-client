@@ -10,6 +10,7 @@ import EditDate from './EditDate';
 
 const EditField = (props) => {
     const { value } = props;
+    console.log(props);
 
     function defineType(value) {
         if(typeof value === 'string') {
