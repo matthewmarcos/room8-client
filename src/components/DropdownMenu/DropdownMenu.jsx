@@ -23,11 +23,11 @@ const DropdownMenu = (props) => {
             id="nav-dropdown2"
             onSelect={handleSelect}
         >
-            <LinkContainer to="discovery">
+            <LinkContainer to="/discovery">
                 <MenuItem eventKey="5.1">Discovery Settings</MenuItem>
             </LinkContainer>
 
-            <LinkContainer to="preferences">
+            <LinkContainer to="/preferences">
                 <MenuItem eventKey="5.2">Roommate Preferences</MenuItem>
             </LinkContainer>
 
@@ -37,7 +37,7 @@ const DropdownMenu = (props) => {
 
             <MenuItem divider />
 
-            <LinkContainer to="instructions">
+            <LinkContainer to="/instructions">
                 <MenuItem eventKey="5.5">Instructions</MenuItem>
             </LinkContainer>
 
