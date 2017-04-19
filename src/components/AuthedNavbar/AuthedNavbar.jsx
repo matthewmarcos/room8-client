@@ -32,7 +32,7 @@ const AuthedNavbar = (props) => {
                     </span>
                 </NavItem>
             </LinkContainer>
-            <LinkContainer onlyActiveOnIndex={true} to="/dashboard">
+            <LinkContainer onlyActiveOnIndex={true} to="/">
                 <NavItem eventKey={3}>
                     <span style={ lineHeightStyle }>
                         Dashboard
