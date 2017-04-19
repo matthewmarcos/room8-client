@@ -48,6 +48,12 @@ class RegisterForm extends Component {
             ...this.state
         };
 
+        // Temp fix because nickname field in database can only hold 12 chars max
+        if(fieldName === 'nickname'
+            && this.state[fieldName].length >= 12) {
+            return;
+        }
+
         tempState[fieldName] = e.target.value;
         this.setState(tempState);
     }

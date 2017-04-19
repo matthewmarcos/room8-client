@@ -6,6 +6,7 @@ import { Grid, Row } from 'react-bootstrap';
 
 const PreferencesIndex = (props) => {
     const { pref } = props;
+
     return (
         <Grid>
             <Row>
@@ -56,7 +57,7 @@ const PreferencesIndex = (props) => {
                     value={pref.generalLocation}/>
                 <DisplayField
                     label="There are nearby restaurants"
-                    value={pref.generalLocation}/>
+                    value={pref.nearbyRestaurants}/>
 
 
                 {/* Utilities */}
@@ -70,9 +71,7 @@ const PreferencesIndex = (props) => {
                     label="Can cook"
                     value={pref.cooking}/>
                 {/* Checkbox of Cooking Utilities */}
-                <DisplayField
-                    label="Cooking utilities:"
-                    value={pref.shouldIncludeUtilities}/>
+                <h4>Cooking Utilities</h4>
                 <DisplayField
                     label="Has gas stove"
                     value={pref.gasStove}/>

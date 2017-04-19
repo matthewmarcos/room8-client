@@ -1,27 +1,36 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Row, Grid } from 'react-bootstrap';
 
 import DisplayArray from './DisplayArray';
 import DisplayString from './DisplayString';
 import DisplayNumber from './DisplayNumber';
 
-const DisplayField = (props) => {
-    if(!props.value) {
-        return null;
+class DisplayField extends Component {
+
+    constructor(props) {
+        super(props);
     }
 
-    const boldFont = {
-        fontWeight: 'bold'
-    };
 
-    function defineType(value) {
+    shouldComponentUpdate(nextProps) {
+        if(this.props === nextProps) {
+            return false;
+        }
+
+        console.log(`${ this.props.label} is ${ this.props.value }`);
+
+        return true;
+    }
+
+
+    defineType(value) {
         if(typeof value === 'string') {
             return 'string';
         }
         else if(typeof value === 'number') {
             return 'number';
         }
-        else if(value.constructor === Array) {
+        else if(value && value.constructor === Array) {
             return 'array';
         }
         else if(typeof value === 'boolean') {
@@ -31,18 +40,19 @@ const DisplayField = (props) => {
         return 'DefaultType';
     }
 
-    function displayProperlyByType(value) {
-        switch(defineType(value)) {
+
+    displayProperlyByType(value) {
+        switch(this.defineType(value)) {
             case 'string': {
-                return <DisplayString {...props}/>;
+                return <DisplayString {...this.props}/>;
             }
 
             case 'array': {
-                return <DisplayArray {...props}/>;
+                return <DisplayArray {...this.props}/>;
             }
 
             case 'number': {
-                return <DisplayNumber {...props}/>
+                return <DisplayNumber {...this.props}/>
             }
 
             default: {
@@ -52,22 +62,35 @@ const DisplayField = (props) => {
 
     }
 
-    return (
-        <div>
-            <Grid>
-               <Row>
-                    <span style={boldFont}>
-                        { props.label }:&nbsp;
-                    </span>
-                    { props.newLine ? (<br/>): null }
-                    <span>
-                        { displayProperlyByType(props.value) }
-                    </span>
-                </Row>
-            </Grid>
-        </div>
-    );
+
+    render() {
+        const boldFont = {
+            fontWeight: 'bold'
+        };
+
+        if(!this.props.value) {
+            // Temporary Issue
+            return (<div style={{boldFont, color: 'red'}}>{ this.props.label }: Error Loading</div>);
+        }
+
+        return (
+            <div>
+                <Grid>
+                    <Row>
+                        <span style={boldFont}>
+                            { this.props.label }:&nbsp;
+                        </span>
+                        { this.props.newLine ? (<br/>): '' }
+                        <span>
+                            { this.displayProperlyByType(this.props.value) }
+                        </span>
+                    </Row>
+                </Grid>
+            </div>
+        );
+    }
 };
+
 
 DisplayField.propTypes = {
     label: PropTypes.string.isRequired,
@@ -75,10 +98,12 @@ DisplayField.propTypes = {
     newLine: PropTypes.bool
 };
 
+
 DisplayField.defaultProps = {
-    newLine: false
+    newLine: false,
+    value: ''
 };
 
-export default DisplayField;
 
+export default DisplayField;
 

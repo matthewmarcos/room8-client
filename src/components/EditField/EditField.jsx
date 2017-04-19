@@ -16,6 +16,10 @@ class EditField extends Component {
 
 
     shouldComponentUpdate(nextProps) {
+        if(this.props.currentValue !== nextProps.currentValue) {
+            return true;
+        }
+
         if(this.props.value === nextProps.value) {
             return false;
         }
@@ -90,7 +94,8 @@ class EditField extends Component {
 
 
     render() {
-        const { value } = this.props;
+        const { value, label } = this.props;
+        console.log(`${ label } is updating with value: ${ value }`);
 
 
         return this.displayProperlyByType(value);
