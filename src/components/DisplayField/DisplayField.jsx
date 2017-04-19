@@ -68,7 +68,7 @@ class DisplayField extends Component {
             fontWeight: 'bold'
         };
 
-        if(!this.props.value) {
+        if(typeof this.props.value === 'undefined') {
             // Temporary Issue
             return (<div style={{boldFont, color: 'red'}}>{ this.props.label }: Error Loading</div>);
         }
