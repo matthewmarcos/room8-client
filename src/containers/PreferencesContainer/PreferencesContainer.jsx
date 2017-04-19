@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid } from 'react-bootstrap';
 
 import Sidebar from '../../components/Sidebar/Sidebar';
 
@@ -10,15 +11,15 @@ class PreferencesContainer extends Component {
         return (
             <div className="preferences-container">
                 <Sidebar />
-                <div className="preferences-children">
-                    {
-                        this.props.children || (
-                            <h1 className="text-center">
-                                Preferences Container here!
-                            </h1>
-                        )
-                    }
-                </div>
+                    <div className="preferences-children">
+                        {
+                            this.props.children || (
+                                <h1 className="text-center">
+                                    Preferences Container here!
+                                </h1>
+                            )
+                        }
+                    </div>
             </div>
         );
     }

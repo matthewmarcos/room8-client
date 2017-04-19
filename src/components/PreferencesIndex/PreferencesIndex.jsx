@@ -13,6 +13,7 @@ const PreferencesIndex = (props) => {
                 <h1>Preferences - Summary</h1>
             </Row>
 
+            <Row>
                 {/* When */}
                 <h3>When</h3>
                 {/* Start Date - EditDate */}
@@ -123,18 +124,19 @@ const PreferencesIndex = (props) => {
                 <DisplayField
                     label="It is okay for my roommate to bring guests in the room"
                     value={pref.guestsInRoom}/>
-                    {/* I need a study area for guests */}
+                {/* I need a study area for guests */}
                 <DisplayField
                     label="There is a study area for guests"
                     value={pref.guestsStudyArea}/>
-                    {/* I study best in the */}
+                {/* I study best in the */}
                 <DisplayField
                     label="Studying is best done in the"
                     value={pref.studyTime}/>
-                    {/* I have pets */}
+                {/* I have pets */}
                 <DisplayField
                     label="Pets are allowed"
                     value={pref.pets}/>
+            </Row>
         </Grid>
     );
 };

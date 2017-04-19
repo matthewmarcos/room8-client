@@ -284,7 +284,7 @@ class ProfileEdit extends Component {
                                     block
                                     bsStyle="primary"
                                     bsSize="large"
-                                    onClick={this.updateArray.bind(this, 'tempInterests', 'organizations')}>
+                                    onClick={this.updateArray.bind(this, 'tempInterests', 'interests')}>
                                     Submit
                                 </Button>
                             </Row>
