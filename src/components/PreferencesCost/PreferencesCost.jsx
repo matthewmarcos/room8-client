@@ -75,7 +75,7 @@ class PreferencesCost extends Component {
                 <Grid>
                     <Row>
                         <Col xs={12}>
-                            <h1>Edit Cost Preferences!</h1>
+                            <h1>Edit Cost Preferences</h1>
                         </Col>
                     </Row>
                     <Row>

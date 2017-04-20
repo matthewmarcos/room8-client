@@ -161,3 +161,18 @@ export const updatePreferencesCost = (formData) => {
         });
     };
 };
+
+
+export const updatePreferencesLocation = (formData) => {
+    const request = axios.put('/api/preferences/location', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
