@@ -95,8 +95,6 @@ class EditField extends Component {
 
     render() {
         const { value, label } = this.props;
-        console.log(`${ label } is updating with value: ${ value }`);
-
 
         return this.displayProperlyByType(value);
     }

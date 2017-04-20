@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Row, Grid } from 'react-bootstrap';
+import * as check from 'typechecker';
 
 import DisplayArray from './DisplayArray';
 import DisplayString from './DisplayString';
@@ -17,23 +18,23 @@ class DisplayField extends Component {
             return false;
         }
 
-        console.log(`${ this.props.label} is ${ this.props.value }`);
+        // console.log(`${ this.props.label} is ${ this.props.value }`);
 
         return true;
     }
 
 
     defineType(value) {
-        if(typeof value === 'string') {
+        if(check.isString(value)) {
             return 'string';
         }
-        else if(typeof value === 'number') {
+        else if(check.isNumber(value)) {
             return 'number';
         }
-        else if(value && value.constructor === Array) {
+        else if(check.isArray(value)) {
             return 'array';
         }
-        else if(typeof value === 'boolean') {
+        else if(check.isBoolean(value)) {
             return 'boolean';
         }
 
