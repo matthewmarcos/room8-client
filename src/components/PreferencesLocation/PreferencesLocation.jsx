@@ -12,7 +12,7 @@ class PreferencesLocation extends Component {
 
         this.state = {
             tempNearbyRestaurants: this.props.nearbyRestaurants,
-            tempTravelTimeToUplb: this.props.travelTimeToUplb,
+            tempTravelTimeToUplb: String(this.props.travelTimeToUplb),
             tempGeneralLocation: this.props.generalLocation
         };
     }
@@ -21,7 +21,7 @@ class PreferencesLocation extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             tempNearbyRestaurants: nextProps.nearbyRestaurants,
-            tempTravelTimeToUplb: nextProps.travelTimeToUplb,
+            tempTravelTimeToUplb: String(nextProps.travelTimeToUplb),
             tempGeneralLocation: nextProps.generalLocation
         });
     }
@@ -41,14 +41,20 @@ class PreferencesLocation extends Component {
 
     updatePreferencesLocation() {
         const { dispatch } = this.props;
+        const travelTimeToUplb = Number(this.state.travelTimeToUplb);
+
 
         const toSend = {
             nearbyRestaurants: this.state.nearbyRestaurants,
-            travelTimeToUplb: this.state.travelTimeToUplb,
-            generalLocation: this.state.generalLocation
+            generalLocation: this.state.generalLocation,
+            travelTimeToUplb
         };
 
-        console.log('Updating Preferences Location with: ', toSend);
+
+        if(isNaN(travelTimeToUplb)) {
+            return alert('Mali ang nasa travelTimeToUplb');
+        }
+
         dispatch(updatePreferencesLocation(toSend));
     }
 
@@ -65,20 +71,24 @@ class PreferencesLocation extends Component {
                     <Row>
                         <Col xs={12}>
                             <EditField
+                                options={{
+                                    type: 'dropdown',
+                                        values: ['Yes', 'No', 'Do not care']
+                                }}
                                 label="Nearby Restaurants"
                                 value={this.state.tempNearbyRestaurants}
                                 currentValue={this.props.nearbyRestaurants}
                                 handler={this.handleUserChange.bind(this, 'tempNearbyRestaurants')}/>
                             <EditField
-                                label="Travel Time to UPLB"
-                                value={this.state.tempRentPriceRangeEnd}
-                                currentValue={String(this.props.rentPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempRentPriceRangeEnd')}/>
+                                label="Travel Time to UPLB (mins)"
+                                value={this.state.tempTravelTimeToUplb}
+                                currentValue={String(this.props.travelTimeToUplb)}
+                                handler={this.handleUserChange.bind(this, 'tempTravelTimeToUplb')}/>
                             <EditField
                                 label="General Location"
-                                value={this.state.tempUtilitiesPriceRangeEnd}
-                                currentValue={String(this.props.utilitiesPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeEnd')}/>
+                                value={this.state.tempGeneralLocation}
+                                currentValue={this.props.generalLocation}
+                                handler={this.handleUserChange.bind(this, 'tempGeneralLocation')}/>
                         </Col>
                     </Row>
                     <Row>

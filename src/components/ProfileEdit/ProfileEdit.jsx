@@ -183,7 +183,7 @@ class ProfileEdit extends Component {
                         <EditField 
                             options={{
                                 type: 'dropdown',
-                                    values: ['Yes', 'No']
+                                    values: ['Yes', 'No', 'Do not care']
                             }}
                             label="Smoker"
                             value={this.state.tempUser.smoker}

@@ -27,7 +27,7 @@ const preferencesReducerInitialState = {
     startDate: null,
     studyTime: null,
     torrent: null,
-    travelTimeToUplb: null,
+    travelTimeToUplb: '',
     utilitiesPriceRangeEnd: 0,
     utilitiesPriceRangeStart: 0,
     waterKettle: null,

@@ -66,6 +66,14 @@ class EditField extends Component {
 
         if((this.props.options &&
             this.props.options.type &&
+            this.props.options.type === 'numberSelect') ||
+            this.props.type === 'numberSelect') {
+
+            return <EditDropdown { ...this.props }/>;
+        }
+
+        if((this.props.options &&
+            this.props.options.type &&
             this.props.options.type === 'date') ||
             this.props.type === 'date') {
 
