@@ -57,7 +57,7 @@ class PreferencesWhen extends Component {
                 <Grid>
                     <Row>
                         <Col xs={12}>
-                            <h1>Edit When Preferences!</h1>
+                            <h1>Edit When Preferences</h1>
                         </Col>
                     </Row>
                     <Row>
