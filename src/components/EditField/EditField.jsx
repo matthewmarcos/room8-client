@@ -123,7 +123,7 @@ EditField.propTypes = {
 };
 
 EditField.defaultProps = {
-    type: null 
+    type: '' 
     /*
      * text === textarea
      * email === email

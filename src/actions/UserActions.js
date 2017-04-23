@@ -176,3 +176,34 @@ export const updatePreferencesLocation = (formData) => {
         });
     };
 };
+
+
+export const updatePreferencesUtilities = (formData) => {
+    const request = axios.put('/api/preferences/utilities', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
+
+
+export const updatePreferencesLifestyle = (formData) => {
+    const request = axios.put('/api/preferences/lifestyle', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
+

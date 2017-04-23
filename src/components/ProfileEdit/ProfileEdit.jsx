@@ -13,19 +13,44 @@ class ProfileEdit extends Component {
         const batchCount = 20;
         const batchLastYear = new Date().getFullYear(); //End year of the batches
 
-        let tempUser = {
-            ...userReducerInitialState
-        };
-
-        delete tempUser.organizations;
-        delete tempUser.hobbies;
-        delete tempUser.interests;
+        const { user } = this.props;
+        const {
+            fullName,
+            status, // => Dropdown
+            cleanliness,
+            sex,
+            smoker,
+            gender,
+            course,
+            batch,
+            birthday,
+            contactNumber,
+            bio,
+            hasOrg,
+            nickname,
+            email
+        } = user;
 
         this.state = {
-            tempUser,
-            tempHobbies: [],
-            tempOrganizations: [],
-            tempInterests: [],
+            tempUser: {
+                fullName,
+                nickname,
+                status, // => Dropdown
+                contactNumber,
+                email,
+                cleanliness,
+                sex,
+                smoker,
+                gender,
+                course,
+                batch,
+                bio,
+                birthday,
+                hasOrg
+            },
+            tempHobbies: [ ...user.hobbies ],
+            tempOrganizations: [ ...user.organizations ],
+            tempInterests: [ ...user.interests ],
 
             batchCount,
             batchLastYear,
