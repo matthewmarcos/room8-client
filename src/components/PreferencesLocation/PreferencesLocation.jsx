@@ -41,12 +41,14 @@ class PreferencesLocation extends Component {
 
     updatePreferencesLocation() {
         const { dispatch } = this.props;
-        const travelTimeToUplb = Number(this.state.travelTimeToUplb);
+
+        // Convert to number because we keep it as a string in state
+        const travelTimeToUplb = Number(this.state.tempTravelTimeToUplb);
 
 
         const toSend = {
-            nearbyRestaurants: this.state.nearbyRestaurants,
-            generalLocation: this.state.generalLocation,
+            nearbyRestaurants: this.state.tempNearbyRestaurants,
+            generalLocation: this.state.tempGeneralLocation,
             travelTimeToUplb
         };
 
