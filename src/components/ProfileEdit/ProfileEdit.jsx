@@ -8,8 +8,8 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 
 class ProfileEdit extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         const batchCount = 20;
         const batchLastYear = new Date().getFullYear(); //End year of the batches
 
@@ -35,6 +35,7 @@ class ProfileEdit extends Component {
         };
     }
 
+
     updateUserProfile() {
         const { dispatch } = this.props;
         let batch = Number(this.state.tempUser.batch); // Convert initial string value to a Number.
@@ -47,9 +48,9 @@ class ProfileEdit extends Component {
             batch
         };
 
-        console.log(formData);
         dispatch(updateUserProfile(formData));
     }
+
 
     updateArray(keyState, keyBody, e) {
         const { dispatch } = this.props;
@@ -61,11 +62,8 @@ class ProfileEdit extends Component {
         dispatch(updateArray(keyBody)(formData));
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(this.props === nextProps) {
-            return false;
-        }
 
+    componentWillReceiveProps(nextProps) {
         const { user } = nextProps;
         const {
             fullName,
@@ -107,6 +105,7 @@ class ProfileEdit extends Component {
         });
     }
 
+
     handleUserChange(parameter, e) {
         let tempUserCopy = {
             ...this.state.tempUser
@@ -117,6 +116,7 @@ class ProfileEdit extends Component {
             tempUser: tempUserCopy
         });
     }
+
 
     handleArrayChange(parameter, e) {
         let stateCopy = {
@@ -129,6 +129,7 @@ class ProfileEdit extends Component {
 
         this.setState(stateCopy);
     }
+
 
     render() {
         if(!this.state.tempUser) {
@@ -182,7 +183,7 @@ class ProfileEdit extends Component {
                         <EditField 
                             options={{
                                 type: 'dropdown',
-                                    values: ['Yes', 'No']
+                                    values: ['Yes', 'No', 'Do not care']
                             }}
                             label="Smoker"
                             value={this.state.tempUser.smoker}
@@ -283,7 +284,7 @@ class ProfileEdit extends Component {
                                     block
                                     bsStyle="primary"
                                     bsSize="large"
-                                    onClick={this.updateArray.bind(this, 'tempInterests', 'organizations')}>
+                                    onClick={this.updateArray.bind(this, 'tempInterests', 'interests')}>
                                     Submit
                                 </Button>
                             </Row>
@@ -293,6 +294,7 @@ class ProfileEdit extends Component {
         );
     }
 };
+
 
 export default ProfileEdit;
 

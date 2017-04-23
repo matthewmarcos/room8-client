@@ -1,11 +1,117 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { updatePreferencesLocation } from '../../actions/UserActions';
 
-const PreferencesLocation = (props) => {
-    return (
-        <div className="preferences-location">
-            <h1>Preferences Location goes here!</h1>
-        </div>
-    );
+import EditField from '../EditField/EditField';
+
+class PreferencesLocation extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tempNearbyRestaurants: this.props.nearbyRestaurants,
+            tempTravelTimeToUplb: String(this.props.travelTimeToUplb),
+            tempGeneralLocation: this.props.generalLocation
+        };
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            tempNearbyRestaurants: nextProps.nearbyRestaurants,
+            tempTravelTimeToUplb: String(nextProps.travelTimeToUplb),
+            tempGeneralLocation: nextProps.generalLocation
+        });
+    }
+
+
+    handleUserChange(parameter, e) {
+        let tempStateCopy = {
+            ...this.state
+        };
+
+        tempStateCopy[parameter] = e.target.value;
+        this.setState({
+            ...tempStateCopy
+        });
+    }
+
+
+    updatePreferencesLocation() {
+        const { dispatch } = this.props;
+
+        // Convert to number because we keep it as a string in state
+        const travelTimeToUplb = Number(this.state.tempTravelTimeToUplb);
+
+
+        const toSend = {
+            nearbyRestaurants: this.state.tempNearbyRestaurants,
+            generalLocation: this.state.tempGeneralLocation,
+            travelTimeToUplb
+        };
+
+
+        if(isNaN(travelTimeToUplb)) {
+            return alert('Mali ang nasa travelTimeToUplb');
+        }
+
+        dispatch(updatePreferencesLocation(toSend));
+    }
+
+
+    render() {
+        return (
+            <div className="preferences-when">
+                <Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <h1>Edit Location Preferences</h1>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>
+                            <EditField
+                                options={{
+                                    type: 'dropdown',
+                                        values: ['Yes', 'No', 'Do not care']
+                                }}
+                                label="Nearby Restaurants"
+                                value={this.state.tempNearbyRestaurants}
+                                currentValue={this.props.nearbyRestaurants}
+                                handler={this.handleUserChange.bind(this, 'tempNearbyRestaurants')}/>
+                            <EditField
+                                label="Travel Time to UPLB (mins)"
+                                value={this.state.tempTravelTimeToUplb}
+                                currentValue={String(this.props.travelTimeToUplb)}
+                                handler={this.handleUserChange.bind(this, 'tempTravelTimeToUplb')}/>
+                            <EditField
+                                label="General Location"
+                                value={this.state.tempGeneralLocation}
+                                currentValue={this.props.generalLocation}
+                                handler={this.handleUserChange.bind(this, 'tempGeneralLocation')}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Button
+                            block
+                            bsStyle="primary"
+                            bsSize="large"
+                            onClick={this.updatePreferencesLocation.bind(this)}>
+                            Submit
+                        </Button>
+                    </Row>
+                </Grid>
+            </div>
+        );
+    }
 };
 
-export default PreferencesLocation;
+export default connect((store) => {
+    return {
+        nearbyRestaurants: store.preferences.nearbyRestaurants,
+        travelTimeToUplb: store.preferences.travelTimeToUplb,
+        generalLocation: store.preferences.generalLocation
+    };
+})(PreferencesLocation);

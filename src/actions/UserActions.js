@@ -132,3 +132,47 @@ export const updateArray = (type) => {
 
 };
 
+
+export const updatePreferencesWhen = (formData) => {
+    const request = axios.put('/api/preferences/when', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
+
+
+export const updatePreferencesCost = (formData) => {
+    const request = axios.put('/api/preferences/cost', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
+
+
+export const updatePreferencesLocation = (formData) => {
+    const request = axios.put('/api/preferences/location', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};

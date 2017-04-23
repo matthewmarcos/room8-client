@@ -23,7 +23,7 @@ const ListMenu = (props) => {
                                 key={key}
                                 unit={unit}
                                 handler={handleWrapper.bind(this, key)} 
-                            />
+                            />;
                 })
             }
         </div>

@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import * as check from 'typechecker';
 
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -14,5 +15,6 @@ const store = createStore(
 
 // Allows user to get store from console
 window.getStore = store.getState;
+window.check = check;
 
 export default store;

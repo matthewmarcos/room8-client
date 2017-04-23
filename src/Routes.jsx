@@ -51,7 +51,6 @@ const Routes = (props) => {
 
                         <Route component={LoginRequired}>
                             <Route path="discovery" component={DiscoveryContainer} />
-                            <Route path="dashboard" component={DashboardContainer} />
                             <Route path="profile" component={ProfileContainer}>
                                 <IndexRoute component={ProfileIndex} /> {/* /profile */}
                                 <Route path="edit" component={ProfileEdit} /> {/* /profile/edit */}
@@ -71,8 +70,8 @@ const Routes = (props) => {
                                 <Route path="utilities" component={PreferencesUtilities} />
                                 <Route path="lifestyle" component={PreferencesLifestyle} />
                             </Route>
-                            <Route path="sample" component={SampleComponent}/>
                         </Route>
+                        <Route path="instructions" component={SampleComponent}/>
                     </Route>
 
                     {/* 404 page */}
