@@ -58,13 +58,10 @@ class EditTextarea extends Component {
             tempValue: this.props.value,
             displayString
         });
-
-        window.dice = this.truncateString;
     }
 
 
     toggleOpenMode(e) {
-        // console.log('Toggle state!');
         this.setState({
             isOpen: !this.state.isOpen
         });
@@ -120,7 +117,6 @@ class EditTextarea extends Component {
             </div>
         );
 
-
         return (
             <div style={{
                 padding: 5,
@@ -143,9 +139,6 @@ class EditTextarea extends Component {
                             <Col xs={12} sm={12} md={8}>
                                 <span style={{
                                     fontStyle: 'italic',
-                                    // textOverflow: 'ellipsis',
-                                    // whiteSpace: 'nowrap',
-                                    // overflow: 'visible'
                                 }}>
                                 {
                                     this.state.isOpen ? currentValue :

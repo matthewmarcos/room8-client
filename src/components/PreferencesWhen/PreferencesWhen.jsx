@@ -26,14 +26,12 @@ class PreferencesWhen extends Component {
 
 
     handleUserChange(parameter, e) {
-        console.log(parameter + ' fired')
         let tempStateCopy = {
             ...this.state
         };
 
         tempStateCopy[parameter] = e.target.value;
 
-        // console.log('supposed new state: ', tempStateCopy);
         this.setState({
             ...tempStateCopy
         });
@@ -98,7 +96,6 @@ class PreferencesWhen extends Component {
 
 export default connect((store) => {
     return {
-        // variable: store.preferences.variable,
         startDate: store.preferences.startDate,
         duration: store.preferences.duration,
         app: store.app

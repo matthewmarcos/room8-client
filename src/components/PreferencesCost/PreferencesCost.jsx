@@ -64,7 +64,6 @@ class PreferencesCost extends Component {
             utilitiesPriceRangeEnd: this.state.tempUtilitiesPriceRangeEnd
         };
 
-        console.log('Updating Preferences When with: ', toSend);
         dispatch(updatePreferencesCost(toSend));
     }
 

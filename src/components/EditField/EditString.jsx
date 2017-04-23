@@ -3,8 +3,9 @@
 */
 import React, { PropTypes, Component } from 'react';
 import { FormControl, Grid, Row, Col, Button, Collapse } from 'react-bootstrap';
-
 import Radium from 'radium';
+
+import NoValue from './NoValue';
 
 
 class EditString extends Component {
@@ -95,7 +96,7 @@ class EditString extends Component {
                                     fontStyle: 'italic'
                                 }}>
                                     { value !== currentValue? 'Old value: ' : null}
-                                    { currentValue }
+                                    { currentValue === '' ? (<NoValue/>) : currentValue }
                                 </span>
                             </Col>
                             <Col xs={12} sm={3} md={4}>
