@@ -20,9 +20,9 @@ export const userReducerInitialState = {
     smoker: '',
     course: '',
     batch: '', // Loads as a Number from the server.
-    organizations: [''],
-    hobbies: [''],
-    interests: [''],
+    organizations: [],
+    hobbies: [],
+    interests: [],
     bio: '',
     birthday: new Date().toISOString(),
     timeRegistered: new Date().toISOString()
