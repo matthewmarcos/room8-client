@@ -11,32 +11,28 @@ class PreferencesLifestyle extends Component {
         super(props);
 
         this.state = {
-            tempAirconditioning: this.props.airconditioning,
-            tempLaundry: this.props.laundry,
-            tempCooking: this.props.cooking,
-            tempGasStove: this.props.gasStove,
-            tempElectricStove: this.props.electricStove,
-            tempMicrowave: this.props.microwave,
-            tempWaterKettle: this.props.waterKettle,
-            tempInternet: this.props.internet,
-            tempTorrent: this.props.torrent,
-            tempSpeedRequirement: String(this.props.speedRequirement)
+            tempAlcohol: this.props.alcohol,
+            tempCleanliness: this.props.cleanliness,
+            tempSmokers: this.props.smokers,
+            tempStudyTime: this.props.studyTime,
+            tempGuestsInRoom: this.props.guestsInRoom,
+            tempGuestsStudyArea: this.props.guestsStudyArea,
+            tempPets: this.props.pets,
+            tempOrg: this.props.org
         };
     }
 
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            tempAirconditioning: nextProps.airconditioning,
-            tempLaundry: nextProps.laundry,
-            tempCooking: nextProps.cooking,
-            tempGasStove: nextProps.gasStove,
-            tempElectricStove: nextProps.electricStove,
-            tempMicrowave: nextProps.microwave,
-            tempWaterKettle: nextProps.waterKettle,
-            tempInternet: nextProps.internet,
-            tempTorrent: nextProps.torrent,
-            tempSpeedRequirement: String(this.props.speedRequirement)
+            tempAlcohol: nextProps.alcohol,
+            tempCleanliness: nextProps.cleanliness,
+            tempSmokers: nextProps.smokers,
+            tempStudyTime: nextProps.studyTime,
+            tempGuestsInRoom: nextProps.guestsInRoom,
+            tempGuestsStudyArea: nextProps.guestsStudyArea,
+            tempPets: nextProps.pets,
+            tempOrg: nextProps.org
         })
     }
 
@@ -57,16 +53,14 @@ class PreferencesLifestyle extends Component {
     updatePreferencesLifestyle() {
         const { dispatch } = this.props;
         const toSend = {
-            airconditioning: this.state.tempAirconditioning,
-            laundry: this.state.tempLaundry,
-            cooking: this.state.tempCooking,
-            gasStove: this.state.tempGasStove,
-            electricStove: this.state.tempElectricStove,
-            microwave: this.state.tempMicrowave,
-            waterKettle: this.state.tempWaterKettle,
-            internet: this.state.tempInternet,
-            torrent: this.state.tempTorrent,
-            speedRequirement: Number(this.state.tempSpeedRequirement)
+            alcohol: this.state.tempAlcohol,
+            cleanliness: this.state.tempCleanliness,
+            smokers: this.state.tempSmokers,
+            studyTime: this.state.tempStudyTime,
+            guestsInRoom: this.state.tempGuestsInRoom,
+            guestsStudyArea: this.state.tempGuestsStudyArea,
+            pets: this.state.tempPets,
+            org: this.state.tempOrg,
         };
 
         dispatch(updatePreferencesLifestyle(toSend))
@@ -89,87 +83,69 @@ class PreferencesLifestyle extends Component {
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Airconditioning"
-                                value={this.state.tempAirconditioning}
-                                currentValue={this.props.airconditioning}
-                                handler={this.handleUserChange.bind(this, 'tempAirconditioning')}/>
-                            <EditField 
+                                label="Alcohol"
+                                value={this.state.tempAlcohol}
+                                currentValue={this.props.alcohol}
+                                handler={this.handleUserChange.bind(this, 'tempAlcohol')}/>
+                            <EditField
+                                label="Cleanliness"
+                                value={this.state.tempCleanliness}
+                                currentValue={this.props.cleanliness}
+                                handler={this.handleUserChange.bind(this, 'tempCleanliness')}/>
+                            <EditField
                                 options={{
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Laundry"
-                                value={this.state.tempLaundry}
-                                currentValue={this.props.laundry}
-                                handler={this.handleUserChange.bind(this, 'tempLaundry')}/>
+                                label="Smokers"
+                                value={this.state.tempSmokers}
+                                currentValue={this.props.smokers}
+                                handler={this.handleUserChange.bind(this, 'tempSmokers')}/>
                             <EditField 
+                                options={{
+                                    type: 'dropdown',
+                                    values: ['Morning', 'Evening', 'Both', 'Do not care']
+                                }}
+                                label="Study Time"
+                                value={this.state.tempStudyTime}
+                                currentValue={this.props.studyTime}
+                                handler={this.handleUserChange.bind(this, 'tempStudyTime')}/>
+                            <EditField
                                 options={{
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Cooking"
-                                value={this.state.tempCooking}
-                                currentValue={this.props.cooking}
-                                handler={this.handleUserChange.bind(this, 'tempCooking')}/>
-                            <EditField 
+                                label="Guests In Room"
+                                value={this.state.tempGuestsInRoom}
+                                currentValue={this.props.guestsInRoom}
+                                handler={this.handleUserChange.bind(this, 'tempGuestsInRoom')}/>
+                            <EditField
                                 options={{
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Gas Stove"
-                                value={this.state.tempGasStove}
-                                currentValue={this.props.gasStove}
-                                handler={this.handleUserChange.bind(this, 'tempGasStove')}/>
-                            <EditField 
+                                label="Guests In Study Area"
+                                value={this.state.tempGuestsStudyArea}
+                                currentValue={this.props.guestsStudyArea}
+                                handler={this.handleUserChange.bind(this, 'tempGuestsStudyArea')}/>
+                            <EditField
                                 options={{
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Electric Stove"
-                                value={this.state.tempElectricStove}
-                                currentValue={this.props.electricStove}
-                                handler={this.handleUserChange.bind(this, 'tempElectricStove')}/>
-                            <EditField 
+                                label="Pets"
+                                value={this.state.tempPets}
+                                currentValue={this.props.pets}
+                                handler={this.handleUserChange.bind(this, 'tempPets')}/>
+                            <EditField
                                 options={{
                                     type: 'dropdown',
                                     values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Microwave"
-                                value={this.state.tempMicrowave}
-                                currentValue={this.props.microwave}
-                                handler={this.handleUserChange.bind(this, 'tempMicrowave')}/>
-                            <EditField 
-                                options={{
-                                    type: 'dropdown',
-                                    values: ['Yes', 'No', 'Do not care']
-                                }}
-                                label="Water Kettle"
-                                value={this.state.tempWaterKettle}
-                                currentValue={this.props.waterKettle}
-                                handler={this.handleUserChange.bind(this, 'tempWaterKettle')}/>
-                            <EditField 
-                                options={{
-                                    type: 'dropdown',
-                                    values: ['Yes', 'No', 'Do not care']
-                                }}
-                                label="Internet"
-                                value={this.state.tempInternet}
-                                currentValue={this.props.internet}
-                                handler={this.handleUserChange.bind(this, 'tempInternet')}/>
-                            <EditField 
-                                options={{
-                                    type: 'dropdown',
-                                    values: ['Yes', 'No', 'Do not care']
-                                }}
-                                label="Torrent"
-                                value={this.state.tempTorrent}
-                                currentValue={this.props.torrent}
-                                handler={this.handleUserChange.bind(this, 'tempTorrent')}/>
-                            <EditField 
-                                label="Speed Requirement"
-                                value={this.state.tempSpeedRequirement}
-                                currentValue={String(this.props.speedRequirement)}
-                                handler={this.handleUserChange.bind(this, 'tempSpeedRequirement')}/>
+                                label="Org"
+                                value={this.state.tempOrg}
+                                currentValue={this.props.org}
+                                handler={this.handleUserChange.bind(this, 'tempOrg')}/>
                         </Col>
                     </Row>
                     <Row>
@@ -189,17 +165,14 @@ class PreferencesLifestyle extends Component {
 
 export default connect((store) => {
     return {
-        // variable: store.preferences.variable,
-        airconditioning: store.preferences.airconditioning,
-        laundry: store.preferences.laundry,
-        cooking: store.preferences.cooking,
-        gasStove: store.preferences.gasStove,
-        electricStove: store.preferences.electricStove,
-        microwave: store.preferences.microwave,
-        waterKettle: store.preferences.waterKettle,
-        internet: store.preferences.internet,
-        torrent: store.preferences.torrent,
-        speedRequirement: store.preferences.speedRequirement,
+        alcohol: store.preferences.alcohol,
+        cleanliness: store.preferences.cleanliness,
+        smokers: store.preferences.smokers,
+        studyTime: store.preferences.studyTime,
+        guestsInRoom: store.preferences.guestsInRoom,
+        guestsStudyArea: store.preferences.guestsStudyArea,
+        pets: store.preferences.pets,
+        org: store.preferences.org,
         app: store.app
     };
 })(PreferencesLifestyle);

@@ -1,7 +1,7 @@
 const preferencesReducerInitialState = {
     airconditioning: 'Do not care',
     alcohol: 'Do not care',
-    cleanliness: 'Do not care',
+    cleanliness: 1,
     cooking: 'Do not care',
     curfew: 'Do not care',
     curfewTime: 'Do not care',
@@ -24,7 +24,7 @@ const preferencesReducerInitialState = {
     shouldIncludeUtilities: 'Do not care',
     smokers: 'Do not care',
     speedRequirement: 0,
-    startDate: 'Do not care',
+    startDate: new Date().toISOString(),
     studyTime: 'Do not care',
     torrent: 'Do not care',
     travelTimeToUplb: 0,
