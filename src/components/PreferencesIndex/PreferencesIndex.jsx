@@ -1,7 +1,9 @@
 import React from 'react';
+import Moment from 'moment';
 import { connect } from 'react-redux';
-import DisplayField from '../DisplayField/DisplayField';
 import { Grid, Row } from 'react-bootstrap';
+
+import DisplayField from '../DisplayField/DisplayField';
 
 
 const PreferencesIndex = (props) => {
@@ -18,6 +20,7 @@ const PreferencesIndex = (props) => {
                 <h3>When</h3>
                 {/* Start Date - EditDate */}
                 <DisplayField
+                    type="date"
                     label="Start Date"
                     value={pref.startDate}/>
                 {/* Duration - EditDropdown */}

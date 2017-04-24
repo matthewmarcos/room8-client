@@ -24,7 +24,6 @@ class PreferencesCost extends Component {
 
 
     handleUserChange(parameter, e) {
-        const newValue = Number(e.target.value);
         let tempStateCopy = {
             ...this.state
         };

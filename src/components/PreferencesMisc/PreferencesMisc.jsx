@@ -1,51 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
-import { updatePreferencesCost } from '../../actions/UserActions';
+import { updatePreferencesMisc } from '../../actions/UserActions';
+import TimePicker from 'react-timepicker';
 
 import EditField from '../EditField/EditField';
 
-class PreferencesCost extends Component {
+class PreferencesMisc extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            tempRentPriceRangeStart: String(this.props.rentPriceRangeStart),
-            tempRentPriceRangeEnd: String(this.props.rentPriceRangeEnd),
-            tempShouldIncludeUtilities: this.props.shouldIncludeUtilities,
-            tempUtilitiesPriceRangeStart: String(this.props.utilitiesPriceRangeStart),
-            tempUtilitiesPriceRangeEnd: String(this.props.utilitiesPriceRangeEnd)
+            tempCurfew: this.props.curfew,
+            tempCurfewTime: this.props.curfewTime
         };
     }
 
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            tempRentPriceRangeStart: String(nextProps.rentPriceRangeStart),
-            tempRentPriceRangeEnd: String(nextProps.rentPriceRangeEnd),
-            tempShouldIncludeUtilities: nextProps.shouldIncludeUtilities,
-            tempUtilitiesPriceRangeStart: String(nextProps.utilitiesPriceRangeStart),
-            tempUtilitiesPriceRangeEnd: String(nextProps.utilitiesPriceRangeEnd)
-        })
+            tempCurfew: nextProps.curfew,
+            tempCurfewTime: nextProps.curfewTime
+        });
     }
 
 
     handleUserChange(parameter, e) {
-        const newValue = Number(e.target.value);
         let tempStateCopy = {
             ...this.state
         };
 
-        if(parameter === 'shouldIncludeUtilities') {
-            tempStateCopy[parameter] = e.target.value;
-        }
-        else if(isNaN(newValue)) {
-            return;
-        }
-        else {
-            tempStateCopy[parameter] = e.target.value;
-        }
+        tempStateCopy[parameter] = e.target.value;
 
         this.setState({
             ...tempStateCopy
@@ -53,18 +39,15 @@ class PreferencesCost extends Component {
     }
 
 
-    updatePreferencesCost() {
+    updatePreferencesMisc() {
         const { dispatch } = this.props;
 
         const toSend = {
-            rentPriceRangeStart: this.state.tempRentPriceRangeStart,
-            rentPriceRangeEnd: this.state.tempRentPriceRangeEnd,
-            shouldIncludeUtilities: this.state.tempShouldIncludeUtilities,
-            utilitiesPriceRangeStart: this.state.tempUtilitiesPriceRangeStart,
-            utilitiesPriceRangeEnd: this.state.tempUtilitiesPriceRangeEnd
+            curfew: this.state.tempCurfew,
+            curfewTime: this.state.tempCurfewTime,
         };
 
-        dispatch(updatePreferencesCost(toSend));
+        dispatch(updatePreferencesMisc(toSend));
     }
 
 
@@ -80,34 +63,17 @@ class PreferencesCost extends Component {
                     <Row>
                         <Col xs={12}>
                             <EditField
-                                label="Rent Price Start"
-                                value={this.state.tempRentPriceRangeStart}
-                                currentValue={String(this.props.rentPriceRangeStart)}
-                                handler={this.handleUserChange.bind(this, 'tempRentPriceRangeStart')}/>
-                            <EditField
-                                label="Rent Price End"
-                                value={this.state.tempRentPriceRangeEnd}
-                                currentValue={String(this.props.rentPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempRentPriceRangeEnd')}/>
-                            <EditField
                                 options={{
                                     type: 'dropdown',
                                         values: ['Yes', 'No', 'Do not care']
                                 }}
-                                label="Should Include Utilities"
-                                value={this.state.tempShouldIncludeUtilities}
-                                currentValue={this.props.shouldIncludeUtilities}
-                                handler={this.handleUserChange.bind(this, 'tempDuration')}/>
-                            <EditField
-                                label="Utilities Price Start"
-                                value={this.state.tempUtilitiesPriceRangeStart}
-                                currentValue={String(this.props.utilitiesPriceRangeStart)}
-                                handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeStart')}/>
-                            <EditField
-                                label="Utilities Price End"
-                                value={this.state.tempUtilitiesPriceRangeEnd}
-                                currentValue={String(this.props.utilitiesPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeEnd')}/>
+                                label="Has Curfew?"
+                                value={this.state.tempCurfew}
+                                currentValue={this.props.curfew}
+                                handler={this.handleUserChange.bind(this, 'tempCurfew')}/>
+                            <TimePicker
+                                onChange={this.handleUserChange.bind(this, 'tempCurfewTime')}
+                                value={this.state.tempCurfewTime}/>
                         </Col>
                     </Row>
                     <Row>
@@ -116,7 +82,7 @@ class PreferencesCost extends Component {
                                 block
                                 bsStyle="primary"
                                 bsSize="large"
-                                onClick={this.updatePreferencesCost.bind(this)}>
+                                onClick={this.updatePreferencesMisc.bind(this)}>
                                 Submit
                             </Button>
                         </Col>
@@ -127,12 +93,14 @@ class PreferencesCost extends Component {
     }
 };
 
+                            // <EditField
+                                // label="Curfew Time"
+                                // value={this.state.tempCurfewTime}
+                                // currentValue={this.props.curfewTime}
+                                // handler={this.handleUserChange.bind(this, 'tempCurfewTime')}/>
 export default connect((store) => {
     return {
-        rentPriceRangeStart: store.preferences.rentPriceRangeStart,
-        rentPriceRangeEnd: store.preferences.rentPriceRangeEnd,
-        shouldIncludeUtilities: store.preferences.shouldIncludeUtilities,
-        utilitiesPriceRangeStart: store.preferences.utilitiesPriceRangeStart,
-        utilitiesPriceRangeEnd: store.preferences.utilitiesPriceRangeEnd
+        curfew: store.preferences.curfew,
+        rentPriceRangeEnd: store.preferences.rentPriceRangeEnd
     };
-})(PreferencesCost);
+})(PreferencesMisc);
