@@ -47,6 +47,12 @@ const Sidebar = (props) => {
                 <LinkContainer to="/preferences/lifestyle">
                     <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Lifestyle</NavItem>
                 </LinkContainer>
+                <LinkContainer to="/preferences/sex">
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Sex</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/preferences/misc">
+                    <NavItem style={{ ...sidebarTextStyle, ...navItemBottomStyle }}>Misc</NavItem>
+                </LinkContainer>
             </Nav>
         </div>
     );

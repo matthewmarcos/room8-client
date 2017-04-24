@@ -193,6 +193,21 @@ export const updatePreferencesUtilities = (formData) => {
 };
 
 
+export const updatePreferencesSex = (formData) => {
+    const request = axios.put('/api/preferences/sex', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
+
+
 export const updatePreferencesLifestyle = (formData) => {
     const request = axios.put('/api/preferences/lifestyle', formData);
 
