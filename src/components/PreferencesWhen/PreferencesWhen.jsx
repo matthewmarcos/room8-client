@@ -52,7 +52,7 @@ class PreferencesWhen extends Component {
     render() {
         return (
             <div className="preferences-when">
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <Col xs={12}>
                             <h1>Edit When Preferences</h1>

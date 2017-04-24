@@ -64,7 +64,7 @@ class PreferencesLocation extends Component {
     render() {
         return (
             <div className="preferences-when">
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <Col xs={12}>
                             <h1>Edit Location Preferences</h1>

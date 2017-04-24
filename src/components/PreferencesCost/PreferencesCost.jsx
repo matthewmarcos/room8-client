@@ -71,7 +71,7 @@ class PreferencesCost extends Component {
     render() {
         return (
             <div className="preferences-when">
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <Col xs={12}>
                             <h1>Edit Cost Preferences</h1>
@@ -111,13 +111,15 @@ class PreferencesCost extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Button
-                            block
-                            bsStyle="primary"
-                            bsSize="large"
-                            onClick={this.updatePreferencesCost.bind(this)}>
-                            Submit
-                        </Button>
+                        <Col xs={12}>
+                            <Button
+                                block
+                                bsStyle="primary"
+                                bsSize="large"
+                                onClick={this.updatePreferencesCost.bind(this)}>
+                                Submit
+                            </Button>
+                        </Col>
                     </Row>
                 </Grid>
             </div>

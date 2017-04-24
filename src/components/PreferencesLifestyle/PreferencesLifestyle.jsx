@@ -70,7 +70,7 @@ class PreferencesLifestyle extends Component {
     render() {
         return (
             <div className="preferences-when">
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <Col xs={12}>
                             <h1>Edit Lifestyle Preferences</h1>

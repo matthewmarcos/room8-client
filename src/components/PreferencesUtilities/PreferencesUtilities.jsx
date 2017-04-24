@@ -76,7 +76,7 @@ class PreferencesUtilities extends Component {
     render() {
         return (
             <div className="preferences-when">
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <Col xs={12}>
                             <h1>Edit Utilities Preferences</h1>
