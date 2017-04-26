@@ -139,6 +139,17 @@ const PreferencesIndex = (props) => {
                 <DisplayField
                     label="Pets are allowed"
                     value={pref.pets}/>
+                <h3>Sex</h3>
+                <DisplayField
+                    label="Sex Preference"
+                    value={pref.sex}/>
+                <h3>Misc</h3>
+                <DisplayField
+                    label="Has Curfew"
+                    value={pref.curfew}/>
+                <DisplayField
+                    label="Curfew Time"
+                    value={pref.curfewTime}/>
             </Row>
         </Grid>
     );

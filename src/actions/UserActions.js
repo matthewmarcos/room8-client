@@ -64,13 +64,9 @@ export const logout = () => {
     const request = axios.post('/auth/logout', {});
 
     return (dispatch) => {
-        request.then(({data}) => {
-            dispatch({
-                type: 'LOGOUT_SUCCESS',
-                payload: {
-                    ...data
-                }
-            });
+        dispatch({
+            type: 'LOGOUT_SUCCESS',
+            payload: {}
         });
     };
 };

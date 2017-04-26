@@ -64,6 +64,11 @@ class PreferencesCost extends Component {
             utilitiesPriceRangeEnd: this.state.tempUtilitiesPriceRangeEnd
         };
 
+        if(this.state.tempRentPriceRangeStart > this.state.tempRentPriceRangeEnd ||
+            this.state.tempUtilitiesPriceRangeStart > this.state.tempUtilitiesPriceRangeEnd) {
+            return alert('Maling input phows');
+        }
+
         dispatch(updatePreferencesCost(toSend));
     }
 
