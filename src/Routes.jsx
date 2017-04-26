@@ -19,15 +19,20 @@ import DashboardContainer from './containers/DashboardContainer/DashboardContain
 
 // Components
 import NoMatch from './components/NoMatch/NoMatch';
+
 import PreferencesCost from './components/PreferencesCost/PreferencesCost';
 import PreferencesIndex from './components/PreferencesIndex/PreferencesIndex';
 import PreferencesLifestyle from './components/PreferencesLifestyle/PreferencesLifestyle';
 import PreferencesLocation from './components/PreferencesLocation/PreferencesLocation';
 import PreferencesUtilities from './components/PreferencesUtilities/PreferencesUtilities';
 import PreferencesWhen from './components/PreferencesWhen/PreferencesWhen';
+import PreferencesMisc from './components/PreferencesMisc/PreferencesMisc';
+import PreferencesSex from './components/PreferencesSex/PreferencesSex';
+
 import ProfileEdit from './components/ProfileEdit/ProfileEdit';
 import ProfileIndex from './components/ProfileIndex/ProfileIndex';
 
+// HOC
 import LoginRequired from './HOC/LoginRequired';
 import NotLoggedIn from './HOC/NotLoggedIn';
 import LandingWrapper from './HOC/LandingWrapper';
@@ -66,6 +71,8 @@ const Routes = (props) => {
                                 */}
                                 <Route path="when" component={PreferencesWhen} />
                                 <Route path="cost" component={PreferencesCost} />
+                                <Route path="misc" component={PreferencesMisc} />
+                                <Route path="sex" component={PreferencesSex} />
                                 <Route path="location" component={PreferencesLocation} />
                                 <Route path="utilities" component={PreferencesUtilities} />
                                 <Route path="lifestyle" component={PreferencesLifestyle} />

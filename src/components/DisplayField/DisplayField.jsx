@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Row, Grid } from 'react-bootstrap';
+import Moment from 'react-moment';
 import * as check from 'typechecker';
 
 import DisplayArray from './DisplayArray';
@@ -7,11 +8,6 @@ import DisplayString from './DisplayString';
 import DisplayNumber from './DisplayNumber';
 
 class DisplayField extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
 
     shouldComponentUpdate(nextProps) {
         if(this.props === nextProps) {
@@ -22,7 +18,6 @@ class DisplayField extends Component {
 
         return true;
     }
-
 
     defineType(value) {
         if(check.isString(value)) {
@@ -43,6 +38,11 @@ class DisplayField extends Component {
 
 
     displayProperlyByType(value) {
+        if(this.props.type && this.props.type === 'date') {
+            return <Moment date={value}/>;
+        }
+
+
         switch(this.defineType(value)) {
             case 'string': {
                 return <DisplayString {...this.props}/>;
@@ -54,6 +54,10 @@ class DisplayField extends Component {
 
             case 'number': {
                 return <DisplayNumber {...this.props}/>
+            }
+
+            case 'date': {
+                return <Moment date={this.props.value}/>
             }
 
             default: {
@@ -94,6 +98,7 @@ class DisplayField extends Component {
 
 
 DisplayField.propTypes = {
+    type: PropTypes.string,
     label: PropTypes.string.isRequired,
     value: PropTypes.any.isRequired,
     newLine: PropTypes.bool

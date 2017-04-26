@@ -4,7 +4,7 @@ const preferencesReducerInitialState = {
     cleanliness: 1,
     cooking: 'Do not care',
     curfew: 'Do not care',
-    curfewTime: 'Do not care',
+    curfewTime: '21:00:00',
     duration: 'Do not care',
     electricStove: 'Do not care',
     gasStove: 'Do not care',

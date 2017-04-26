@@ -1,7 +1,9 @@
 import React from 'react';
+import Moment from 'moment';
 import { connect } from 'react-redux';
-import DisplayField from '../DisplayField/DisplayField';
 import { Grid, Row } from 'react-bootstrap';
+
+import DisplayField from '../DisplayField/DisplayField';
 
 
 const PreferencesIndex = (props) => {
@@ -18,6 +20,7 @@ const PreferencesIndex = (props) => {
                 <h3>When</h3>
                 {/* Start Date - EditDate */}
                 <DisplayField
+                    type="date"
                     label="Start Date"
                     value={pref.startDate}/>
                 {/* Duration - EditDropdown */}
@@ -136,6 +139,17 @@ const PreferencesIndex = (props) => {
                 <DisplayField
                     label="Pets are allowed"
                     value={pref.pets}/>
+                <h3>Sex</h3>
+                <DisplayField
+                    label="Sex Preference"
+                    value={pref.sex}/>
+                <h3>Misc</h3>
+                <DisplayField
+                    label="Has Curfew"
+                    value={pref.curfew}/>
+                <DisplayField
+                    label="Curfew Time"
+                    value={pref.curfewTime}/>
             </Row>
         </Grid>
     );

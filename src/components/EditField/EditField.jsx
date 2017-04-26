@@ -6,6 +6,7 @@ import EditTextarea from './EditTextarea'; // May problema pa ito sa pagtoggle a
 import EditDropdown from './EditDropdown';
 import EditNumberSlider from './EditNumberSlider';
 import EditDate from './EditDate';
+import EditTime from './EditTime';
 
 
 class EditField extends Component {
@@ -70,6 +71,14 @@ class EditField extends Component {
             this.props.type === 'numberSelect') {
 
             return <EditDropdown { ...this.props }/>;
+        }
+
+        if((this.props.options &&
+            this.props.options.type &&
+            this.props.options.type === 'time') ||
+            this.props.type === 'time') {
+
+            return <EditTime { ...this.props }/>;
         }
 
         if((this.props.options &&
