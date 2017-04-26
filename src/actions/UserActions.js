@@ -222,3 +222,17 @@ export const updatePreferencesLifestyle = (formData) => {
     };
 };
 
+
+export const updatePreferencesMisc = (formData) => {
+    const request = axios.put('/api/preferences/misc', formData);
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch(appActions.getPreferences());
+        });
+
+        request.catch((error) => {
+            console.error(error);
+        });
+    };
+};
