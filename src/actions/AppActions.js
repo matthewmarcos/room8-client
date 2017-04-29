@@ -137,12 +137,32 @@ export const getInterests = () => {
 }
 
 
+export const getMatches = () => {
+    const request = axios.get('/api/matches');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_MATCHES_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(x => x);
+    }
+}
+
+
 export const getEverything = () => {
     return (dispatch) => {
         dispatch(getInterests());
         dispatch(getOrganizations());
         dispatch(getHobbies());
         dispatch(getPreferences());
+        dispatch(getMatches());
+
         dispatch(getProfile());
     }
 }

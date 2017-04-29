@@ -1,5 +1,6 @@
 import React from 'react';
 
+// 404 Page ito. NOT pag walang matches pa si user
 const NoMatch = (props) => {
 
     return (

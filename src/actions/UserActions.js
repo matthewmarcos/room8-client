@@ -232,3 +232,27 @@ export const updatePreferencesMisc = (formData) => {
         });
     };
 };
+
+export const acceptMatch = (targetId) => {
+    const request = axios.put('/api/preferences/misc', { targetId });
+
+    return (dispatch) => {
+        request.then(({data}) => {
+        });
+
+        request.catch((error) => {
+        });
+    };
+};
+
+export const declineMatch = (targetId) => {
+    const request = axios.put('/api/preferences/misc', { targetId });
+
+    return (dispatch) => {
+        request.then(({data}) => {
+        });
+
+        request.catch((error) => {
+        });
+    };
+};
