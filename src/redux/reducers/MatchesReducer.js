@@ -8,6 +8,7 @@ export const matchesReducer = (state = matchesReducerInitialState, action) => {
     switch (action.type) {
         case 'RECEIVED_MATCHES_DATA': {
             const { payload } = action;
+            console.log
 
             return {
                 ...state,

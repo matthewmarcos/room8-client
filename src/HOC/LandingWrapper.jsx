@@ -2,12 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { browserHistory, Redirect, Route } from 'react-router';
 import LandingContainer from '../containers/LandingContainer/LandingContainer';
-import DashboardContainer from '../containers/DashboardContainer/DashboardContainer';
+import DashboardWrapper from '../HOC/DashboardWrapper';
 
 const LandingWrapper = (props) => {
     const { isLoggedIn } = props.user;
 
-    return isLoggedIn ? <DashboardContainer/> : <LandingContainer/>;
+    return (isLoggedIn) ? <DashboardWrapper/> : <LandingContainer/>;
 };
 
 
