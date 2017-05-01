@@ -1,7 +1,9 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { toCamelCase, toSnakeCase } from 'case-converter';
+import { Grid, Row, Col } from 'react-bootstrap';
 import _ from 'lodash';
+
 
 import MatchTable from '../../components/MatchTable/MatchTable';
 
@@ -43,11 +45,20 @@ class MatchesContainer extends Component {
     render() {
         return (
             <div className="matches-contaner">
-                <h1> Matches Container here </h1>
-                <MatchTable
-                    person2={this.state.currentMatch}
-                    person1={this.props.person1}
-                />
+                <Grid fluid>
+                    <Row>
+                        <Col xs={12}>
+                            <h1> Matches Container here </h1>
+                        </Col>
+                    </Row>
+
+                    <Col xs={12} md={7}>
+                        <MatchTable
+                            person2={this.state.currentMatch}
+                            person1={this.props.person1}
+                        />
+                    </Col>
+                </Grid>
             </div>
         )
     }

@@ -35,11 +35,16 @@ const MatchTable = (props) => {
         </div>
     );
 
+
     function getStyle(value1, value2) {
-        return classNames({
-            orange: value1 !== value2,
-            green: value1 === value2
-        })
+        const yellow = {
+            backgroundColor: 'yellow'
+        };
+        const green = {
+            backgroundColor: 'lightgreen'
+        };
+
+        return (value1 === value2) ? null : yellow;
     }
 
     return (
@@ -61,47 +66,71 @@ const MatchTable = (props) => {
                     <Th column="you"><span>{ person1.myStatus }</span></Th>
                     <Th column="roommate"><span>{ person2.status }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    person2.cleanlinessScore,
+                    10
+                )}>
                     <Th column="option"><span>Cleanliness</span></Th>
                     <Th column="you"><span>{ person1.myCleanliness }</span></Th>
                     <Th column="roommate"><span>{ person2.myCleanliness }</span></Th>
                     <Th column="score"><span>{ person2.cleanlinessScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    person2.cleanlinessScore,
+                    10
+                )}>
                     <Th column="option"><span>Preferred Cleanlines</span></Th>
                     <Th column="you"><span>{ person1.prefCleanliness }</span></Th>
                     <Th column="roommate"><span>{ person2.preferredCleanliness }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    person1.mySex,
+                    person2.mySex
+                )}>
                     <Th column="option"><span>Sex</span></Th>
                     <Th column="you"><span>{ person1.mySex }</span></Th>
                     <Th column="roommate"><span>{ person2.mySex }</span></Th>
                     <Th column="score"><span>{ person2.sexScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    person1.prefSex,
+                    person2.preferredSex
+                )}>
                     <Th column="option"><span>Preferred Sex</span></Th>
                     <Th column="you"><span>{ person1.prefSex }</span></Th>
                     <Th column="roommate"><span>{ person2.preferredSex }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.smokerScore
+                )}>
                     <Th column="option"><span>Smoker</span></Th>
                     <Th column="you"><span>{ person1.mySmoker }</span></Th>
                     <Th column="roommate"><span>{ person2.mySmoker }</span></Th>
                     <Th column="score"><span>{ person2.smokerScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.startDateScore
+                )}>
                     <Th column="option"><span>Start Date</span></Th>
                     <Th column="you"><span>{ person1.prefStartDate }</span></Th>
                     <Th column="roommate"><span>{ person2.startDate }</span></Th>
                     <Th column="score"><span>{ person2.startDateScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.rentScore
+                )}>
                     <Th column="option"><span>Rent (Start)</span></Th>
                     <Th column="you"><span>{ person1.prefRentPriceRangeStart }</span></Th>
                     <Th column="roommate"><span>{ person2.rentPriceRangeStart }</span></Th>
                     <Th column="score"><span>{ person2.rentScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.rentScore
+                )}>
                     <Th column="option"><span>Rent (End)</span></Th>
                     <Th column="you"><span>{ person1.prefRentPriceRangeEnd }</span></Th>
                     <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th>
