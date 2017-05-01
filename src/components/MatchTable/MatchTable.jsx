@@ -7,7 +7,10 @@ const MatchTable = (props) => {
     const { person1, person2 } = props;
     const shouldIncludeCurfewTimeRow = (person1.prefCurfew === 'No' || person1.prefCurfew === 'Do not Care') && ( person2.curfew === 'No' || person2.curfew === 'Do not Care')
     const curfewTimeRow = (
-        <Tr>
+        <Tr style={getStyle(
+            10,
+            person2.curfewTimeScore
+        )}>
             <Th column="option"><span>Curfew Time</span></Th>
             {
                 (person1.myCurfew === 'Yes') ? <Th column="you"><span>{ person1.prefCurfewTime }</span></Th> : null
@@ -21,20 +24,25 @@ const MatchTable = (props) => {
     const shouldIncludeUtilitiesCostRow = (person1.shouldIncludeUtilities === 'Yes' || person2.shouldIncludeUtilities === 'Yes');
     const utilitiesCostRow = (
         <div>
-            <Tr>
+            <Tr style={getStyle(
+                10,
+                person2.utilitiesScore
+            )}>
                 <Th column="option"><span>Utilities Cost (Start)</span></Th>
                 <Th column="you"><span>{ person1.prefUtilitiesPriceRangeStart }</span></Th>
                 <Th column="roommate"><span>{ person2.utilitiesPriceRangeStart }</span></Th>
                 <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
             </Tr>
-            <Tr>
+            <Tr style={getStyle(
+                10,
+                person2.utilitiesScore
+            )}>
                 <Th column="option"><span>Utilities Cost (End)</span></Th>
                 <Th column="you"><span>{ person1.prefUtilitiesPriceRangeEnd }</span></Th>
                 <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th>
             </Tr>
         </div>
     );
-
 
     function getStyle(value1, value2) {
         const yellow = {
@@ -110,8 +118,8 @@ const MatchTable = (props) => {
                     <Th column="score"><span>{ person2.smokerScore }</span></Th>
                 </Tr>
                 <Tr style={getStyle(
-                    10,
-                    person2.startDateScore
+                    person1.prefStartDate,
+                    person2.startDate
                 )}>
                     <Th column="option"><span>Start Date</span></Th>
                     <Th column="you"><span>{ person1.prefStartDate }</span></Th>
@@ -132,8 +140,13 @@ const MatchTable = (props) => {
                     person2.rentScore
                 )}>
                     <Th column="option"><span>Rent (End)</span></Th>
-                    <Th column="you"><span>{ person1.prefRentPriceRangeEnd }</span></Th>
-                    <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th>
+                    {
+                        (person1.myStatus === 'I am looking for a room') ? <Th column="you"><span>{ person1.prefRentPriceRangeEnd }</span></Th> : null
+                    }
+
+                    {
+                        (person2.status === 'I am looking for a room') ? <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th> : null
+                    }
                 </Tr>
                 <Tr>
                     <Th column="option"><span>Should Include Utilities</span></Th>
@@ -141,49 +154,166 @@ const MatchTable = (props) => {
                     <Th column="roommate"><span>{ person2.shouldIncludeUtilities }</span></Th>
                 </Tr>
                 { (shouldIncludeUtilitiesCostRow) ? null : utilitiesCostRow }
+                {
+                   // airconditioning
+                   // laundry
+                   // cooking
+                   // gasStove
+                   // electricStove
+                   // microwave
+                   // waterKettle
+                   // internet
+                   // torrent
+                }
                 <Tr>
+                    <Th column="option"><span>Utilities</span></Th>
+                    <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefAirconditioning,
+                    person2.airconditioning 
+                )}>
+                    <Th column="option"><span>Airconditioning</span></Th>
+                    <Th column="you"><span>{ person1.prefAirconditioning }</span></Th>
+                    <Th column="roommate"><span>{ person2.airconditioning }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefLaundry,
+                    person2.laundry
+                )}>
+                    <Th column="option"><span>Laundry</span></Th>
+                    <Th column="you"><span>{ person1.prefLaundry }</span></Th>
+                    <Th column="roommate"><span>{ person2.laundry }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefCooking,
+                    person2.cooking
+                )}>
+                    <Th column="option"><span>Cooking</span></Th>
+                    <Th column="you"><span>{ person1.prefCooking }</span></Th>
+                    <Th column="roommate"><span>{ person2.cooking }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefGasStove,
+                    person2.gasStove
+                )}>
+                    <Th column="option"><span>Gas Stove</span></Th>
+                    <Th column="you"><span>{ person1.prefGasStove }</span></Th>
+                    <Th column="roommate"><span>{ person2.gasStove }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefElectricStove,
+                    person2.electricStove
+                )}>
+                    <Th column="option"><span>Electric Stove</span></Th>
+                    <Th column="you"><span>{ person1.prefElectricStove }</span></Th>
+                    <Th column="roommate"><span>{ person2.electricStove }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefMicrowave,
+                    person2.microwave
+                )}>
+                    <Th column="option"><span>Microwave</span></Th>
+                    <Th column="you"><span>{ person1.prefMicrowave }</span></Th>
+                    <Th column="roommate"><span>{ person2.microwave }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefWaterKettle,
+                    person2.waterKettle
+                )}>
+                    <Th column="option"><span>Water Kettle</span></Th>
+                    <Th column="you"><span>{ person1.prefWaterKettle }</span></Th>
+                    <Th column="roommate"><span>{ person2.waterKettle }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefInternet,
+                    person2.internet
+                )}>
+                    <Th column="option"><span>Internet</span></Th>
+                    <Th column="you"><span>{ person1.prefInternet }</span></Th>
+                    <Th column="roommate"><span>{ person2.internet }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    person1.prefTorrent,
+                    person2.torrent
+                )}>
+                    <Th column="option"><span>Torrent</span></Th>
+                    <Th column="you"><span>{ person1.prefTorrent }</span></Th>
+                    <Th column="roommate"><span>{ person2.torrent }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.speedRequirement
+                )}>
+                    <Th column="option"><span>Internet Speed</span></Th>
+                    {
+                        (person1.prefInternet === 'Yes') ? <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th> : null
+                    }
+                    {
+                        (person2.internet === 'Yes') ? <Th column="roommate"><span>{ person2.speedRequirement }</span></Th> : null
+                    }
+                    {
+                        (person1.prefInternet === 'Yes' && person2.internet === 'Yes') ? <Th column="score"><span>{ person2.speedScore }</span></Th> : null
+                    }
+                </Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.nearbyRestaurantsScore
+                )}>
                     <Th column="option"><span>Nearby Restaurants</span></Th>
                     <Th column="you"><span>{ person1.prefNearbyRestaurants }</span></Th>
                     <Th column="roommate"><span>{ person2.nearbyRestaurants }</span></Th>
                     <Th column="score"><span>{ person2.nearbyRestaurantsScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.travelTimeToUplbScore
+                )}>
                     <Th column="option"><span>Travel time to UPLB</span></Th>
                     <Th column="you"><span>{ person1.prefTravelTimeToUplb }</span></Th>
                     <Th column="roommate"><span>{ person2.travelTimeToUplb }</span></Th>
                     <Th column="score"><span>{ person2.travelTimeToUplbScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.locationScore
+                )}>
                     <Th column="option"><span>Location</span></Th>
                     <Th column="you"><span>{ person1.prefGeneralLocation }</span></Th>
                     <Th column="roommate"><span>{ person2.generalLocation }</span></Th>
                     <Th column="score"><span>{ person2.locationScore }</span></Th>
                 </Tr>
-                <Tr>
-                    <Th column="option"><span>Internet Speed</span></Th>
-                    <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th>
-                    <Th column="roommate"><span>{ person2.speedRequirement }</span></Th>
-                    <Th column="score"><span>{ person2.speedScore }</span></Th>
-                </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.studyTimeScore
+                )}>
                     <Th column="option"><span>Study Time</span></Th>
                     <Th column="you"><span>{ person1.prefStudyTime }</span></Th>
                     <Th column="roommate"><span>{ person2.studyTime }</span></Th>
                     <Th column="score"><span>{ person2.studyTimeScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.guestsInRoomScore
+                )}>
                     <Th column="option"><span>Guests In Room</span></Th>
                     <Th column="you"><span>{ person1.prefGuestsInRoom }</span></Th>
                     <Th column="roommate"><span>{ person2.guestsInRoom }</span></Th>
                     <Th column="score"><span>{ person2.guestsInRoomScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.guestsStudyAreaScore
+                )}>
                     <Th column="option"><span>Guests Study Area</span></Th>
                     <Th column="you"><span>{ person1.prefGuestsStudyArea }</span></Th>
                     <Th column="roommate"><span>{ person2.guestsStudyArea }</span></Th>
                     <Th column="score"><span>{ person2.guestsStudyAreaScore }</span></Th>
                 </Tr>
-                <Tr>
+                <Tr style={getStyle(
+                    10,
+                    person2.orgScore
+                )}>
                     <Th column="option"><span>Organizations</span></Th>
                     <Th column="you"><span>{ person1.myHasOrg }</span></Th>
                     <Th column="roommate"><span>{ person2.hasOrg }</span></Th>
@@ -197,7 +327,12 @@ const MatchTable = (props) => {
                 { (shouldIncludeCurfewTimeRow) ? null : curfewTimeRow }
                 <Tr>
                     <Th column="option"><span>Overall Score</span></Th>
-                    <Th column="score"><span>{ person2.totalScore }</span></Th>
+                    <Th column="score"><span style={{
+                        textDecoration: 'underline',
+                        fontWeight: 'bold'
+                    }}>
+                        { person2.totalScore }
+                    </span></Th>
                 </Tr>
             </Table>
         </div>
