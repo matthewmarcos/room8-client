@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { toCamelCase, toSnakeCase } from 'case-converter';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import _ from 'lodash';
 
 
@@ -12,16 +12,19 @@ class MatchesContainer extends Component {
     constructor(props) {
         super(props);
 
-        if(this.props.matches.length > 0) {
-            this.state = {
-                currentMatch: this.props.matches[0]
-            };
-        }
-        else {
-            this.state = {
-                currentMatch: null
-            };
-        }
+        this.state = {
+            index: 0
+        };
+        // if(this.props.matches.length > 0) {
+            // this.state = {
+                // currentMatch: this.props.matches[0]
+            // };
+        // }
+        // else {
+            // this.state = {
+                // currentMatch: null
+            // };
+        // }
     }
 
 
@@ -42,6 +45,36 @@ class MatchesContainer extends Component {
     }
 
 
+    handleAccept(e) {
+        let tempIndex = this.state.index;
+        if(this.state.index === 0) {
+            tempIndex = this.props.matches.length - 1;
+        }
+        else {
+            tempIndex-=1;
+        }
+
+        this.setState({
+            index: tempIndex
+        });
+    }
+
+
+    handleReject(e) {
+        let tempIndex = this.state.index;
+        if(this.state.index === this.props.matches.length - 1) {
+            tempIndex = 0;
+        }
+        else {
+            tempIndex+=1;
+        }
+
+        this.setState({
+            index: tempIndex
+        });
+    }
+
+
     render() {
         return (
             <div className="matches-contaner">
@@ -51,12 +84,25 @@ class MatchesContainer extends Component {
                             <h1> Matches Container here </h1>
                         </Col>
                     </Row>
-
-                    <Col xs={12} md={7}>
-                        <MatchTable
-                            person2={this.state.currentMatch}
-                            person1={this.props.person1}
-                        />
+                    <Col xs={12} md={6}>
+                        <div>
+                            <MatchTable
+                                person2={this.props.matches[this.state.index]}
+                                person1={this.props.person1}
+                            />
+                        </div>
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <Button
+                            onClick={this.handleAccept.bind(this)}
+                            bsStyle="primary">
+                            Prev
+                        </Button>
+                        <Button
+                            onClick={this.handleReject.bind(this)}
+                            bsStyle="primary">
+                            Next
+                        </Button>
                     </Col>
                 </Grid>
             </div>

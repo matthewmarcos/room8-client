@@ -55,6 +55,18 @@ const MatchTable = (props) => {
         return (value1 === value2) ? null : yellow;
     }
 
+    function lazyNoEval(user1, user2, prefField1, prefField2) {
+        // Treat do not care as a no
+        if(user1[prefField1] === 'No' || user1[prefField1] === 'Do not care') {
+            return 10;
+        }
+        else if(user1[prefField1] === user2[prefField2]) {
+            return 10;
+        }
+
+        return 0;
+    }
+
     return (
         <div className="match-table">
             <Table className="table">
