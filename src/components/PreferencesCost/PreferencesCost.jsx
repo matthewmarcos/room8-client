@@ -37,7 +37,7 @@ class PreferencesCost extends Component {
             ...this.state
         };
 
-        if(parameter === 'shouldIncludeUtilities') {
+        if(parameter === 'tempShouldIncludeUtilities') {
             tempStateCopy[parameter] = e.target.value;
         }
         else if(isNaN(newValue)) {
@@ -64,8 +64,9 @@ class PreferencesCost extends Component {
             utilitiesPriceRangeEnd: this.state.tempUtilitiesPriceRangeEnd
         };
 
-        if(this.state.tempRentPriceRangeStart > this.state.tempRentPriceRangeEnd ||
-            this.state.tempUtilitiesPriceRangeStart > this.state.tempUtilitiesPriceRangeEnd) {
+        if(this.props.status === 'I am looking for a room' &&
+            (this.state.tempRentPriceRangeStart > this.state.tempRentPriceRangeEnd ||
+            this.state.tempUtilitiesPriceRangeStart > this.state.tempUtilitiesPriceRangeEnd)) {
             return alert('Maling input phows');
         }
 
@@ -74,6 +75,28 @@ class PreferencesCost extends Component {
 
 
     render() {
+        const rentEndEdit = (
+            <EditField
+                label="Rent Price End"
+                value={this.state.tempRentPriceRangeEnd}
+                currentValue={String(this.props.rentPriceRangeEnd)}
+                handler={this.handleUserChange.bind(this, 'tempRentPriceRangeEnd')}/>
+        );
+        const utilitiesEdit = (
+            <div>
+                <EditField
+                    label="Utilities Price Start"
+                    value={this.state.tempUtilitiesPriceRangeStart}
+                    currentValue={String(this.props.utilitiesPriceRangeStart)}
+                    handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeStart')}/>
+                <EditField
+                    label="Utilities Price End"
+                    value={this.state.tempUtilitiesPriceRangeEnd}
+                    currentValue={String(this.props.utilitiesPriceRangeEnd)}
+                    handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeEnd')}/>
+            </div>
+        );
+
         return (
             <div className="preferences-when">
                 <Grid fluid>
@@ -85,15 +108,11 @@ class PreferencesCost extends Component {
                     <Row>
                         <Col xs={12}>
                             <EditField
-                                label="Rent Price Start"
+                                label={ (this.props.status === "I have a room") ? "Rent/mo" : "Rent Price Range Start" }
                                 value={this.state.tempRentPriceRangeStart}
                                 currentValue={String(this.props.rentPriceRangeStart)}
                                 handler={this.handleUserChange.bind(this, 'tempRentPriceRangeStart')}/>
-                            <EditField
-                                label="Rent Price End"
-                                value={this.state.tempRentPriceRangeEnd}
-                                currentValue={String(this.props.rentPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempRentPriceRangeEnd')}/>
+                            { this.props.status === 'I have a room' ? null : rentEndEdit }
                             <EditField
                                 options={{
                                     type: 'dropdown',
@@ -102,17 +121,8 @@ class PreferencesCost extends Component {
                                 label="Should Include Utilities"
                                 value={this.state.tempShouldIncludeUtilities}
                                 currentValue={this.props.shouldIncludeUtilities}
-                                handler={this.handleUserChange.bind(this, 'tempDuration')}/>
-                            <EditField
-                                label="Utilities Price Start"
-                                value={this.state.tempUtilitiesPriceRangeStart}
-                                currentValue={String(this.props.utilitiesPriceRangeStart)}
-                                handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeStart')}/>
-                            <EditField
-                                label="Utilities Price End"
-                                value={this.state.tempUtilitiesPriceRangeEnd}
-                                currentValue={String(this.props.utilitiesPriceRangeEnd)}
-                                handler={this.handleUserChange.bind(this, 'tempUtilitiesPriceRangeEnd')}/>
+                                handler={this.handleUserChange.bind(this, 'tempShouldIncludeUtilities')}/>
+                            { this.state.tempShouldIncludeUtilities !== 'Yes' ? null : utilitiesEdit }
                         </Col>
                     </Row>
                     <Row>
@@ -138,6 +148,7 @@ export default connect((store) => {
         rentPriceRangeEnd: store.preferences.rentPriceRangeEnd,
         shouldIncludeUtilities: store.preferences.shouldIncludeUtilities,
         utilitiesPriceRangeStart: store.preferences.utilitiesPriceRangeStart,
-        utilitiesPriceRangeEnd: store.preferences.utilitiesPriceRangeEnd
+        utilitiesPriceRangeEnd: store.preferences.utilitiesPriceRangeEnd,
+        status: store.user.status
     };
 })(PreferencesCost);

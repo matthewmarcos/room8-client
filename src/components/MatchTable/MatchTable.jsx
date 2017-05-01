@@ -12,36 +12,31 @@ const MatchTable = (props) => {
             person2.curfewTimeScore
         )}>
             <Th column="option"><span>Curfew Time</span></Th>
-            {
-                (person1.prefCurfew === 'Yes') ? <Th column="you"><span>{ person1.prefCurfewTime }</span></Th> : <span>-</span>
-            }
-
-            {
-                (person2.curfew === 'Yes') ? <Th column="roommate"><span>{ person2.curfewTime }</span></Th> : <span>-</span>
-            }
+            { (person1.prefCurfew === 'Yes') ? <Th column="you"><span>{ person1.prefCurfewTime }</span></Th> : <span>-</span> }
+            { (person2.curfew === 'Yes') ? <Th column="roommate"><span>{ person2.curfewTime }</span></Th> : <span>-</span> }
         </Tr>
     );
     const shouldIncludeUtilitiesCostRow = (person1.shouldIncludeUtilities === 'Yes' || person2.shouldIncludeUtilities === 'Yes');
-    const utilitiesCostRow = (
-        <div>
-            <Tr style={getStyle(
-                10,
-                person2.utilitiesScore
-            )}>
-                <Th column="option"><span>Utilities Cost (Start)</span></Th>
-                <Th column="you"><span>{ person1.prefUtilitiesPriceRangeStart }</span></Th>
-                <Th column="roommate"><span>{ person2.utilitiesPriceRangeStart }</span></Th>
-                <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
-            </Tr>
-            <Tr style={getStyle(
-                10,
-                person2.utilitiesScore
-            )}>
-                <Th column="option"><span>Utilities Cost (End)</span></Th>
-                <Th column="you"><span>{ person1.prefUtilitiesPriceRangeEnd }</span></Th>
-                <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th>
-            </Tr>
-        </div>
+    const utilitiesCostRow1 = (
+        <Tr style={getStyle(
+            10,
+            person2.utilitiesScore
+        )}>
+            <Th column="option"><span>Utilities Cost (Start)</span></Th>
+            { (person1.prefShouldIncludeUtilities === 'No') ? <Th column="you"><span>{ person1.prefUtilitiesPriceRangeStart }</span></Th> : null }
+            { (person2.shouldIncludeUtilities === 'No') ?  <Th column="roommate"><span>{ person2.utilitiesPriceRangeStart }</span></Th> : null }
+            <Th column="score"><span>{ person2.utilitiesCostScore }</span></Th>
+        </Tr>
+    );
+    const utilitiesCostRow2 = (
+        <Tr style={getStyle(
+            10,
+            person2.utilitiesScore
+        )}>
+            <Th column="option"><span>Utilities Cost (End)</span></Th>
+            { (person1.prefShouldIncludeUtilities === 'No') ? <Th column="you"><span>{ person1.prefUtilitiesPriceRangeEnd }</span></Th> : null }
+            { (person2.shouldIncludeUtilities === 'No') ?  <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th> : null }
+        </Tr>
     );
 
     function getStyle(value1, value2) {
@@ -165,7 +160,8 @@ const MatchTable = (props) => {
                     <Th column="you"><span>{ person1.prefShouldIncludeUtilities }</span></Th>
                     <Th column="roommate"><span>{ person2.shouldIncludeUtilities }</span></Th>
                 </Tr>
-                { (shouldIncludeUtilitiesCostRow) ? null : utilitiesCostRow }
+                { (!shouldIncludeUtilitiesCostRow) ? null : utilitiesCostRow1 }
+                { (!shouldIncludeUtilitiesCostRow) ? null : utilitiesCostRow2 }
                 {
                    // airconditioning
                    // laundry
