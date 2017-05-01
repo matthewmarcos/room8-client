@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 const MatchTable = (props) => {
     const { person1, person2 } = props;
+    const shouldIncludeCurfewTimeRow = (person1.prefCurfew === 'No' || person1.prefCurfew === 'Do not Care') && ( person2.curfew === 'No' || person2.curfew === 'Do not Care')
     const curfewTimeRow = (
         <Tr>
             <Th column="option"><span>Curfew Time</span></Th>
@@ -16,6 +17,22 @@ const MatchTable = (props) => {
                 (person2.curfew === 'Yes') ? <Th column="roommate"><span>{ person2.curfewTime }</span></Th> : null
             }
         </Tr>
+    );
+    const shouldIncludeUtilitiesCostRow = (person1.shouldIncludeUtilities === 'Yes' || person2.shouldIncludeUtilities === 'Yes');
+    const utilitiesCostRow = (
+        <div>
+            <Tr>
+                <Th column="option"><span>Utilities Cost (Start)</span></Th>
+                <Th column="you"><span>{ person1.prefUtilitiesPriceRangeStart }</span></Th>
+                <Th column="roommate"><span>{ person2.utilitiesPriceRangeStart }</span></Th>
+                <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
+            </Tr>
+            <Tr>
+                <Th column="option"><span>Utilities Cost (End)</span></Th>
+                <Th column="you"><span>{ person1.prefUtilitiesPriceRangeEnd }</span></Th>
+                <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th>
+            </Tr>
+        </div>
     );
 
     function getStyle(value1, value2) {
@@ -93,6 +110,12 @@ const MatchTable = (props) => {
                     <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th>
                 </Tr>
                 <Tr>
+                    <Th column="option"><span>Should Include Utilities</span></Th>
+                    <Th column="you"><span>{ person1.prefShouldIncludeUtilities }</span></Th>
+                    <Th column="roommate"><span>{ person2.shouldIncludeUtilities }</span></Th>
+                </Tr>
+                { (shouldIncludeUtilitiesCostRow) ? null : utilitiesCostRow }
+                <Tr>
                     <Th column="option"><span>Nearby Restaurants</span></Th>
                     <Th column="you"><span>{ person1.prefNearbyRestaurants }</span></Th>
                     <Th column="roommate"><span>{ person2.nearbyRestaurants }</span></Th>
@@ -109,17 +132,6 @@ const MatchTable = (props) => {
                     <Th column="you"><span>{ person1.prefGeneralLocation }</span></Th>
                     <Th column="roommate"><span>{ person2.generalLocation }</span></Th>
                     <Th column="score"><span>{ person2.locationScore }</span></Th>
-                </Tr>
-                <Tr>
-                    <Th column="option"><span>Utilities (Start)</span></Th>
-                    <Th column="you"><span>{ person1.prefUtilitiesPriceRangeStart }</span></Th>
-                    <Th column="roommate"><span>{ person2.utilitiesPriceRangeStart }</span></Th>
-                    <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
-                </Tr>
-                <Tr>
-                    <Th column="option"><span>Utilities (End)</span></Th>
-                    <Th column="you"><span>{ person1.prefUtilitiesPriceRangeEnd }</span></Th>
-                    <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th>
                 </Tr>
                 <Tr>
                     <Th column="option"><span>Internet Speed</span></Th>
@@ -155,13 +167,8 @@ const MatchTable = (props) => {
                     <Th column="option"><span>Curfew</span></Th>
                     <Th column="you"><span>{ person1.prefCurfew }</span></Th>
                     <Th column="roommate"><span>{ person2.curfew }</span></Th>
-                    <Th column="score"><span>{ person2.curfewTimeScore }</span></Th>
                 </Tr>
-                {
-                    ((person1.prefCurfew === 'No' || person1.prefCurfew === 'Do not Care') &&
-                    ( person2.curfew === 'No' || person2.curfew === 'Do not Care'))
-                        ? null : curfewTimeRow
-                }
+                { (shouldIncludeCurfewTimeRow) ? null : curfewTimeRow }
                 <Tr>
                     <Th column="option"><span>Overall Score</span></Th>
                     <Th column="score"><span>{ person2.totalScore }</span></Th>
