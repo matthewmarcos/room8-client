@@ -339,9 +339,7 @@ const MatchTable = (props) => {
                     <Th column="score"><span style={{
                         textDecoration: 'underline',
                         fontWeight: 'bold'
-                    }}>
-                        { person2.totalScore }
-                    </span></Th>
+                    }}> { person2.totalScore } </span></Th>
                 </Tr>
             </Table>
         </div>

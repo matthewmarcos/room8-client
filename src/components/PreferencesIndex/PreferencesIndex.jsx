@@ -7,10 +7,23 @@ import DisplayField from '../DisplayField/DisplayField';
 
 
 const PreferencesIndex = (props) => {
-    const { pref } = props;
+    const { pref, status } = props;
+    const isLookingForRoom = status === 'I am looking for a room';
+    const shouldIncludeUtilities = pref.shouldIncludeUtilities === 'Yes';
+    const utilitiesPriceRange = (
+        <div>
+            {/* Utilities Price Range */}
+            <DisplayField
+                label="Utilities Mininum"
+                value={pref.utilitiesPriceRangeStart}/>
+            <DisplayField
+                label="Utilities Maximum"
+                value={pref.utilitiesPriceRangeEnd}/>
+        </div>
+    );
 
     return (
-        <Grid>
+        <Grid fluid>
             <Row>
                 <h1>Preferences - Summary</h1>
             </Row>
@@ -32,7 +45,7 @@ const PreferencesIndex = (props) => {
                 <h3>Cost</h3>
                 {/* Rent Price Range */}
                 <DisplayField
-                    label="Rent Mininum"
+                    label={ isLookingForRoom ? "Rent Mininum" : "Rent" }
                     value={pref.rentPriceRangeStart}/>
                 <DisplayField
                     label="Rent Maximum"
@@ -41,14 +54,7 @@ const PreferencesIndex = (props) => {
                 <DisplayField
                     label="Should Include Utilities"
                     value={pref.shouldIncludeUtilities}/>
-                {/* Utilities Price Range */}
-                <DisplayField
-                    label="Utilities Mininum"
-                    value={pref.utilitiesPriceRangeStart}/>
-                <DisplayField
-                    label="Utilities Maximum"
-                    value={pref.utilitiesPriceRangeEnd}/>
-
+                { (shouldIncludeUtilities) ? utilitiesPriceRange : null }
                 {/* Location */}
                 <h3>Location</h3>
                 {/* I want to be within x minutes to UPLB */}
@@ -122,7 +128,7 @@ const PreferencesIndex = (props) => {
                 {/* I am okay with roommates affiliated with an org */}
                 <DisplayField
                     label="It is okay if my roommate is affiliated with an organization"
-                    value={pref.hasOrg}/>
+                    value={pref.org}/>
                 {/* I want to bring guests to the room */}
                 <DisplayField
                     label="It is okay for my roommate to bring guests in the room"
@@ -147,9 +153,10 @@ const PreferencesIndex = (props) => {
                 <DisplayField
                     label="Has Curfew"
                     value={pref.curfew}/>
-                <DisplayField
-                    label="Curfew Time"
-                    value={pref.curfewTime}/>
+                {
+                    (pref.curfew === 'No') ? null :
+                        (<DisplayField label="Curfew Time" value={pref.curfewTime}/>)
+                }
             </Row>
         </Grid>
     );
@@ -157,6 +164,7 @@ const PreferencesIndex = (props) => {
 
 export default connect((store) => {
     return {
+        status: store.user.status,
         pref: store.preferences
     };
 })(PreferencesIndex);

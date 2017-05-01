@@ -80,7 +80,7 @@ class DisplayField extends Component {
 
         return (
             <div>
-                <Grid>
+                <Grid fluid>
                     <Row>
                         <span style={boldFont}>
                             { this.props.label }:&nbsp;
