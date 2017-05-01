@@ -13,11 +13,11 @@ const MatchTable = (props) => {
         )}>
             <Th column="option"><span>Curfew Time</span></Th>
             {
-                (person1.myCurfew === 'Yes') ? <Th column="you"><span>{ person1.prefCurfewTime }</span></Th> : null
+                (person1.prefCurfew === 'Yes') ? <Th column="you"><span>{ person1.prefCurfewTime }</span></Th> : <span>-</span>
             }
 
             {
-                (person2.curfew === 'Yes') ? <Th column="roommate"><span>{ person2.curfewTime }</span></Th> : null
+                (person2.curfew === 'Yes') ? <Th column="roommate"><span>{ person2.curfewTime }</span></Th> : <span>-</span>
             }
         </Tr>
     );
@@ -153,11 +153,11 @@ const MatchTable = (props) => {
                 )}>
                     <Th column="option"><span>Rent (End)</span></Th>
                     {
-                        (person1.myStatus === 'I am looking for a room') ? <Th column="you"><span>{ person1.prefRentPriceRangeEnd }</span></Th> : null
+                        (person1.myStatus === 'I am looking for a room') ? <Th column="you"><span>{ person1.prefRentPriceRangeEnd }</span></Th> : <span>-</span>
                     }
 
                     {
-                        (person2.status === 'I am looking for a room') ? <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th> : null
+                        (person2.status === 'I am looking for a room') ? <Th column="roommate"><span>{ person2.rentPriceRangeEnd }</span></Th> : <span>-</span>
                     }
                 </Tr>
                 <Tr>
@@ -179,6 +179,8 @@ const MatchTable = (props) => {
                 }
                 <Tr>
                     <Th column="option"><span>Utilities</span></Th>
+                    <Th column="you"><span>-</span></Th>
+                    <Th column="roommate"><span>-</span></Th>
                     <Th column="score"><span>{ person2.utilitiesScore }</span></Th>
                 </Tr>
                 <Tr style={getStyle(
@@ -246,27 +248,25 @@ const MatchTable = (props) => {
                     <Th column="roommate"><span>{ person2.internet }</span></Th>
                 </Tr>
                 <Tr style={getStyle(
+                    10,
+                    person2.speedRequirement
+                )}>
+                    <Th column="option"><span>Internet Speed</span></Th>
+                    {
+                        (person1.prefInternet === 'Yes') ? <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th> : '-'
+                    }
+                    {
+                        (person2.internet === 'Yes') ? <Th column="roommate"><span>{ person2.speedRequirement }</span></Th> : '-'
+                    }
+                    <Th column="score"><span>{ person2.speedScore }</span></Th>
+                </Tr>
+                <Tr style={getStyle(
                     person1.prefTorrent,
                     person2.torrent
                 )}>
                     <Th column="option"><span>Torrent</span></Th>
                     <Th column="you"><span>{ person1.prefTorrent }</span></Th>
                     <Th column="roommate"><span>{ person2.torrent }</span></Th>
-                </Tr>
-                <Tr style={getStyle(
-                    10,
-                    person2.speedRequirement
-                )}>
-                    <Th column="option"><span>Internet Speed</span></Th>
-                    {
-                        (person1.prefInternet === 'Yes') ? <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th> : null
-                    }
-                    {
-                        (person2.internet === 'Yes') ? <Th column="roommate"><span>{ person2.speedRequirement }</span></Th> : null
-                    }
-                    {
-                        (person1.prefInternet === 'Yes' && person2.internet === 'Yes') ? <Th column="score"><span>{ person2.speedScore }</span></Th> : null
-                    }
                 </Tr>
                 <Tr style={getStyle(
                     10,
@@ -335,6 +335,7 @@ const MatchTable = (props) => {
                     <Th column="option"><span>Curfew</span></Th>
                     <Th column="you"><span>{ person1.prefCurfew }</span></Th>
                     <Th column="roommate"><span>{ person2.curfew }</span></Th>
+                    <Th column="score"><span>{ person2.curfewTimeScore }</span></Th>
                 </Tr>
                 { (shouldIncludeCurfewTimeRow) ? null : curfewTimeRow }
                 <Tr>
