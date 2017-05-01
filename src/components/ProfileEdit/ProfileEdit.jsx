@@ -148,9 +148,9 @@ class ProfileEdit extends Component {
             ...this.state
         };
 
-        stateCopy[parameter] = [
+        stateCopy[parameter] = _.uniq([
             ...e.value
-        ];
+        ]);
 
         this.setState(stateCopy);
     }
