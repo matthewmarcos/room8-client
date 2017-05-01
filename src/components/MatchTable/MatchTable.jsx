@@ -42,9 +42,6 @@ const MatchTable = (props) => {
         })
     }
 
-    console.log(person1);
-    console.log(person2);
-
     return (
         <div className="match-table">
             <Table className="table">
