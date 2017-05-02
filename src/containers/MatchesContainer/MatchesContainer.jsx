@@ -13,7 +13,8 @@ class MatchesContainer extends Component {
         super(props);
 
         this.state = {
-            index: 0
+            index: 0,
+            currentMatch: this.props.matches[0]
         };
         // if(this.props.matches.length > 0) {
             // this.state = {

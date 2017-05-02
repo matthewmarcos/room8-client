@@ -38,6 +38,18 @@ const MatchTable = (props) => {
             { (person2.shouldIncludeUtilities === 'No') ?  <Th column="roommate"><span>{ person2.utilitiesPriceRangeEnd }</span></Th> : null }
         </Tr>
     );
+    const shouldIncludeInternetSpeedRow = (person1.prefInternet === 'Yes') || (person2.internet === 'Yes');
+    const internetSpeedRow = (
+        <Tr style={getStyle(
+            10,
+            person2.speedRequirement
+        )}>
+            <Th column="option"><span>Internet Speed</span></Th>
+            { (person1.prefInternet === 'Yes') ? <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th> : '-' }
+            { (person2.internet === 'Yes') ? <Th column="roommate"><span>{ person2.speedRequirement }</span></Th> : '-' }
+            <Th column="score"><span>{ person2.speedScore }</span></Th>
+        </Tr>
+    );
 
     function getStyle(value1, value2) {
         const yellow = {
@@ -243,19 +255,7 @@ const MatchTable = (props) => {
                     <Th column="you"><span>{ person1.prefInternet }</span></Th>
                     <Th column="roommate"><span>{ person2.internet }</span></Th>
                 </Tr>
-                <Tr style={getStyle(
-                    10,
-                    person2.speedRequirement
-                )}>
-                    <Th column="option"><span>Internet Speed</span></Th>
-                    {
-                        (person1.prefInternet === 'Yes') ? <Th column="you"><span>{ person1.prefSpeedRequirement }</span></Th> : '-'
-                    }
-                    {
-                        (person2.internet === 'Yes') ? <Th column="roommate"><span>{ person2.speedRequirement }</span></Th> : '-'
-                    }
-                    <Th column="score"><span>{ person2.speedScore }</span></Th>
-                </Tr>
+                {  shouldIncludeInternetSpeedRow ? internetSpeedRow : null }
                 <Tr style={getStyle(
                     person1.prefTorrent,
                     person2.torrent
