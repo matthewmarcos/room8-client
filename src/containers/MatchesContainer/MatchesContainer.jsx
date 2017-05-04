@@ -5,6 +5,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 import _ from 'lodash';
 
 
+import { acceptMatch, declineMatch } from '../../actions/UserActions';
 import MatchTable from '../../components/MatchTable/MatchTable';
 
 
@@ -16,16 +17,6 @@ class MatchesContainer extends Component {
             index: 0,
             currentMatch: this.props.matches[0]
         };
-        // if(this.props.matches.length > 0) {
-            // this.state = {
-                // currentMatch: this.props.matches[0]
-            // };
-        // }
-        // else {
-            // this.state = {
-                // currentMatch: null
-            // };
-        // }
     }
 
 
@@ -37,7 +28,7 @@ class MatchesContainer extends Component {
             this.setState({
                 currentMatch: this.props.matches.slice(1, length)[0]
             });
-        }
+       }
         else {
             this.setState({
                 currentMatch: null
@@ -46,7 +37,7 @@ class MatchesContainer extends Component {
     }
 
 
-    handleAccept(e) {
+    handlePrev(e) {
         let tempIndex = this.state.index;
         if(this.state.index === 0) {
             tempIndex = this.props.matches.length - 1;
@@ -61,7 +52,7 @@ class MatchesContainer extends Component {
     }
 
 
-    handleReject(e) {
+    handleNext(e) {
         let tempIndex = this.state.index;
         if(this.state.index === this.props.matches.length - 1) {
             tempIndex = 0;
@@ -76,6 +67,27 @@ class MatchesContainer extends Component {
     }
 
 
+    handleAccept(e) {
+        let tempIndex = this.state.index;
+        const { currentMatch } = this.state;
+        const { dispatch } = this.props;
+
+        console.log('currentMatch', currentMatch);
+        return dispatch(acceptMatch(currentMatch.id));
+    }
+
+
+    handleDecline(e) {
+        let tempIndex = this.state.index;
+        const { currentMatch } = this.state;
+        const { dispatch } = this.props;
+
+        console.log('Handle Decline');
+        console.log(currentMatch);
+        return dispatch(declineMatch(currentMatch.id));
+    }
+
+
     render() {
         return (
             <div className="matches-contaner">
@@ -85,26 +97,46 @@ class MatchesContainer extends Component {
                             <h1> Matches Container here </h1>
                         </Col>
                     </Row>
-                    <Col xs={12} md={6}>
-                        <div>
-                            <MatchTable
-                                person2={this.props.matches[this.state.index]}
-                                person1={this.props.person1}
-                            />
-                        </div>
-                    </Col>
-                    <Col xs={12} md={6}>
-                        <Button
-                            onClick={this.handleAccept.bind(this)}
-                            bsStyle="primary">
-                            Prev
-                        </Button>
-                        <Button
-                            onClick={this.handleReject.bind(this)}
-                            bsStyle="primary">
-                            Next
-                        </Button>
-                    </Col>
+                    <Row>
+                        <Col xs={12} md={6}>
+                            <div>
+                                <MatchTable
+                                    person2={this.props.matches[this.state.index]}
+                                    person1={this.props.person1}
+                                />
+                            </div>
+                        </Col>
+                        <Col xs={12} md={6}>
+                            <Row>
+                                <Col xs={12}>
+                                    <Button
+                                        onClick={this.handlePrev.bind(this)}
+                                        bsStyle="primary">
+                                        Prev
+                                    </Button>
+                                    <Button
+                                        onClick={this.handleNext.bind(this)}
+                                        bsStyle="primary">
+                                        Next
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={12}>
+                                    <Button
+                                        onClick={this.handleAccept.bind(this)}
+                                        bsStyle="primary">
+                                        Accept
+                                    </Button>
+                                    <Button
+                                        onClick={this.handleDecline.bind(this)}
+                                        bsStyle="primary">
+                                        Decline
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
                 </Grid>
             </div>
         )

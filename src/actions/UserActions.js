@@ -234,10 +234,23 @@ export const updatePreferencesMisc = (formData) => {
 };
 
 export const acceptMatch = (targetId) => {
-    const request = axios.put('/api/preferences/misc', { targetId });
+    const request = axios.post('/api/matches', { targetId });
 
     return (dispatch) => {
-        request.then(({data}) => {
+
+        // Optimistic UI first here?
+        dispatch({
+            type: 'REMOVE_MATCH_FROM_STATE',
+            payload: { targetId }
+        });
+
+        request.then((response) => {
+            const { data } = response;
+
+            console.log('data', data);
+            console.log('response', response);
+
+            // dispatch(appActions.getMatches());
         });
 
         request.catch((error) => {
@@ -246,10 +259,12 @@ export const acceptMatch = (targetId) => {
 };
 
 export const declineMatch = (targetId) => {
-    const request = axios.put('/api/preferences/misc', { targetId });
+    const request = axios.delete('/api/matches', { targetId });
 
     return (dispatch) => {
         request.then(({data}) => {
+            console.log('AcceptMatch');
+            dispatch(appActions.getMatches());
         });
 
         request.catch((error) => {

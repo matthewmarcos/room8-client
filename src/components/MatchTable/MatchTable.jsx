@@ -89,6 +89,11 @@ const MatchTable = (props) => {
                     <Th column="roommate"><span>{ person2.username }</span></Th>
                 </Tr>
                 <Tr>
+                    <Th column="option"><span>Id</span></Th>
+                    <Th column="you"><span>{ person1.myId }</span></Th>
+                    <Th column="roommate"><span>{ person2.id }</span></Th>
+                </Tr>
+                <Tr>
                     <Th column="option"><span>Status</span></Th>
                     <Th column="you"><span>{ person1.myStatus }</span></Th>
                     <Th column="roommate"><span>{ person2.status }</span></Th>
