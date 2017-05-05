@@ -20,6 +20,15 @@ class MatchesContainer extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps) {
+        if(this.props !== nextProps) {
+            this.setState({
+                currentMatch: nextProps.matches[0]
+            });
+        }
+    }
+
+
     nextMatch() {
         const length = this.props.matches.length;
         const newArray = this.props.matches.slice(1, length);
@@ -72,7 +81,6 @@ class MatchesContainer extends Component {
         const { currentMatch } = this.state;
         const { dispatch } = this.props;
 
-        console.log('currentMatch', currentMatch);
         return dispatch(acceptMatch(currentMatch.id));
     }
 
@@ -83,7 +91,7 @@ class MatchesContainer extends Component {
         const { dispatch } = this.props;
 
         console.log('Handle Decline');
-        console.log(currentMatch);
+        console.log(currentMatch.id);
         return dispatch(declineMatch(currentMatch.id));
     }
 

@@ -30,9 +30,6 @@ export const matchesReducer = (state = matchesReducerInitialState, action) => {
 
             const matches = [ ...state.matches ].filter(x => x.id !== targetId);
 
-            console.log('payload', payload);
-            console.log('matches', matches);
-
             return {
                 ...state,
                 matches: [

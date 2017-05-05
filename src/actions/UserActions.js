@@ -249,8 +249,6 @@ export const acceptMatch = (targetId) => {
 
             console.log('data', data);
             console.log('response', response);
-
-            // dispatch(appActions.getMatches());
         });
 
         request.catch((error) => {
@@ -259,12 +257,22 @@ export const acceptMatch = (targetId) => {
 };
 
 export const declineMatch = (targetId) => {
-    const request = axios.delete('/api/matches', { targetId });
+    console.log('targetId: ', targetId);
+    const request = axios.put('/api/matches', { targetId });
 
     return (dispatch) => {
-        request.then(({data}) => {
-            console.log('AcceptMatch');
-            dispatch(appActions.getMatches());
+
+        // Optimistic UI first here?
+        dispatch({
+            type: 'REMOVE_MATCH_FROM_STATE',
+            payload: { targetId }
+        });
+
+        request.then((response) => {
+            const { data } = response;
+
+            console.log('data', data);
+            console.log('response', response);
         });
 
         request.catch((error) => {
