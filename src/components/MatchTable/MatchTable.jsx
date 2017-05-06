@@ -142,8 +142,8 @@ const MatchTable = (props) => {
                     <Th column="score"><span>{ person2.smokerScore }</span></Th>
                 </Tr>
                 <Tr style={getStyle(
-                    person1.prefStartDate,
-                    person2.startDate
+                    10,
+                    person2.startDateSscore
                 )}>
                     <Th column="option"><span>Start Date</span></Th>
                     <Th column="you"><span>{ person1.prefStartDate }</span></Th>
