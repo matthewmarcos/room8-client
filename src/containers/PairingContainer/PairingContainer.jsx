@@ -12,13 +12,23 @@ class PairingContainer extends Component {
     render() {
         return (
             <div className="pairing-container">
-                <h1>
-                    Your pair is:
-                </h1>
-                <MatchTable
-                    person2={this.props.pair}
-                    person1={this.props.user}
-                />
+                <Grid>
+                    <Row>
+                        <h1>
+                            Your pair is: { this.props.pair.username }
+                        </h1>
+                    </Row>
+                    <Row>
+                        Contact: { this.props.pair.contactNumber }
+                        Email: { this.props.pair.email }
+                    </Row>
+                    <Row>
+                        <MatchTable
+                            person2={this.props.pair}
+                            person1={this.props.user}
+                        />
+                    </Row>
+                </Grid>
             </div>
         );
     }
