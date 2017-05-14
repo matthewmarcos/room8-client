@@ -25,7 +25,8 @@ export const userReducerInitialState = {
     interests: [],
     bio: '',
     birthday: new Date().toISOString(),
-    timeRegistered: new Date().toISOString()
+    timeRegistered: new Date().toISOString(),
+    matchMe: false
 };
 
 
@@ -165,7 +166,14 @@ export const userReducer = (state = userReducerInitialState, action) => {
             };
         }
 
+        case 'TOGGLE_DISCOVERY': {
+            const { payload } = action;
+            return {
+                ...state,
+                matchMe: payload.data.matchMe
 
+            };
+        }
 
         default: {
             return state;

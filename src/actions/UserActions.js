@@ -271,8 +271,24 @@ export const declineMatch = (targetId) => {
         request.then((response) => {
             const { data } = response;
 
-            console.log('data', data);
-            console.log('response', response);
+        });
+
+        request.catch((error) => {
+        });
+    };
+};
+
+export const toggleDiscovery = () => {
+    const discoverySetting = 'something'
+    const request = axios.put('/api/discover/match', { discoverySetting });
+
+    return (dispatch) => {
+        request.then((response) => {
+            const { data } = response;
+            dispatch({
+                type: 'TOGGLE_DISCOVERY',
+                payload: { data }
+            });
         });
 
         request.catch((error) => {

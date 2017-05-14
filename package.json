@@ -23,6 +23,7 @@
     "react-bootstrap-slider": "^1.1.5",
     "react-bootstrap-table": "^3.2.2",
     "react-bootstrap-time-picker": "^1.0.1",
+    "react-bootstrap-toggle": "^2.0.6",
     "react-dom": "^15.4.1",
     "react-moment": "^0.2.2",
     "react-redux": "^5.0.1",
