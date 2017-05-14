@@ -102,7 +102,7 @@ class MatchesContainer extends Component {
                 <Grid fluid>
                     <Row>
                         <Col xs={12}>
-                            <h1> Matches Container here </h1>
+                            <h1>Current Matches</h1>
                         </Col>
                     </Row>
                     <Row>
