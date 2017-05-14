@@ -60,7 +60,7 @@ export const getProfile = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
     };
 }
 
@@ -78,7 +78,7 @@ export const getPreferences = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
     };
 }
 
@@ -96,7 +96,7 @@ export const getHobbies = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
     }
 }
 
@@ -114,7 +114,7 @@ export const getOrganizations = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
     }
 }
 
@@ -132,7 +132,7 @@ export const getInterests = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
     }
 }
 
@@ -150,7 +150,25 @@ export const getMatches = () => {
             });
         });
 
-        request.catch(x => x);
+        request.catch(function(err) {});
+    }
+}
+
+
+export const getPair = () => {
+    const request = axios.get('/api/pair');
+
+    return (dispatch) => {
+        request.then(({data}) => {
+            dispatch({
+                type: 'RECEIVED_PAIR_DATA',
+                payload: {
+                    ...data
+                }
+            });
+        });
+
+        request.catch(function(err) {});
     }
 }
 
@@ -162,7 +180,7 @@ export const getEverything = () => {
         dispatch(getHobbies());
         dispatch(getPreferences());
         dispatch(getMatches());
-
+        dispatch(getPair());
         dispatch(getProfile());
     }
 }
