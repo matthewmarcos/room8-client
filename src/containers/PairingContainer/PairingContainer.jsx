@@ -2,25 +2,55 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import * as appActions from '../../actions/AppActions';
+import MatchTable from '../../components/MatchTable/MatchTable';
+import _, { mapKeys } from 'lodash';
+import { toSnakeCase, toCamelCase } from 'case-converter';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 class PairingContainer extends Component {
 
     render() {
         return (
-            <div class="pairing-container">
+            <div className="pairing-container">
                 <h1>
-                    Pairing Container
+                    Your pair is:
                 </h1>
+                <MatchTable
+                    person2={this.props.pair}
+                    person1={this.props.user}
+                />
             </div>
         );
     }
 }
 
 export default connect(store => {
+
+    const tempPair1 = toSnakeCase(store.pairing.pair);
+
+    const tempPair2 = mapKeys(store.pairing.pair, function(value, key, object) {
+        let tempName = key;
+        tempName = tempName.split('');
+        tempName.splice(0, 4)
+        tempName = tempName.join('');
+
+        return tempName;
+    });
+
+    const pair = toCamelCase(tempPair2);
+
+    // About current logged in user
+    const tempPreferences = _.mapKeys(toSnakeCase(store.preferences), (val, key) => { return 'pref_' + key });
+    const tempUser = _.mapKeys(toSnakeCase(store.user), (val, key) => { return 'my_' + key });
+    const person1 = {
+        ...toCamelCase(tempPreferences),
+        ...toCamelCase(tempUser)
+    };
+
     return {
-        user: store.user,
+        user: person1,
         isFetchingData: store.app.isLoading,
-        pair: store.pairing.pair
+        pair
     };
 })(PairingContainer);
 
