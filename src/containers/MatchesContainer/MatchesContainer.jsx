@@ -99,14 +99,14 @@ class MatchesContainer extends Component {
     render() {
         return (
             <div className="matches-contaner">
-                <Grid fluid>
+                <Grid>
                     <Row>
                         <Col xs={12}>
                             <h1>Current Matches</h1>
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs={12} md={6}>
+                        <Col xs={12} md={12}>
                             <div>
                                 <MatchTable
                                     person2={this.props.matches[this.state.index]}
@@ -114,31 +114,19 @@ class MatchesContainer extends Component {
                                 />
                             </div>
                         </Col>
-                        <Col xs={12} md={6}>
-                            <Row>
-                                <Col xs={12}>
-                                    <Button
-                                        onClick={this.handlePrev.bind(this)}
-                                        bsStyle="primary">
-                                        Prev
-                                    </Button>
-                                    <Button
-                                        onClick={this.handleNext.bind(this)}
-                                        bsStyle="primary">
-                                        Next
-                                    </Button>
-                                </Col>
-                            </Row>
+                    </Row>
+                    <Row>
+                        <Col xs={12} md={12}>
                             <Row>
                                 <Col xs={12}>
                                     <Button
                                         onClick={this.handleAccept.bind(this)}
-                                        bsStyle="primary">
+                                        bsStyle="success">
                                         Accept
                                     </Button>
                                     <Button
                                         onClick={this.handleDecline.bind(this)}
-                                        bsStyle="primary">
+                                        bsStyle="danger">
                                         Decline
                                     </Button>
                                 </Col>
@@ -169,3 +157,18 @@ export default connect((store) => {
     };
 })(MatchesContainer);
 
+// Next/Prev buttons
+                            // <Row>
+                                // <Col xs={12}>
+                                    // <Button
+                                        // onClick={this.handlePrev.bind(this)}
+                                        // bsStyle="primary">
+                                        // Prev
+                                    // </Button>
+                                    // <Button
+                                        // onClick={this.handleNext.bind(this)}
+                                        // bsStyle="primary">
+                                        // Next
+                                    // </Button>
+                                // </Col>
+                            // </Row>
