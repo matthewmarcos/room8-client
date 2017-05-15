@@ -39,7 +39,6 @@ const AuthedNavbar = (props) => {
                     </span>
                 </NavItem>
             </LinkContainer>
-            <NotificationsList {...props}/>
             <DropdownMenu />
        </Nav>
     );
