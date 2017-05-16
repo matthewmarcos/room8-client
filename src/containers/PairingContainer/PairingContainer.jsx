@@ -6,21 +6,50 @@ import MatchTable from '../../components/MatchTable/MatchTable';
 import _, { mapKeys } from 'lodash';
 import { toSnakeCase, toCamelCase } from 'case-converter';
 import { Grid, Row, Col } from 'react-bootstrap';
+import DisplayField from '../../components/DisplayField/DisplayField';
 
 class PairingContainer extends Component {
 
     render() {
+
+        const bold = {
+            fontWeight: 'bold'
+        };
+
         return (
             <div className="pairing-container">
                 <Grid>
                     <Row>
                         <h1>
-                            Your pair is: { this.props.pair.username }
+                            Your pair is: <span style={ bold }>{ this.props.pair.username }</span>
                         </h1>
                     </Row>
                     <Row>
-                        Contact: { this.props.pair.contactNumber }
-                        Email: { this.props.pair.email }
+                        <h4>Additional Partner Details:</h4>
+                    </Row>
+                    <DisplayField
+                        label="Nickname"
+                        value={ this.props.pair.nickname }
+                        newLine/>
+                    <DisplayField
+                        label="Full Name"
+                        value={ this.props.pair.fullName }
+                        newLine/>
+                    <DisplayField
+                        label="Bio"
+                        value={this.props.pair.bio}
+                        newLine/>
+                    <Row>
+                        <h4>Contact details:</h4>
+                    </Row>
+                    <Row>
+                        <span style={ bold }>Contact:</span> { this.props.pair.contactNumber }
+                    </Row>
+                    <Row>
+                        <span style={ bold }>Email:</span> { this.props.pair.email }
+                    </Row>
+                    <Row>
+                        <h3>{ this.props.pair.nickname }'s preferences:</h3>
                     </Row>
                     <Row>
                         <MatchTable
